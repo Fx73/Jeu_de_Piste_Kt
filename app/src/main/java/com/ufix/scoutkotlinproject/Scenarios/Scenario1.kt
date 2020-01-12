@@ -69,7 +69,7 @@ class Scenario1 (c: Context,l:RelativeLayout) : Scenario(c,l) {
     override fun GetImage(): Int {
         when (prog){
             0,1->return R.drawable.s1capture1
-            2->return if(jeu!=1) R.drawable.s1capture2 else R.drawable.s1capture2_1
+            2->return if(jeu!=1 || choix != 1) R.drawable.s1capture2 else R.drawable.s1capture2_1
             3->return R.drawable.s1capture3
             4->return R.drawable.s1capture4
             5->return R.drawable.s1capture5
@@ -86,7 +86,7 @@ class Scenario1 (c: Context,l:RelativeLayout) : Scenario(c,l) {
     override fun Beggin() {
         when(prog)
         {
-            0->{ClearLayout();InstanceTextAt("Bienvenue a vous, jeunes voyageurs. Vous etes les derniers apprentis du Kai, une  Le monde a besoin de vous. Un terrible sorcier du nom de Vonotar s'est installé dans les terres reculées de Kaltes, et vous seuls pouvez l'arreter. \n Dans cette epreuve, l'art du Kai pourra vous etre utile, et votre maitre peut vous enseigner une technique avant de partir. Choisissez la bien, et mettez vous en route. Une grande aventure vous attends !" ,600   );        InstanceImageAt("s1start");prog=1 }
+            0->{ClearLayout();InstanceTextAt("Bienvenue a vous, jeunes voyageurs. Vous êtes les derniers apprentis du Kai, un ordre de moine-guerriers luttant contre les forces du mal. Le monde a besoin de vous. Un terrible sorcier du nom de Vonotar s'est installé dans les terres reculées de Kaltes, et vous seuls pouvez l'arreter. \n Dans cette epreuve, l'art du Kai pourra vous etre utile, et votre maitre peut vous enseigner une technique avant de partir. Choisissez la bien, et mettez vous en route. Une grande aventure vous attends !" ,600   );        InstanceImageAt("s1start");prog=1 }
             1->if(found)Etape1()else{prog=0;Beggin()}
             2->if(found)Etape2()else Etape1()
             3->if(found)Etape3()else Etape2()
@@ -116,40 +116,40 @@ class Scenario1 (c: Context,l:RelativeLayout) : Scenario(c,l) {
             "DEBUG"->ShowToast("Progression $prog \nChoix $choix \nSkill $skill \nFound $found \nJeu $jeu")
             "COCHON"-> ShowToast("Tu es une incroyable personne :-)")
             "RESET"->{Reset();Beggin()}
-            "E0 CAMOUFLAGE" -> skill = 1
-            "E0 6E SENS" -> skill = 2
-            "E0 TELEKINESIE" -> skill = 3
-            "ETAPE 1 : QUELLE DIRECTION ?" -> Etape1()
+            "E0 CAMOUFLAGE" -> {skill = 1;ShowToast("Vous avez appris le camouflage !")}
+            "E0 6E SENS" -> {skill = 2;ShowToast("Vous avez appris le 6e sens !")}
+            "E0 TELEKINESIE" -> {skill = 3;ShowToast("Vous avez appris la télékinésie !")}
+            "ETAPE 1","ETAPE 1 : QUELLE DIRECTION ?" -> Etape1()
             "E1 VALLEE" -> if(choix!=0){choix = 1;InstanceImageAt("s1valley",660)}
             "E1 MONTAGNE" -> if(choix!=0){choix = 2;InstanceImageAt("s1mountain",660)}
-            "ETAPE 2 : AVANCER !" -> Etape2()
+            "ETAPE 2","ETAPE 2 : AVANCER !" -> Etape2()
             "E2 DE L'EAU !" -> Etape2v0()
             "E2 LOUP 1" -> Etape2v1(1)
             "E2 LOUP 2" -> Etape2v1(10)
             "E2 LOUP 3" -> Etape2v1(100)
-            "ETAPE 3 : CHATEAU EN VUE" -> Etape3()
-            "ETAPE 4 : ENTREE DU CHATEAU" -> Etape4()
+            "ETAPE 3","ETAPE 3 : CHATEAU EN VUE" -> Etape3()
+            "ETAPE 4","ETAPE 4 : ENTREE DU CHATEAU" -> Etape4()
             "E4 PORTE" -> Etape4v(0)
             "E4 ESCALIER" -> Etape4v(1)
             "E4 TELEKINESIE" -> Etape4v(2)
-            "ETAPE 5 : EXPLORATION" ->Etape5()
-            "ETAPE 6 : CACHOTS" -> Etape6()
+            "ETAPE 5","ETAPE 5 : EXPLORATION" ->Etape5()
+            "ETAPE 6","ETAPE 6 : CACHOTS" -> Etape6()
             "E6 PORTE 0"->Etape6v0()
             "E6 PORTE 1"->Etape6v1()
             "E6 PORTE 2"->Etape6v2()
             "E6 PORTE 3"->Etape6v3()
-            "ETAPE 7 : DONJON BAS"->Etape7()
+            "ETAPE 7","ETAPE 7 : DONJON BAS"->Etape7()
             "E7 COMBAT"->Etape7v0()
             "E7 FUITE"->Etape7v1()
             "E7 CAMOUFLAGE"->Etape7v2()
             "E7 PASSAGE"->Etape7v3()
-            "ETAPE 8 : DONJON MILIEU"->Etape8()
+            "ETAPE 8","ETAPE 8 : DONJON MILIEU"->Etape8()
             "E8 GAUCHE"->Etape8v0()
             "E8 DROITE"->Etape8v1()
             "E8 6E SENS"->Etape8v2()
-            "ETAPE 9 : DONJON HAUT"->Etape9()
-            "ETAPE 10 : BOSS"->Etape10()
-            "ETAPE 11 : FIN"->Etape11()
+            "ETAPE 9","ETAPE 9 : DONJON HAUT"->Etape9()
+            "ETAPE 10","ETAPE 10 : BOSS"->Etape10()
+            "ETAPE 11","ETAPE 11 : FIN"->Etape11()
             else -> return false
         }
         return true
@@ -183,10 +183,12 @@ class Scenario1 (c: Context,l:RelativeLayout) : Scenario(c,l) {
         if (choix == 1) {
                 InstanceTextAt("Vous avez deja marché 2 jours dans la valée. Vous dressez un campement ici, mais vous n'avez pas assez d'eau. Vous devez aller en chercher à la rivière qui est marquée sur votre carte")
                 InstanceImageAt("s1valley2",480)
+            jeu =1
         }
         else {
                 InstanceTextAt("Vous avancez prudement dans les montagnes depuis un jour sans encombre, et la nuit commence à tomber, quand tout à coup vous entendez le hurlement d'un loup. Puis d'autres. Ils sont 3 ! Ils sont autours de vous ! Vite, trouvez les, avant qu'ils ne vous trouvent ! ")
                 InstanceImageAt("s1mountain2",640)
+
         }
 
         if (choix == 1 && jeu == 2) {
@@ -231,9 +233,9 @@ class Scenario1 (c: Context,l:RelativeLayout) : Scenario(c,l) {
         ClearLayout()
         InstanceImageAt("s1fortress")
         if (choix == 1) {
-            InstanceTextAt("Le chateau est en vue, vous pouvez le voir se dresser au fond de la vallée. De loin, vous pouvez voir des silhouettes au pied du chateau, probablement les membres d'une tribu délogée de ses terres par le sorcier. Le temps d'arriver au chateau, vous avez le temps de décider si vous voulez aller leur demander de l'aide ou non. Si oui allez les voir, ils portent un habit couleur kaki. Si non, allez directement jusqu'à la porte du chateau",600)
+            InstanceTextAt("Le chateau est en vue, vous pouvez le voir se dresser au fond de la vallée. De loin, vous pouvez voir des silhouettes au pied du chateau, probablement les membres d'une tribu délogée de ses terres par le sorcier. Et justement un message est gravé sur une pierre. Il est écrit :\n 'Ву труверё ун индис сур ле белвёдэр Вобан, дерриэр ла цаг д'асенсер'\n\nVous pouvez tenter de trouver ce que signifie ce message, ou simplement vous rendre à l'entrée du chateau pour continuer votre quête.",600)
         } else {
-            InstanceTextAt("Le chateau est en vue, a flanc de la montagne voisine. En commencant la descente, vous sentez le sol se dérober sous vos pieds. Vous atterissez plus bas sur un tas de neige. Vous etes dans une grotte immense. Un passage ouvragé se découpe au loin, surement une entrée cachée du chateau. Mais il y a aussi des lumières dans un autre passage, probablement une tribu de Kalte qui vit dans ces grottes. Vous pouvez allez leur demander de l'aide, dans ce cas allez les voir, ils portent un habit couleur kaki, sinon allez directement jusqu'à la porte du chateau",600)
+            InstanceTextAt("Le chateau est en vue, a flanc de la montagne voisine. En commencant la descente, vous sentez le sol se dérober sous vos pieds. Vous atterissez plus bas sur un tas de neige. Vous etes dans une grotte immense. Un passage ouvragé se découpe au loin, surement une entrée cachée du chateau. Mais il y a aussi des lumières dans un autre passage, probablement une tribu de Kalte qui vit dans ces grottes. Et justement un message est gravé sur une pierre. Il est écrit :\n 'Ву труверё ун индис сур ле белвёдэр Вобан, дерриэр ла цаг д'асенсер'\n\nVous pouvez tenter de trouver ce que signifie ce message, ou simplement vous rendre à l'entrée du chateau pour continuer votre quête.",600)
         }
         prog = 4
         found = false
@@ -481,7 +483,7 @@ class Scenario1 (c: Context,l:RelativeLayout) : Scenario(c,l) {
             ClearLayout()
             InstanceTextAt("Vous avez immobilisé les trois monstres")
             InstanceImageAt("s1monsters",200)
-            InstanceTextAt("Vous vous apercevez que le vieux a pris un coup mortel durant le combat. Il repose au sol, l'air tranquille. Le pauvre n'auras pas profité longtemps de la liberté. Vous empruntez maintenant l'escalier et montez dans le donjon.",800)
+            InstanceTextAt("Vous vous apercevez que le vieux a pris un coup mortel durant le combat. Il repose au sol, l'air tranquille. Le pauvre n'auras pas profité longtemps de la liberté. Vous empruntez maintenant l'escalier et montez dans le donjon.   La montée est très rude ! Une croix jaune est peinte sur le chemin, mais il faut monter tout de même. Un peu plus haut, une marque rouge est peinte sur un poteau métallique. Vous tournez à gauche et continuez sur ce chemin enfin à peu près plat, quoique étroit.",800)
             choix =0
             prog=8
             found = false
@@ -519,7 +521,7 @@ class Scenario1 (c: Context,l:RelativeLayout) : Scenario(c,l) {
     fun Etape7r(){
         ClearLayout()
         InstanceImageAt("s1dungeon0")
-        InstanceTextAt("Après avoir traversé le chateau, vous êtes arrivés au pied du donjon. Vous vous êtes ensuite engagé dans l'escalier et commencé votre ascension ...",600)
+        InstanceTextAt("Après avoir traversé le chateau, vous êtes arrivés au pied du donjon. Vous vous êtes ensuite engagé dans l'escalier et commencé votre ascension ... ",600)
     }
 
 
@@ -546,7 +548,7 @@ class Scenario1 (c: Context,l:RelativeLayout) : Scenario(c,l) {
         InstanceImageAt("s1renfort",580)
         if(skill == 4 || skill == 5 || skill == 6) {
             InstanceTextAt("Vous montez les escaliers à gauche. Les pas sont de plus en plus fort. Enfin vous les apercevez. Il s'agit des renforts que vous avez appelés avec le feu sur la tour. Vous continuez votre route avec un groupe largement plus nombreux.")
-            if(choix==1)InstanceTextAt("Pendant la bousculade qui a suivi la retrouvaille, il semble que le vieil homme se soit fait la malle. Tant pis, vous allez devoir continuer sans lui",1200)
+            if(choix==1)InstanceTextAt("Pendant la bousculade qui a suivi la retrouvaille, il semble que le vieil homme se soit fait la malle. Tant pis, vous allez devoir continuer sans lui. ",1200)
             choix = 0
             prog = 9
             jeu = 0
@@ -600,7 +602,7 @@ class Scenario1 (c: Context,l:RelativeLayout) : Scenario(c,l) {
         InstanceImageAt("s1imagemot",600)
         InstanceButtonAt("Dire",1300,this::Etape8v1v,InstanceReaderAt("",1180).text)
 
-        InstanceTextAt("(Vous pouvez reflechir en marchant, la carte suivante est quand meme débloquée)",1600)
+        InstanceTextAt("(Vous pouvez reflechir en marchant, la carte suivante est quand meme débloquée) ",1600)
         jeu = 2
     }
     fun Etape8v1v(s:String){
@@ -620,7 +622,7 @@ class Scenario1 (c: Context,l:RelativeLayout) : Scenario(c,l) {
         if(skill != 2 && skill !=5) return
         ClearLayout()
         if(skill == 2)
-            InstanceTextAt("Votre 6e sens vous prévient qu'il s'agit d'une grosse escouade d'hommes en armes, avec des intentions hostiles. Vous remerciez le ciel d'avoir cette capacité et prenez l'autre chemin.")
+        {InstanceTextAt("Votre 6e sens vous prévient qu'il s'agit d'une grosse escouade d'hommes en armes, avec des intentions hostiles. Vous remerciez le ciel d'avoir cette capacité et prenez l'autre chemin.")}
         else
             {InstanceTextAt("Votre 6e sens vous prévient qu'il s'agit d'une grosse escouade d'hommes en armes, mais également que vous les connaissez. Vous montez les escaliers à leur rencontre.");InstanceTextAt( "Il s'agit des renforts que vous avez appelés avec le feu sur la tour. Vous continuez votre route avec un groupe largement plus nombreux.",1120)}
         InstanceImageAt("s1renfort",500)
@@ -684,9 +686,7 @@ class Scenario1 (c: Context,l:RelativeLayout) : Scenario(c,l) {
             InstanceTextAt("Il est très puissant. Il s'attaquera à vous en lancant des répliques de films. Si vous répondez avec le titre du film, il sera déstabilisé et vous pourrez lui mettre un coup. Il est très fort, mais avec les renforts vous êtes nombreux, il ne vous faudras que 8 coups pour le vaincre. Si vous ne savez vraiment pas, vous pouvez utiliser votre pouvoir pour vous protéger. ",1200)
         else
             InstanceTextAt("Il est très puissant. Il s'attaquera à vous en lancant des répliques de films. Si vous répondez avec le titre du film, il sera déstabilisé et vous pourrez lui mettre un coup. Il est très fort, il faudra lui mettre 16 coups pour le vaincre. Si vous ne savez vraiment pas, vous pouvez utiliser votre pouvoir pour vous protéger. ",1200)
-        InstanceButtonAt("Commencer le combat !",1900,this::Etape10v1)
-        //ShowToast(films.size.toString()+ " : " + filmsbool.size.toString() +" : "+ repliques.size.toString())
-
+        InstanceButtonAt("Commencer le combat !",2000,this::Etape10v1)
     }
 
     fun Etape10v0(s:String){
