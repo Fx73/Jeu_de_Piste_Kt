@@ -2,6 +2,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.ufx.jeudepistekt.MainActivity">
+    <item android:title="@string/code" />
+    <item android:title="@string/infos" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
