@@ -1,20 +1,27 @@
 package com.ufx.jeudepistekt
 
+import android.media.Image
 import android.os.Bundle
+import android.view.Gravity
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.cardview.widget.CardView
 import com.ufx.jeudepistekt.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+
+    lateinit var sAlayout : LinearLayout
+    lateinit var sBlayout : LinearLayout
+
+    val scenariolist = listOf("Test1","Test2","Test3","Test4","Test5")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,14 +31,33 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
+        sAlayout = findViewById(R.id.scenariolayoutA)
+        sBlayout = findViewById(R.id.scenariolayoutB)
+
+
+        var sens = true
+        for (scenario in scenariolist){
+            val card = CardView(this)
+            val img = ImageView(this)
+
+            img.setBackgroundResource(this.resources.getIdentifier("start", "drawable", this.packageName))
+            card.addView(img)
+
+            val r = LinearLayout.LayoutParams(0,200)
+            r.setMargins(4,4,4,4)
+
+            if (sens) sAlayout.addView(card) else sBlayout.addView(card)
+
+            sens = !sens
+        }
+        sAlayout.invalidate()
+        sBlayout.invalidate()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -50,9 +76,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
-    }
 }
