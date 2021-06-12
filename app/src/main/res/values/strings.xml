@@ -12,4 +12,6 @@
     <string name="capture">Capture</string>
     <string name="infos">Infos</string>
     <string name="code">Code</string>
+    <string name="action_home">Home</string>
+    <string name="home">Home</string>
 </resources>

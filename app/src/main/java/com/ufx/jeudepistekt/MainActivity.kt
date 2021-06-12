@@ -1,79 +1,89 @@
 package com.ufx.jeudepistekt
 
-import android.media.Image
+import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageButton
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.google.zxing.integration.android.IntentIntegrator
 import com.ufx.jeudepistekt.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : CommonsActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var user : User
 
-    lateinit var sAlayout : LinearLayout
-    lateinit var sBlayout : LinearLayout
-
-    val scenariolist = listOf("Test1","Test2","Test3","Test4","Test5")
+    val scenariolist = listOf("Test1","Test2","Test3","Test4","Test5", "Test6", "Test7", "Test8","Add a scenario")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+        user = User(this)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+        createScenarioGrid()
 
-        sAlayout = findViewById(R.id.scenariolayoutA)
-        sBlayout = findViewById(R.id.scenariolayoutB)
+    }
 
+//region Scenario Panel
+
+    fun createScenarioGrid(){
+        val sAlayout : LinearLayout = findViewById(R.id.scenariolayoutA)
+        val sBlayout : LinearLayout = findViewById(R.id.scenariolayoutB)
 
         var sens = true
         for (scenario in scenariolist){
             val card = CardView(this)
             val img = ImageView(this)
+            val title = TextView(this)
+
+            val cardpar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,500)
+            val imgpar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,300)
+            val titlepar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,300)
+
+            cardpar.setMargins(6,6,6,6)
+            card.radius = 8f
+
 
             img.setBackgroundResource(this.resources.getIdentifier("start", "drawable", this.packageName))
-            card.addView(img)
+            imgpar.setMargins(8,8,8,8)
 
-            val r = LinearLayout.LayoutParams(0,200)
-            r.setMargins(4,4,4,4)
+            title.text = scenario
+            titlepar.setMargins(8,8,8,8)
 
+            title.layoutParams = titlepar
+            card.layoutParams = cardpar
+            img.layoutParams = imgpar
+
+            val l = LinearLayout(this)
+            l.orientation = LinearLayout.VERTICAL
+            card.addView(l)
+            card.setOnClickListener{swapToGame()}
+            l.addView(img)
+            l.addView(title)
             if (sens) sAlayout.addView(card) else sBlayout.addView(card)
 
             sens = !sens
         }
-        sAlayout.invalidate()
-        sBlayout.invalidate()
+
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
+//endregion
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
+
+
+    fun swapToGame(){
+        val gameActivity = Intent(this@MainActivity, GameActivity::class.java)
+        startActivity(gameActivity)
+    }
 }
