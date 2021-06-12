@@ -2,32 +2,27 @@ package com.ufx.jeudepistekt
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import com.google.zxing.integration.android.IntentIntegrator
 import com.ufx.jeudepistekt.databinding.ActivityMainBinding
 
 class MainActivity : CommonsActivity() {
 
-    private lateinit var user : User
+    private lateinit var binding: ActivityMainBinding
 
     val scenariolist = listOf("Test1","Test2","Test3","Test4","Test5", "Test6", "Test7", "Test8","Add a scenario")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
-        user = User(this)
+        binding.fab.setOnClickListener { ScanQr() }
+
 
         createScenarioGrid()
 

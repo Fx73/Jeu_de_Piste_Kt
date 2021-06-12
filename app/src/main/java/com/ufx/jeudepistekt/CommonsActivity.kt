@@ -1,26 +1,14 @@
 package com.ufx.jeudepistekt
 
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
-import com.ufx.jeudepistekt.databinding.ActivityMainBinding
 
 open class CommonsActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-
-        binding.fab.setOnClickListener { ScanQr() }
-
-
-    }
 
 //region Menu
 
