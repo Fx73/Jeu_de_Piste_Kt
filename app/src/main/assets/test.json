@@ -1,18 +1,33 @@
-[
-  {
-    "name": "bezkoder",
-    "age": "26",
-    "messages": [
-      "hello",
-      "becoming zKoder"
+{
+  "Scenario": {
+    "title": "Kalte",
+    "icon": "start.png",
+    "creator": "fx",
+    "idkey": "testtesttest",
+    "variable": [{"vara":"prout"},{"varb":true}],
+    "etapes": [
+      {
+        "number": 0,
+        "images":[],
+        "texts": [
+          {
+            "content": "Yo",
+            "position": 0
+          },
+          {
+            "content": "Cava ?",
+            "position": 1
+          }
+        ],
+        "code": "ceci est du code"
+      }
     ]
-  },
-  {
-    "name": "bezkoder Master",
-    "age": 30,
-    "messages": [
-      "I am Kotlin Master",
-      "still learning Kotlin"
-    ]
+
   }
-]
+
+
+
+
+
+
+}

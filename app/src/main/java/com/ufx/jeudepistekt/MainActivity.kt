@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.ufx.jeudepistekt.databinding.ActivityMainBinding
+import com.ufx.jeudepistekt.jeu.Scenario
 
 class MainActivity : CommonsActivity() {
 
@@ -25,6 +26,14 @@ class MainActivity : CommonsActivity() {
 
 
         createScenarioGrid()
+
+        var s = Scenario.buildScenarioFromJson(this,"essai.json")
+        println(s.title)
+        println(s.creator)
+        println(s.variable["var1"])
+        println(s.etapes[0].code)
+
+
 
     }
 
