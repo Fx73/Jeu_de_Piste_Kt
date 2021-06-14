@@ -108,7 +108,7 @@ class MainActivity : CommonsActivity() {
 
 
     //region addScenario
-    val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         if (uri == null) return@registerForActivityResult
         val src = PathFinder().getPath(this, uri) ?: return@registerForActivityResult
         val source = File(src)

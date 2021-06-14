@@ -1,18 +1,12 @@
 package com.ufx.jeudepistekt
 
-import android.Manifest
-import android.R.attr
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.os.FileUtils
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.google.zxing.integration.android.IntentIntegrator
 
 
@@ -55,9 +49,18 @@ open class CommonsActivity : AppCompatActivity() {
         integrator.setCameraId(0)
         integrator.setBeepEnabled(false)
         integrator.setBarcodeImageEnabled(false)
-        integrator.initiateScan()
+        qrscanner.launch(integrator.createScanIntent())
     }
 
+    private val qrscanner = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        val result = IntentIntegrator.parseActivityResult(it.resultCode, it.data)
+        if (result.contents == null) {
+            Log.e("Scan*******", "Cancelled scan")
+        } else {
+            Log.e("Scan", "Scanned")
+            Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+        }
+    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
