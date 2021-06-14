@@ -47,8 +47,6 @@ open class CommonsActivity : AppCompatActivity() {
 //endregion
 
 //region Utils
-    val BROWSEFILECODE = 2000
-
     fun ScanQr()
     {
         val integrator = IntentIntegrator(this)
@@ -60,31 +58,9 @@ open class CommonsActivity : AppCompatActivity() {
         integrator.initiateScan()
     }
 
-    fun BrowseFile() {
-        //Check and ask storage permission
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE ) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),1)
-            return
-        }
 
-        var chooseFileIntent = Intent(Intent.ACTION_GET_CONTENT)
-        chooseFileIntent.type = "*/*"
-        // Only return URIs that can be opened with ContentResolver
-        chooseFileIntent.addCategory(Intent.CATEGORY_OPENABLE)
-        chooseFileIntent = Intent.createChooser(chooseFileIntent, "Choose a file")
-        startActivityForResult(chooseFileIntent, BROWSEFILECODE)
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        //File Browser Result
-        if(requestCode == BROWSEFILECODE){
-            if (resultCode == RESULT_OK) {
-                val fileUri: Uri? = data?.data
-                println(fileUri?.path)
-            }
-            super.onActivityResult(requestCode, resultCode, data)
-            return
-        }
 
         //QRCode Result
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
