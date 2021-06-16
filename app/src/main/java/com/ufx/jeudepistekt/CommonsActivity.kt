@@ -1,5 +1,6 @@
 package com.ufx.jeudepistekt
 
+import android.content.Intent
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -29,7 +30,11 @@ open class CommonsActivity : AppCompatActivity() {
 
         return when (item.itemId) {
             R.id.action_home -> true
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                val settingActivity = Intent(this, SettingActivity::class.java)
+                startActivity(settingActivity)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

@@ -148,7 +148,10 @@ class MainActivity : CommonsActivity() {
         }
     }
  //endregion
-
+    override fun swapToMain(){
+     val settingActivity = Intent(this@MainActivity, SettingActivity::class.java)
+     startActivity(settingActivity)
+    }
 
     private fun swapToGame() {
         val gameActivity = Intent(this@MainActivity, GameActivity::class.java)
