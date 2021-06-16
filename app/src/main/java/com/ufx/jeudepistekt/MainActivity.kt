@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -30,6 +29,7 @@ class MainActivity : CommonsActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+
         binding.fab.setOnClickListener { ScanQr() }
 
         user = User(this)
@@ -57,6 +57,7 @@ class MainActivity : CommonsActivity() {
             if (sens) sAlayout.addView(card) else sBlayout.addView(card)
             sens = !sens
         }
+
         val pluscard = createCard("Ajouter un scenario","", "plusicon")
         pluscard.setOnClickListener { BrowseFile() }
         if (sens) sAlayout.addView(pluscard) else sBlayout.addView(pluscard)
@@ -147,6 +148,8 @@ class MainActivity : CommonsActivity() {
         }
     }
  //endregion
+
+
     private fun swapToGame() {
         val gameActivity = Intent(this@MainActivity, GameActivity::class.java)
         startActivity(gameActivity)
