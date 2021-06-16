@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat
 import com.ufx.jeudepistekt.databinding.ActivityMainBinding
 import com.ufx.jeudepistekt.tools.PathFinder
 import com.ufx.jeudepistekt.tools.Permissions.Companion.askPermission
+import com.ufx.jeudepistekt.tools.Zipper
 import org.apache.commons.io.IOUtils
 import java.io.File
 import java.io.FileInputStream
@@ -28,7 +29,7 @@ class MainActivity : CommonsActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var user: User
 
-    lateinit var scenariolist: Map<String, String>
+    lateinit var scenariolist: List<Pair<String,String>>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +57,7 @@ class MainActivity : CommonsActivity() {
 
         var sens = true
         for (scenario in scenariolist) {
-            val card = createCard(scenario.key, scenario.value)
+            val card = createCard(scenario.first, scenario.second)
             card.setOnClickListener { swapToGame() }
             if (sens) sAlayout.addView(card) else sBlayout.addView(card)
             sens = !sens
@@ -106,30 +107,25 @@ class MainActivity : CommonsActivity() {
     }
 //endregion
 
-
-    //region addScenario
+//region addScenario
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         if (uri == null) return@registerForActivityResult
-        val src = PathFinder().getPath(this, uri) ?: return@registerForActivityResult
-        val source = File(src)
-        val filename = "test.txt"
+        val path = PathFinder().getPath(this, uri) ?: return@registerForActivityResult
 
-        val filein = FileInputStream(source)
+        if (Zipper(this).unpackScenario(path,scenariolist)){
+            val bf = this.openFileInput("moi_Kalteeeee_test.txt").bufferedReader()
+            println(bf.readLine())
 
-        this.openFileOutput(filename, Context.MODE_PRIVATE).use {
-            it.write(IOUtils.toByteArray(filein))
         }
-        filein.close()
 
-        val bf = this.openFileInput(filename).bufferedReader()
-        println(bf.readLine())
-        println(bf.readLine())
+
+
     }
 
     private fun BrowseFile() {
         //Check and ask storage permission
         if(askPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE))
-            getContent.launch("*/*")
+            getContent.launch("application/octet-stream")
     }
 
 //endregion

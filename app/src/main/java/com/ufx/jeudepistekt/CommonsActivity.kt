@@ -63,22 +63,6 @@ open class CommonsActivity : AppCompatActivity() {
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        //QRCode Result
-        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-        if (result != null) {
-            if (result.contents == null) {
-                Log.e("Scan*******", "Cancelled scan")
-            } else {
-                Log.e("Scan", "Scanned")
-                Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
-            }
-        } else { // This is important, otherwise the result will not be passed to the fragment
-            super.onActivityResult(requestCode, resultCode, data)
-        }
-    }
-
 //endregion
 
 }
