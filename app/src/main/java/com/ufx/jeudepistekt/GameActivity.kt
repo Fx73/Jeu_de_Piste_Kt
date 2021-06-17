@@ -1,5 +1,6 @@
 package com.ufx.jeudepistekt
 
+import android.content.Intent
 import android.os.Bundle
 import com.ufx.jeudepistekt.databinding.ActivityGameBinding
 
@@ -17,8 +18,4 @@ class GameActivity : CommonsActivity() {
     }
 
 
-
-    override fun swapToMain() {
-        finish()
-    }
 }

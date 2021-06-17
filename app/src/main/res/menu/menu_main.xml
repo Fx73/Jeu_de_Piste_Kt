@@ -9,11 +9,15 @@
         android:title="@string/home"
         app:showAsAction="ifRoom" />
 
-    <item android:title="@string/code" />
-    <item android:title="@string/infos" />
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:id="@+id/code"
+        android:title="@string/code" />
+    <item
+        android:id="@+id/settings"
+        android:title="@string/settings"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/infos"
+        android:title="@string/about" />
+
 </menu>

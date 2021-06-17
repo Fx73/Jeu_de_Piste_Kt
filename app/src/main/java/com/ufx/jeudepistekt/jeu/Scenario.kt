@@ -8,7 +8,6 @@ import java.io.FileInputStream
 
 class Scenario(
     var title : String,
-    var icon : String,
     var creator : String,
     val variable : MutableMap<String, Any> = mutableMapOf(),
     val etapes : List<Etape> = listOf()

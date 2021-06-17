@@ -34,7 +34,7 @@ class User (context: Context)
         name = sharedPref.getString(KEY_TEAMNAME, "Default")?:"ERROR"
     }
 
-    fun SaveScenarioList(list :List<Pair<String,String>>){
+    fun SaveScenarioList(list :MutableList<Pair<String,String>>){
         val json: String = Gson().toJson(list)
 
         with (sharedPref.edit()) {
@@ -43,9 +43,9 @@ class User (context: Context)
         }
     }
 
-    fun LoadScenarioList(): List<Pair<String,String>> {
+    fun LoadScenarioList(): MutableList<Pair<String,String>> {
         val json = sharedPref.getString(KEY_SCELIST, "") ?: ""
-        if (json == "") return listOf()
+        if (json == "") return mutableListOf()
         val outtype = object : TypeToken<List<Pair<String,String>>>() {}.type
         return Gson().fromJson(json, outtype)
     }

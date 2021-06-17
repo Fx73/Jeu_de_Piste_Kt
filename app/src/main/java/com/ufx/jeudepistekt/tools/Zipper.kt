@@ -1,42 +1,43 @@
 package com.ufx.jeudepistekt.tools
 
 import android.content.Context
-import android.widget.Toast
+import android.net.Uri
 import com.ufx.jeudepistekt.jeu.Scenario
 import java.io.BufferedInputStream
-import java.io.FileInputStream
 import java.io.IOException
 import java.util.zip.ZipInputStream
 
 
-class Zipper(val context: Context) {
+class Zipper {
+    val context : Context
+    var uri : Uri? = null
+    lateinit var storer : Storer
 
+    constructor(context: Context, uri : Uri ){
+        this.context = context
+        this.uri = uri
+        readMetaData()
+    }
 
-    fun unpackScenario(path: String, scenariolist: List<Pair<String,String>>):Boolean{
-        val key = readMetaData(path)
-        for (scenario in scenariolist){
-            if(scenario.second+"_"+scenario.first == key){
-                Toast.makeText(context, "Same scenario from same creator already exists. Delete the old one !", Toast.LENGTH_LONG).show()
-                return false
-            }
-        }
-        unpackZip(path, key)
+    constructor(context: Context, title: String , creator: String ){
+        this.context = context
+        storer = Storer(title,creator)
 
-        return true
     }
 
 
-    private fun unpackZip(path: String, key:String): Boolean {
-
+    fun unpackZip(): Boolean {
+        if(uri == null)return false
         try {
-            val zipStream = ZipInputStream(BufferedInputStream(FileInputStream(path)))
+            val zipStream = ZipInputStream(BufferedInputStream(context.contentResolver.openInputStream(uri!!)))
 
             var filename: String
             val buffer = ByteArray(1024)
             var count: Int
             var ze = zipStream.nextEntry
             while (ze != null){
-                filename = key+"_"+ze.name
+                println(ze.name)
+                filename = storer.getKey() +ze.name
 
                 context.openFileOutput(filename, Context.MODE_PRIVATE).use { it ->
                     while (zipStream.read(buffer).also { count = it } != -1) {
@@ -56,17 +57,15 @@ class Zipper(val context: Context) {
     }
 
 
-    private fun readMetaData(path: String):String{
-        val zipStream = ZipInputStream(BufferedInputStream(FileInputStream(path)))
+    private fun readMetaData(){
+        val zipStream = ZipInputStream(BufferedInputStream(context.contentResolver.openInputStream(uri!!)))
 
-        var key = ""
         val buffer = ByteArray(1024)
         var count: Int
         var ze = zipStream.nextEntry
         while (ze != null) {
 
             if(ze.name == "ScenarioFile.json"){
-
                 context.openFileOutput("temp.json", Context.MODE_PRIVATE).use { it ->
                     while (zipStream.read(buffer).also { count = it } != -1) {
                         it.write(buffer, 0, count)
@@ -74,41 +73,32 @@ class Zipper(val context: Context) {
                 }
 
                 val s = Scenario.buildScenarioFromJson(context,"temp.json")
-                key = key(s.creator,s.title)
+                storer = Storer(s.title,s.creator)
 
                 context.deleteFile("temp.json")
+
+                zipStream.close()
+                return
             }
 
             ze = zipStream.nextEntry
         }
 
         zipStream.close()
-        return key
     }
 
 
-    fun deleteScenarioFiles(title : String, creator : String){
-        val key = key(creator,title)
+    fun deleteScenarioFiles(){
         val files: Array<String> = context.fileList()
         for(file in files){
-            if(file.startsWith(key)){
+            if(file.startsWith(storer.getKey())){
                 context.deleteFile(file)
             }
         }
 
     }
 
-    fun deleteScenarioFiles(key : String){
-        val files: Array<String> = context.fileList()
-        for(file in files){
-            if(file.startsWith(key)){
-                context.deleteFile(file)
-            }
-        }
 
-    }
-    companion object{
-        fun key(title: String,creator: String)= creator+"_"+title
-    }
+
 
 }

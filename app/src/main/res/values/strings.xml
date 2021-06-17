@@ -1,19 +1,19 @@
 <resources>
     <string name="app_name">Jeu de Piste Kt</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="capture">Capture</string>
-    <string name="infos">Infos</string>
-    <string name="code">Code</string>
-    <string name="action_home">Home</string>
+    <!-- Menu -->
     <string name="home">Home</string>
-    <string name="delete">Delete</string>
+    <string name="code">Code</string>
+    <string name="settings">Paramètres</string>
     <string name="about">A propos</string>
-    <string name="contacts">Contacts</string>
+
+    <!-- Main -->
+    <string name="capture">Capture</string>
+    <string name="addscenario">Ajouter un scenario</string>
+    <string name="delete">Delete</string>
+
+    <!-- Infos -->
     <string name="app_description">Ceci est une app</string>
+    <string name="contacts">Contacts</string>
     <string name="copy_right">Copyright</string>
 
 </resources>

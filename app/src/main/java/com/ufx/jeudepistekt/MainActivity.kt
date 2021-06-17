@@ -8,11 +8,12 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.cardview.widget.CardView
 import com.ufx.jeudepistekt.databinding.ActivityMainBinding
-import com.ufx.jeudepistekt.tools.PathFinder
 import com.ufx.jeudepistekt.tools.Permissions.Companion.askPermission
+import com.ufx.jeudepistekt.tools.Storer
 import com.ufx.jeudepistekt.tools.Zipper
 
 
@@ -21,7 +22,7 @@ class MainActivity : CommonsActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var user: User
 
-    lateinit var scenariolist: List<Pair<String,String>>
+    lateinit var scenariolist: MutableList<Pair<String,String>>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,14 +52,14 @@ class MainActivity : CommonsActivity() {
 
         var sens = true
         for (scenario in scenariolist) {
-            val card = createCard(scenario.first, scenario.second,"")
+            val card = createCard(scenario.first, scenario.second,"ScenarioIcon.png")
             card.setOnClickListener { swapToGame() }
             registerForContextMenu(card)
             if (sens) sAlayout.addView(card) else sBlayout.addView(card)
             sens = !sens
         }
 
-        val pluscard = createCard("Ajouter un scenario","", "plusicon")
+        val pluscard = createPlusCard()
         pluscard.setOnClickListener { BrowseFile() }
         if (sens) sAlayout.addView(pluscard) else sBlayout.addView(pluscard)
 
@@ -79,11 +80,52 @@ class MainActivity : CommonsActivity() {
         card.radius = 10f
 
 
-        imgview.setImageResource(this.resources.getIdentifier(img, "drawable", this.packageName))
+        imgview.setImageBitmap(Storer(title,creator).loadImage(this,img))
+
         imgpar.setMargins(8, 8, 8, 8)
         imgpar.gravity = Gravity.CENTER_HORIZONTAL
 
         titleview.text = title
+        titlepar.setMargins(8, 8, 8, 8)
+        titlepar.gravity = Gravity.CENTER_HORIZONTAL
+
+        titleview.layoutParams = titlepar
+        card.layoutParams = cardpar
+        imgview.layoutParams = imgpar
+
+
+        val l = LinearLayout(this)
+        l.orientation = LinearLayout.VERTICAL
+        card.addView(l)
+
+
+        l.addView(imgview)
+        l.addView(titleview)
+
+        card.tag = Storer.key(title, creator)
+
+        return card
+    }
+
+    private fun createPlusCard(): CardView {
+        val card = CardView(this)
+        val imgview = ImageView(this)
+        val titleview = TextView(this)
+
+        val cardpar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 500)
+        val imgpar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 300)
+        val titlepar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300)
+
+        cardpar.setMargins(6, 6, 6, 6)
+        card.radius = 10f
+
+
+        imgview.setImageResource(R.drawable.plusicon)
+
+        imgpar.setMargins(8, 8, 8, 8)
+        imgpar.gravity = Gravity.CENTER_HORIZONTAL
+
+        titleview.text = getString(R.string.addscenario)
         titlepar.setMargins(8, 8, 8, 8)
 
         titleview.layoutParams = titlepar
@@ -99,31 +141,37 @@ class MainActivity : CommonsActivity() {
         l.addView(imgview)
         l.addView(titleview)
 
-        card.tag = Zipper.key(title, creator)
-
         return card
     }
 //endregion
 
 //region addScenario
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        if (uri == null) return@registerForActivityResult
-        val path = PathFinder().getPath(this, uri) ?: return@registerForActivityResult
+    if (uri == null) return@registerForActivityResult
+    println("OKAY0")
 
-        if (Zipper(this).unpackScenario(path,scenariolist)){
-            val bf = this.openFileInput("moi_Kalteeeee_test.txt").bufferedReader()
-            println(bf.readLine())
+        val zipper = Zipper(this, uri)
 
+        println(zipper.storer.title)
+        for (scenario in scenariolist)
+            if(scenario.second+"_"+scenario.first == zipper.storer.getKey()){
+                Toast.makeText(this, "Same scenario from same creator already exists. Delete the old one !", Toast.LENGTH_LONG).show()
+                return@registerForActivityResult
+            }
+
+        if(zipper.unpackZip()){
+            scenariolist.add(Pair(zipper.storer.title,zipper.storer.creator))
+            user.SaveScenarioList(scenariolist)
+            finish()
+            startActivity(intent)
         }
-
-
 
     }
 
     private fun BrowseFile() {
         //Check and ask storage permission
         if(askPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE))
-            getContent.launch("application/octet-stream")
+            getContent.launch("application/*")
     }
 
 //endregion
@@ -141,16 +189,30 @@ class MainActivity : CommonsActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.scenario_delete -> {
-                println(selectedview.tag.toString())
-                true
+                for (scenario in scenariolist){
+                    if (Storer.key(scenario.first,scenario.second) == selectedview.tag.toString()){
+                        Zipper(this,scenario.first,scenario.second).deleteScenarioFiles()
+                        scenariolist.remove(scenario)
+                        user.SaveScenarioList(scenariolist)
+                        finish()
+                        startActivity(intent)
+                        return true
+                    }
+                }
+
+                false
             }
             else -> super.onContextItemSelected(item)
         }
     }
- //endregion
-    override fun swapToMain(){
-     val settingActivity = Intent(this@MainActivity, SettingActivity::class.java)
-     startActivity(settingActivity)
+
+    override fun swapToMain() {
+        Toast.makeText(this, "Hello " + User.name, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun swapToMenu(){
+        val settingActivity = Intent(this, InfosActivity::class.java)
+        startActivity(settingActivity)
     }
 
     private fun swapToGame() {

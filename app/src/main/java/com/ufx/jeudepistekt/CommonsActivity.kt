@@ -21,26 +21,30 @@ open class CommonsActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
 
         if(item.itemId == R.id.action_home)
             swapToMain()
 
         return when (item.itemId) {
             R.id.action_home -> true
-            R.id.action_settings -> {
-                val settingActivity = Intent(this, SettingActivity::class.java)
-                startActivity(settingActivity)
+            R.id.settings -> {
+                swapToMenu()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+    open fun swapToMenu(){
+        finish()
+        val settingActivity = Intent(this, InfosActivity::class.java)
+        startActivity(settingActivity)
+    }
+
     open fun swapToMain(){
-        Toast.makeText(this, "Hello " + User.name, Toast.LENGTH_SHORT).show()
+        finish()
+        //val gameActivity = Intent(this, MainActivity::class.java)
+        //startActivity(gameActivity)
     }
 //endregion
 

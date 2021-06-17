@@ -1,0 +1,27 @@
+{
+  "title": "Kalteeeee",
+  "icon": "eeee",
+  "creator": "moi",
+  "variable": {
+    "var1": 1,
+    "var2": "OK"
+  },
+  "etapes": [
+    {
+      "number": 0,
+      "variable": {},
+      "images": [],
+      "texts": [
+        {
+          "content": "Yo",
+          "position": 0
+        },
+        {
+          "content": "CAVA ?",
+          "position": 1
+        }
+      ],
+      "code": "Ceci est du code"
+    }
+  ]
+}

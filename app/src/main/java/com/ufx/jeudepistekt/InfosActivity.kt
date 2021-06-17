@@ -1,5 +1,6 @@
 package com.ufx.jeudepistekt
 
+import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager.GET_META_DATA
 import android.os.Build
@@ -14,7 +15,7 @@ import mehdi.sakout.aboutpage.Element
 import java.util.*
 
 
-class SettingActivity : CommonsActivity() {
+class InfosActivity : CommonsActivity() {
     private lateinit var binding: ActivitySettingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +32,7 @@ class SettingActivity : CommonsActivity() {
             .setImage(R.drawable.my_ic_launcher)
             .addGroup(getString(R.string.about))
             .addItem(Element().setTitle("Version "+BuildConfig.VERSION_NAME))
-            .addItem(Element().setTitle("Android SDK "+ appinfo.targetSdkVersion + " / " + Build.VERSION.SDK_INT))
-            .addItem(Element().setTitle("Libs : "+ appinfo.sharedLibraryFiles))
+            .addItem(Element().setTitle("Android SDK "+ Build.VERSION.SDK_INT + " / " + appinfo.targetSdkVersion))
             .addGroup(getString(R.string.contacts))
             .addEmail("fx73000@yahoo.fr")
             .addWebsite("https://github.com/Fx73")
@@ -61,7 +61,7 @@ class SettingActivity : CommonsActivity() {
     }
 
 
-    override fun swapToMain() {
-        finish()
+    override fun swapToMenu(){
+
     }
 }
