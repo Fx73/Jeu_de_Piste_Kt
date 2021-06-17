@@ -21,30 +21,33 @@ open class CommonsActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        if(item.itemId == R.id.action_home)
-            swapToMain()
-
         return when (item.itemId) {
-            R.id.action_home -> true
-            R.id.settings -> {
-                swapToMenu()
-                true
-            }
+            R.id.action_home -> {swapToMain(); true}
+            R.id.settings -> { swapToSettings(); true }
+            R.id.infos -> { swapToInfos(); true }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    open fun swapToMenu(){
-        finish()
-        val settingActivity = Intent(this, InfosActivity::class.java)
-        startActivity(settingActivity)
-    }
+
 
     open fun swapToMain(){
         finish()
         //val gameActivity = Intent(this, MainActivity::class.java)
         //startActivity(gameActivity)
+    }
+    open fun swapToGame() {
+        val gameActivity = Intent(this, GameActivity::class.java)
+        startActivity(gameActivity)
+    }
+    open fun swapToSettings(){
+        val settingActivity = Intent(this, SettingActivity::class.java)
+        startActivity(settingActivity)
+    }
+
+    open fun swapToInfos(){
+        val infosActivity = Intent(this, InfosActivity::class.java)
+        startActivity(infosActivity)
     }
 //endregion
 

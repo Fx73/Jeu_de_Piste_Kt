@@ -210,13 +210,5 @@ class MainActivity : CommonsActivity() {
         Toast.makeText(this, "Hello " + User.name, Toast.LENGTH_SHORT).show()
     }
 
-    override fun swapToMenu(){
-        val settingActivity = Intent(this, InfosActivity::class.java)
-        startActivity(settingActivity)
-    }
 
-    private fun swapToGame() {
-        val gameActivity = Intent(this@MainActivity, GameActivity::class.java)
-        startActivity(gameActivity)
-    }
 }

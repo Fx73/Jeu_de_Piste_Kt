@@ -23,7 +23,8 @@ class User (context: Context)
 
 
 
-    fun SaveName(){
+    fun SaveName(newname : String){
+        name = newname
         with (sharedPref.edit()) {
             putString(KEY_TEAMNAME, name)
             commit()

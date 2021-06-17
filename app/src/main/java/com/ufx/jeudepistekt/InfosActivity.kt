@@ -1,6 +1,5 @@
 package com.ufx.jeudepistekt
 
-import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager.GET_META_DATA
 import android.os.Build
@@ -9,18 +8,18 @@ import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
-import com.ufx.jeudepistekt.databinding.ActivitySettingBinding
+import com.ufx.jeudepistekt.databinding.ActivityInfosBinding
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
 import java.util.*
 
 
 class InfosActivity : CommonsActivity() {
-    private lateinit var binding: ActivitySettingBinding
+    private lateinit var binding: ActivityInfosBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySettingBinding.inflate(layoutInflater)
+        binding = ActivityInfosBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
@@ -41,7 +40,7 @@ class InfosActivity : CommonsActivity() {
             .addItem(getCopyRightsElement())
             .create()
 
-        findViewById<FrameLayout>(R.id.settinglayout).addView(aboutPage)
+        findViewById<FrameLayout>(R.id.infoslayout).addView(aboutPage)
 
     }
 
@@ -61,7 +60,12 @@ class InfosActivity : CommonsActivity() {
     }
 
 
-    override fun swapToMenu(){
+    override fun swapToInfos(){
 
+    }
+
+    override fun swapToSettings() {
+        finish()
+        super.swapToSettings()
     }
 }
