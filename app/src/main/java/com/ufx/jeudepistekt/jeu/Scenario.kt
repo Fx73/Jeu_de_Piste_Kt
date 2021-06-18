@@ -3,7 +3,6 @@ package com.ufx.jeudepistekt.jeu
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.FileInputStream
 
 
 class Scenario(
@@ -18,14 +17,9 @@ class Scenario(
 
     companion object {
 
-        fun buildScenarioFromJson(context: Context, filename:String): Scenario {
-            val filestream = context.openFileInput(filename)
-
-            val jsonFileString = filestream.bufferedReader().use { it.readText() }
-            val gson = Gson()
+        fun buildScenarioFromJson(jsonFileString:String): Scenario {
             val outtype = object : TypeToken<Scenario>() {}.type
-
-            return gson.fromJson(jsonFileString, outtype)
+            return Gson().fromJson(jsonFileString, outtype)
         }
 
     }

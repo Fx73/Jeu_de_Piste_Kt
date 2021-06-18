@@ -13,8 +13,8 @@ class JsonTest {
 
     @Test
     fun buildJsonFile() {
-        var e : Etape = Etape(0,texts = listOf(EtapElem("Yo",0), EtapElem("CAVA ?",1)),code = "Ceci est du code")
-        var s : Scenario = Scenario("Kalte","eeee","fx","fqfdsdqsdgs", etapes = listOf(e))
+        val e = Etape(0,elems = listOf(EtapElem(EtapElem.TYPE.TXT,"YO Bien ?"), EtapElem(EtapElem.TYPE.IMG,"start3.jpg")),code = "Ceci est du code")
+        val s = Scenario("Kalte","eeee", etapes = listOf(e))
         s.variable["var1"] = 1
         s.variable["var2"] = "OK"
 

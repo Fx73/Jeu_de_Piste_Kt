@@ -4,19 +4,20 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.io.FileNotFoundException
+import java.io.ObjectInputStream
+import java.io.ObjectOutputStream
 
 
-class User (context: Context)
+class User (val context: Context)
 {
     companion object{
         const val KEY_TEAMNAME= "prefUserNameKey"
         const val KEY_SCELIST= "KeyScenarioList"
-        const val KEY_SCENARIO= "KeyScenario"
+        const val KEY_SCENARIOVARS= "KeyScenarioVars"
+        const val KEY_SCENARIOSTEP= "KeyScenarioStep"
 
         var name : String = "Default"
-
-        private fun KEY_SCENARIO(hash:String):String = name+KEY_SCENARIO+hash
-
     }
 
     private val sharedPref : SharedPreferences = context.getSharedPreferences("JeuDePisteKtPreferenceFileKey",Context.MODE_PRIVATE)
@@ -53,16 +54,34 @@ class User (context: Context)
 
 
 
-    fun SaveScenario(hash: String, scenariosave: String){
+    fun SaveScenario(scenariokey: String, step : Int, vars : MutableMap<String, Any>){
+        val keyvar = name + scenariokey + KEY_SCENARIOVARS
+        val keystep = name + scenariokey + KEY_SCENARIOSTEP
+
         with (sharedPref.edit()) {
-            putString(KEY_SCENARIO(hash), scenariosave)
+            putInt(keyvar, step)
             commit()
         }
+        val stream = ObjectOutputStream( context.openFileOutput(keystep, Context.MODE_PRIVATE))
+        stream.writeObject(vars)
+        stream.flush()
+        stream.close()
     }
 
 
-    fun LoadScenario(hash: String): String {
-        return sharedPref.getString(KEY_SCENARIO(hash), hash) ?: ""
-    }
+    fun LoadScenario(scenariokey: String): Pair<Int, MutableMap<String, Any>>? {
+        val keyvar = name + scenariokey + KEY_SCENARIOVARS
+        val keystep = name + scenariokey + KEY_SCENARIOSTEP
+
+        val step = sharedPref.getInt(keystep,0)
+        val stream : ObjectInputStream
+        try{
+            stream = ObjectInputStream( context.openFileInput(keyvar))
+        }catch (e : FileNotFoundException){return null}
+
+        @Suppress("UNCHECKED_CAST") val vars : MutableMap<String, Any> = stream.readObject() as MutableMap<String, Any>
+
+        return Pair(step,vars)
+}
 
 }

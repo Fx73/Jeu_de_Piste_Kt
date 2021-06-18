@@ -21,7 +21,7 @@ class Zipper {
 
     constructor(context: Context, title: String , creator: String ){
         this.context = context
-        storer = Storer(title,creator)
+        storer = Storer(title,creator,context)
 
     }
 
@@ -71,9 +71,9 @@ class Zipper {
                         it.write(buffer, 0, count)
                     }
                 }
-
-                val s = Scenario.buildScenarioFromJson(context,"temp.json")
-                storer = Storer(s.title,s.creator)
+                val json = context.openFileInput("temp.json").bufferedReader().use { it.readText() }
+                val s = Scenario.buildScenarioFromJson(json)
+                storer = Storer(s.title,s.creator,context)
 
                 context.deleteFile("temp.json")
 

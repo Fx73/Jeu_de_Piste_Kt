@@ -53,7 +53,7 @@ class MainActivity : CommonsActivity() {
         var sens = true
         for (scenario in scenariolist) {
             val card = createCard(scenario.first, scenario.second,"ScenarioIcon.png")
-            card.setOnClickListener { swapToGame() }
+            card.setOnClickListener { swapToGame(scenario.first, scenario.second) }
             registerForContextMenu(card)
             if (sens) sAlayout.addView(card) else sBlayout.addView(card)
             sens = !sens
@@ -80,7 +80,7 @@ class MainActivity : CommonsActivity() {
         card.radius = 10f
 
 
-        imgview.setImageBitmap(Storer(title,creator).loadImage(this,img))
+        imgview.setImageBitmap(Storer(title,creator, this).loadImage(img))
 
         imgpar.setMargins(8, 8, 8, 8)
         imgpar.gravity = Gravity.CENTER_HORIZONTAL
@@ -210,5 +210,11 @@ class MainActivity : CommonsActivity() {
         Toast.makeText(this, "Hello " + User.name, Toast.LENGTH_SHORT).show()
     }
 
+    private fun swapToGame(title : String, creator: String) {
+        val gameActivity = Intent(this, GameActivity::class.java)
+        gameActivity.putExtra("SCENARIO_TITLE", title)
+        gameActivity.putExtra("SCENARIO_CREATOR", creator)
+        startActivity(gameActivity)
+    }
 
 }

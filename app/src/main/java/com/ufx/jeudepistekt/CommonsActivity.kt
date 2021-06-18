@@ -36,10 +36,6 @@ open class CommonsActivity : AppCompatActivity() {
         //val gameActivity = Intent(this, MainActivity::class.java)
         //startActivity(gameActivity)
     }
-    open fun swapToGame() {
-        val gameActivity = Intent(this, GameActivity::class.java)
-        startActivity(gameActivity)
-    }
     open fun swapToSettings(){
         val settingActivity = Intent(this, SettingActivity::class.java)
         startActivity(settingActivity)
