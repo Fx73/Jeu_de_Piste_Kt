@@ -8,18 +8,18 @@ import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
-import com.ufx.jeudepistekt.databinding.ActivityInfosBinding
+import com.ufx.jeudepistekt.databinding.ActivityAboutBinding
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
 import java.util.*
 
 
-class InfosActivity : CommonsActivity() {
-    private lateinit var binding: ActivityInfosBinding
+class AboutActivity : CommonsActivity() {
+    private lateinit var binding: ActivityAboutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityInfosBinding.inflate(layoutInflater)
+        binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
@@ -40,7 +40,7 @@ class InfosActivity : CommonsActivity() {
             .addItem(getCopyRightsElement())
             .create()
 
-        findViewById<FrameLayout>(R.id.infoslayout).addView(aboutPage)
+        binding.root.findViewById<FrameLayout>(R.id.aboutlayout).addView(aboutPage)
 
     }
 
@@ -60,7 +60,7 @@ class InfosActivity : CommonsActivity() {
     }
 
 
-    override fun swapToInfos(){
+    override fun swapToAbout(){
 
     }
 

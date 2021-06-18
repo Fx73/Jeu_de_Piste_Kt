@@ -1,5 +1,6 @@
 package com.ufx.jeudepistekt
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.view.ViewGroup
@@ -99,5 +100,25 @@ class GameActivity : CommonsActivity() {
         b.layoutParams = lpar
 
         glayout.addView(b)
+    }
+
+
+
+
+
+
+    override fun swapToSettings() {
+        finish()
+        super.swapToSettings()
+    }
+
+    override fun swapToAbout() {
+        val infoActivity = Intent(this, InfoActivity::class.java)
+        infoActivity.putExtra("SCENARIO_TITLE", scenario.title)
+        infoActivity.putExtra("SCENARIO_CREATOR", scenario.creator)
+        infoActivity.putExtra("SCENARIO_DESCRIPTION", scenario.description)
+
+
+        startActivity(infoActivity)
     }
 }

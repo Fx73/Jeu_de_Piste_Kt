@@ -24,7 +24,7 @@ open class CommonsActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_home -> {swapToMain(); true}
             R.id.settings -> { swapToSettings(); true }
-            R.id.infos -> { swapToInfos(); true }
+            R.id.about -> { swapToAbout(); true }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -41,9 +41,9 @@ open class CommonsActivity : AppCompatActivity() {
         startActivity(settingActivity)
     }
 
-    open fun swapToInfos(){
-        val infosActivity = Intent(this, InfosActivity::class.java)
-        startActivity(infosActivity)
+    open fun swapToAbout(){
+        val aboutActivity = Intent(this, AboutActivity::class.java)
+        startActivity(aboutActivity)
     }
 //endregion
 

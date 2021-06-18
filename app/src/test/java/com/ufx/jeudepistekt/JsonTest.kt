@@ -14,7 +14,7 @@ class JsonTest {
     @Test
     fun buildJsonFile() {
         val e = Etape(0,elems = listOf(EtapElem(EtapElem.TYPE.TXT,"YO Bien ?"), EtapElem(EtapElem.TYPE.IMG,"start3.jpg")),code = "Ceci est du code")
-        val s = Scenario("Kalte","eeee", etapes = listOf(e))
+        val s = Scenario("Kalte","eeee","Yo ceci est un scenario test", etapes = listOf(e))
         s.variable["var1"] = 1
         s.variable["var2"] = "OK"
 
@@ -24,7 +24,7 @@ class JsonTest {
         val jsonsPretty: String = gsonPretty.toJson(s)
 
         println(jsonsPretty)
-        File("src/main/assets/essai.json").writeText(jsonsPretty)
+        File("src/main/assets/ScenarioFile.json").writeText(jsonsPretty)
 
     }
 

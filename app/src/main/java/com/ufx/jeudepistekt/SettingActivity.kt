@@ -38,8 +38,8 @@ class SettingActivity : CommonsActivity() {
     override fun swapToSettings() {
 
     }
-    override fun swapToInfos() {
+    override fun swapToAbout() {
         finish()
-        super.swapToInfos()
+        super.swapToAbout()
     }
 }

@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken
 class Scenario(
     var title : String,
     var creator : String,
+    var description : String,
     val variable : MutableMap<String, Any> = mutableMapOf(),
     val etapes : List<Etape> = listOf()
 )

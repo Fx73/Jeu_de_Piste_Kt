@@ -46,7 +46,7 @@ class MainActivity : CommonsActivity() {
 
 //region Scenario Panel
 
-    fun createScenarioGrid() {
+    private fun createScenarioGrid() {
         val sAlayout: LinearLayout = findViewById(R.id.scenariolayoutA)
         val sBlayout: LinearLayout = findViewById(R.id.scenariolayoutB)
 

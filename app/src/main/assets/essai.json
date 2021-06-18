@@ -1,6 +1,7 @@
 {
   "title": "Kalte",
   "creator": "eeee",
+  "description": "Yo ceci est un scenario test",
   "variable": {
     "var1": 1,
     "var2": "OK"
