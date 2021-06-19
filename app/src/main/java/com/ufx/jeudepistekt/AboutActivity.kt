@@ -44,22 +44,23 @@ class AboutActivity : CommonsActivity() {
 
     }
 
-    fun getCopyRightsElement(): Element? {
+    private fun getCopyRightsElement(): Element {
         val copyRightsElement = Element()
         val copyrights =
             String.format(getString(R.string.copy_right), Calendar.getInstance().get(Calendar.YEAR))
-        copyRightsElement.setTitle(copyrights)
-        copyRightsElement.setIconDrawable(R.drawable.about_icon_copy_right)
-        copyRightsElement.setAutoApplyIconTint(true)
-        copyRightsElement.setIconTint(mehdi.sakout.aboutpage.R.color.about_item_icon_color)
-        copyRightsElement.setIconNightTint(R.color.white)
-        copyRightsElement.setGravity(Gravity.CENTER)
+        copyRightsElement.title = copyrights
+        copyRightsElement.iconDrawable = R.drawable.about_icon_copy_right
+        copyRightsElement.autoApplyIconTint = true
+        copyRightsElement.iconTint = mehdi.sakout.aboutpage.R.color.about_item_icon_color
+        copyRightsElement.iconNightTint = R.color.white
+        copyRightsElement.gravity = Gravity.CENTER
         copyRightsElement.setOnClickListener { Toast.makeText(this, copyrights, Toast.LENGTH_SHORT).show() }
 
         return copyRightsElement
     }
 
 
+//region swapper
     override fun swapToAbout(){
 
     }
@@ -68,4 +69,5 @@ class AboutActivity : CommonsActivity() {
         finish()
         super.swapToSettings()
     }
+//endregion
 }

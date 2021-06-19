@@ -48,7 +48,7 @@ open class CommonsActivity : AppCompatActivity() {
 //endregion
 
 //region Utils
-    fun ScanQr()
+    fun scanQr()
     {
         val integrator = IntentIntegrator(this)
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)

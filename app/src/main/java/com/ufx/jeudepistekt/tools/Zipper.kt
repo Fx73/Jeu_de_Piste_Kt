@@ -10,7 +10,7 @@ import java.util.zip.ZipInputStream
 
 class Zipper {
     val context : Context
-    var uri : Uri? = null
+    private var uri : Uri? = null
     lateinit var storer : Storer
 
     constructor(context: Context, uri : Uri ){

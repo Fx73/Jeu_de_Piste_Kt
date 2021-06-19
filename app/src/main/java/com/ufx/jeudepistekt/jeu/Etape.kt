@@ -6,9 +6,4 @@ class Etape(
     var elems : List<EtapElem> = listOf(),
     var code : String=""
 )
-{
-
-
-
-}
 

@@ -20,9 +20,9 @@ import com.ufx.jeudepistekt.tools.Zipper
 class MainActivity : CommonsActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    lateinit var user: User
+    private lateinit var user: User
 
-    lateinit var scenariolist: MutableList<Pair<String,String>>
+    private lateinit var scenariolist: MutableList<Pair<String,String>>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,12 +31,12 @@ class MainActivity : CommonsActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        binding.fab.setOnClickListener { ScanQr() }
+        binding.fab.setOnClickListener { scanQr() }
 
         user = User(this)
-        user.LoadName()
+        user.loadName()
 
-        scenariolist = user.LoadScenarioList()
+        scenariolist = user.loadScenarioList()
 
 
         createScenarioGrid()
@@ -60,7 +60,7 @@ class MainActivity : CommonsActivity() {
         }
 
         val pluscard = createPlusCard()
-        pluscard.setOnClickListener { BrowseFile() }
+        pluscard.setOnClickListener { browseFile() }
         if (sens) sAlayout.addView(pluscard) else sBlayout.addView(pluscard)
 
 
@@ -161,14 +161,14 @@ class MainActivity : CommonsActivity() {
 
         if(zipper.unpackZip()){
             scenariolist.add(Pair(zipper.storer.title,zipper.storer.creator))
-            user.SaveScenarioList(scenariolist)
+            user.saveScenarioList(scenariolist)
             finish()
             startActivity(intent)
         }
 
     }
 
-    private fun BrowseFile() {
+    private fun browseFile() {
         //Check and ask storage permission
         if(askPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE))
             getContent.launch("application/*")
@@ -177,7 +177,7 @@ class MainActivity : CommonsActivity() {
 //endregion
 
 //region Context Menu
-    lateinit var selectedview : View
+    private lateinit var selectedview : View
     override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo?) {
         selectedview = v
         val inflater: MenuInflater = menuInflater
@@ -193,7 +193,7 @@ class MainActivity : CommonsActivity() {
                     if (Storer.key(scenario.first,scenario.second) == selectedview.tag.toString()){
                         Zipper(this,scenario.first,scenario.second).deleteScenarioFiles()
                         scenariolist.remove(scenario)
-                        user.SaveScenarioList(scenariolist)
+                        user.saveScenarioList(scenariolist)
                         finish()
                         startActivity(intent)
                         return true
@@ -206,6 +206,8 @@ class MainActivity : CommonsActivity() {
         }
     }
 
+
+//region swapper
     override fun swapToMain() {
         Toast.makeText(this, "Hello " + User.name, Toast.LENGTH_SHORT).show()
     }
@@ -216,5 +218,5 @@ class MainActivity : CommonsActivity() {
         gameActivity.putExtra("SCENARIO_CREATOR", creator)
         startActivity(gameActivity)
     }
-
+//endregion
 }

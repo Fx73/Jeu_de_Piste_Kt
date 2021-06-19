@@ -23,18 +23,20 @@ class SettingActivity : CommonsActivity() {
         findViewById<Button>(R.id.button_name).setOnClickListener{saveName()}
     }
 
-    fun saveKey(keyEvent: KeyEvent):Boolean{
+    private fun saveKey(keyEvent: KeyEvent):Boolean{
         if (keyEvent.keyCode == KeyEvent.KEYCODE_ENTER)
             saveName()
         return true
     }
-    fun saveName(){
+    private fun saveName(){
         val newname = findViewById<EditText>(R.id.nameedit).text.toString()
-        User(this).SaveName(newname)
+        User(this).saveName(newname)
         Toast.makeText(this, getString(R.string.newname) + newname, Toast.LENGTH_LONG).show()
         findViewById<EditText>(R.id.nameedit).clearFocus()
     }
 
+
+//region swapper
     override fun swapToSettings() {
 
     }
@@ -42,4 +44,5 @@ class SettingActivity : CommonsActivity() {
         finish()
         super.swapToAbout()
     }
+//endregion
 }

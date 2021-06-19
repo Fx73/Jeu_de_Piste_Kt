@@ -24,7 +24,7 @@ class User (val context: Context)
 
 
 
-    fun SaveName(newname : String){
+    fun saveName(newname : String){
         name = newname
         with (sharedPref.edit()) {
             putString(KEY_TEAMNAME, name)
@@ -32,11 +32,11 @@ class User (val context: Context)
         }
     }
 
-    fun LoadName(){
+    fun loadName(){
         name = sharedPref.getString(KEY_TEAMNAME, "Default")?:"ERROR"
     }
 
-    fun SaveScenarioList(list :MutableList<Pair<String,String>>){
+    fun saveScenarioList(list :MutableList<Pair<String,String>>){
         val json: String = Gson().toJson(list)
 
         with (sharedPref.edit()) {
@@ -45,7 +45,7 @@ class User (val context: Context)
         }
     }
 
-    fun LoadScenarioList(): MutableList<Pair<String,String>> {
+    fun loadScenarioList(): MutableList<Pair<String,String>> {
         val json = sharedPref.getString(KEY_SCELIST, "") ?: ""
         if (json == "") return mutableListOf()
         val outtype = object : TypeToken<List<Pair<String,String>>>() {}.type
@@ -54,7 +54,7 @@ class User (val context: Context)
 
 
 
-    fun SaveScenario(scenariokey: String, step : Int, vars : MutableMap<String, Any>){
+    fun saveScenario(scenariokey: String, step : Int, vars : MutableMap<String, Any>){
         val keyvar = name + scenariokey + KEY_SCENARIOVARS
         val keystep = name + scenariokey + KEY_SCENARIOSTEP
 
@@ -69,7 +69,7 @@ class User (val context: Context)
     }
 
 
-    fun LoadScenario(scenariokey: String): Pair<Int, MutableMap<String, Any>>? {
+    fun loadScenario(scenariokey: String): Pair<Int, MutableMap<String, Any>>? {
         val keyvar = name + scenariokey + KEY_SCENARIOVARS
         val keystep = name + scenariokey + KEY_SCENARIOSTEP
 

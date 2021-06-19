@@ -1,6 +1,5 @@
 package com.ufx.jeudepistekt
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
@@ -32,7 +31,7 @@ class InfoActivity : CommonsActivity() {
         binding.root.findViewById<FrameLayout>(R.id.infolayout).addView(aboutPage)
     }
 
-
+//region swapper
     override fun swapToSettings() {
         finish()
         super.swapToSettings()
@@ -42,4 +41,5 @@ class InfoActivity : CommonsActivity() {
         finish()
         super.swapToMain()
     }
+//endregion
 }
