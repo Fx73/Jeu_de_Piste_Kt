@@ -54,7 +54,7 @@ class User (val context: Context)
 
 
 
-    fun saveScenario(scenariokey: String, step : Int, vars : MutableMap<String, Any>){
+    fun saveScenario(scenariokey: String, step : Int, vars : MutableMap<String, Int>){
         val keyvar = name + scenariokey + KEY_SCENARIOVARS
         val keystep = name + scenariokey + KEY_SCENARIOSTEP
 

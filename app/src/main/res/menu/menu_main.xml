@@ -10,14 +10,14 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/code"
+        android:id="@+id/action_code"
         android:title="@string/code" />
     <item
-        android:id="@+id/settings"
+        android:id="@+id/action_settings"
         android:title="@string/settings"
         app:showAsAction="never" />
     <item
-        android:id="@+id/about"
+        android:id="@+id/action_about"
         android:title="@string/about" />
 
 </menu>

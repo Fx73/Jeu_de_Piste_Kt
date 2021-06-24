@@ -13,21 +13,23 @@ class Storer(val title: String,val creator: String, val context : Context) {
     fun getKey() = key(title,creator)
 
 
-    fun loadImage(img : String): Bitmap {
-        var bitmap : Bitmap
-        try {
-            bitmap = BitmapFactory.decodeStream(context.openFileInput(getKey()+img))
-        }catch (e: FileNotFoundException){
-            bitmap = BitmapFactory.decodeResource(context.resources,
-                R.drawable.kotlin)
+    fun loadImage(img: String): Bitmap {
+        return try {
+            BitmapFactory.decodeStream(context.openFileInput(getKey() + img + ".png"))
+        } catch (e: FileNotFoundException) {
+            try {
+                BitmapFactory.decodeStream(context.openFileInput(getKey() + img + ".jpg"))
+            } catch (e: FileNotFoundException) {
+                BitmapFactory.decodeResource(context.resources, R.drawable.kotlin)
+            }
         }
-        return bitmap
     }
 
     fun loadJson(name: String): String {
         val filestream = context.openFileInput(getKey() + name + ".json")
         return filestream.bufferedReader().use { it.readText() }
     }
+
 
 
 }

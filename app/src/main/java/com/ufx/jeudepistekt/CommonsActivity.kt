@@ -1,9 +1,14 @@
 package com.ufx.jeudepistekt
 
+import android.app.Dialog
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.Window
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -23,12 +28,24 @@ open class CommonsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_home -> {swapToMain(); true}
-            R.id.settings -> { swapToSettings(); true }
-            R.id.about -> { swapToAbout(); true }
+            R.id.action_code -> {codeEdit(); true}
+            R.id.action_settings -> { swapToSettings(); true }
+            R.id.action_about -> { swapToAbout(); true }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+
+    open fun codeEdit(){
+        object : Dialog(this){
+            override fun onCreate(savedInstanceState: Bundle?) {
+                super.onCreate(savedInstanceState)
+                requestWindowFeature(Window.FEATURE_NO_TITLE)
+                setContentView(R.layout.dialog_code)
+                findViewById<Button>(R.id.code_button).setOnClickListener { evaluateQr(findViewById<EditText>(R.id.code_edit).text.toString());dismiss()}
+            }
+        }.show()
+    }
 
 
     open fun swapToMain(){
@@ -56,19 +73,21 @@ open class CommonsActivity : AppCompatActivity() {
         integrator.setCameraId(0)
         integrator.setBeepEnabled(false)
         integrator.setBarcodeImageEnabled(false)
-        qrscanner.launch(integrator.createScanIntent())
+        qrScanner.launch(integrator.createScanIntent())
     }
 
-    private val qrscanner = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+    private val qrScanner = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         val result = IntentIntegrator.parseActivityResult(it.resultCode, it.data)
         if (result.contents == null) {
             Log.e("Scan*******", "Cancelled scan")
         } else {
             Log.e("Scan", "Scanned")
-            Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+            evaluateQr(result.contents)
         }
     }
-
+    open fun evaluateQr(s : String) {
+        Toast.makeText(this, "Qr unknown: $s", Toast.LENGTH_LONG).show()
+    }
 
 //endregion
 

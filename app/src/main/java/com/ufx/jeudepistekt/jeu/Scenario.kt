@@ -8,7 +8,8 @@ class Scenario(
     var title : String,
     var creator : String,
     var description : String,
-    val variable : MutableMap<String, Any> = mutableMapOf(),
+    var copyright: String,
+    val variable : MutableMap<String, Int> = mutableMapOf(),
     val etapes : List<Etape> = listOf()
 )
 {
