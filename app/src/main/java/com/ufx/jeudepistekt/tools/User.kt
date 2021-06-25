@@ -1,4 +1,4 @@
-package com.ufx.jeudepistekt
+package com.ufx.jeudepistekt.tools
 
 import android.content.Context
 import android.content.SharedPreferences

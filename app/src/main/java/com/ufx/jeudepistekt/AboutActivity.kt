@@ -33,7 +33,7 @@ class AboutActivity : CommonsActivity() {
             .addItem(Element().setTitle("Version "+BuildConfig.VERSION_NAME))
             .addItem(Element().setTitle("Android SDK "+ Build.VERSION.SDK_INT + " / " + appinfo.targetSdkVersion))
             .addGroup(getString(R.string.contacts))
-            .addItem(Element().setTitle("App par :").setValue(getString(R.string.app_author)))
+            .addItem(Element().setTitle("Application par : " + getString(R.string.app_author)))
             .addEmail(getString(R.string.app_mail))
             .addWebsite("https://github.com/Fx73")
             .addPlayStore("com.ufx")

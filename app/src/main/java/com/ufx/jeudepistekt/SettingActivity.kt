@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.ufx.jeudepistekt.databinding.ActivitySettingBinding
+import com.ufx.jeudepistekt.tools.User
 
 class SettingActivity : CommonsActivity() {
     private lateinit var binding: ActivitySettingBinding

@@ -2,6 +2,7 @@ package com.ufx.jeudepistekt
 
 import android.Manifest
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
@@ -14,6 +15,7 @@ import androidx.cardview.widget.CardView
 import com.ufx.jeudepistekt.databinding.ActivityMainBinding
 import com.ufx.jeudepistekt.tools.Permissions.Companion.askPermission
 import com.ufx.jeudepistekt.tools.Storer
+import com.ufx.jeudepistekt.tools.User
 import com.ufx.jeudepistekt.tools.Zipper
 
 
@@ -52,7 +54,7 @@ class MainActivity : CommonsActivity() {
 
         var sens = true
         for (scenario in scenariolist) {
-            val card = createCard(scenario.first, scenario.second,"ScenarioIcon.png")
+            val card = createCard(scenario.first, scenario.second)
             card.setOnClickListener { swapToGame(scenario.first, scenario.second) }
             registerForContextMenu(card)
             if (sens) sAlayout.addView(card) else sBlayout.addView(card)
@@ -67,31 +69,41 @@ class MainActivity : CommonsActivity() {
     }
 
 
-    private fun createCard(title: String, creator : String, img: String): CardView {
+    private fun createCard(title: String, creator : String): CardView {
         val card = CardView(this)
         val imgview = ImageView(this)
         val titleview = TextView(this)
+        val creatorview = TextView(this)
 
         val cardpar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 500)
         val imgpar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 300)
-        val titlepar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300)
+        val titlepar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        val creatorpar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
         cardpar.setMargins(6, 6, 6, 6)
         card.radius = 10f
 
 
-        imgview.setImageBitmap(Storer(title,creator, this).loadImage(img))
+        imgview.setImageBitmap(Storer(title,creator, this).loadImage("ScenarioIcon"))
 
         imgpar.setMargins(8, 8, 8, 8)
         imgpar.gravity = Gravity.CENTER_HORIZONTAL
 
         titleview.text = title
-        titlepar.setMargins(8, 8, 8, 8)
-        titlepar.gravity = Gravity.CENTER_HORIZONTAL
+        titleview.textSize = 18f
+        titlepar.setMargins(10, 10, 10, 10)
+
+        creatorview.text = creator
+        creatorview.setTextColor(Color.LTGRAY)
+        creatorview.textSize = 10f
+        creatorview.gravity = Gravity.END
+        creatorpar.setMargins(10, 10, 10, 10)
+
 
         titleview.layoutParams = titlepar
         card.layoutParams = cardpar
         imgview.layoutParams = imgpar
+        creatorview.layoutParams = creatorpar
 
 
         val l = LinearLayout(this)
@@ -101,6 +113,7 @@ class MainActivity : CommonsActivity() {
 
         l.addView(imgview)
         l.addView(titleview)
+        l.addView(creatorview)
 
         card.tag = Storer.key(title, creator)
 
