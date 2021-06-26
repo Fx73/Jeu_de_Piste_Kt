@@ -8,6 +8,7 @@
 
     <!-- Main -->
     <string name="capture">Capture</string>
+    <string name="qr_unknown">Qr inconnu</string>
     <string name="addscenario">Ajouter un scenario</string>
     <string name="delete">Delete</string>
 

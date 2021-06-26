@@ -86,7 +86,7 @@ open class CommonsActivity : AppCompatActivity() {
         }
     }
     open fun evaluateQr(s : String) {
-        Toast.makeText(this, "Qr unknown: $s", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.qr_unknown), Toast.LENGTH_LONG).show()
     }
 
 //endregion

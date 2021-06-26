@@ -22,7 +22,8 @@ class User (val context: Context)
 
     private val sharedPref : SharedPreferences = context.getSharedPreferences("JeuDePisteKtPreferenceFileKey",Context.MODE_PRIVATE)
 
-
+    private fun getKeyVar(scenariokey: String) = name + scenariokey + KEY_SCENARIOVARS
+    private fun getKeyStep(scenariokey: String) = name + scenariokey + KEY_SCENARIOSTEP
 
     fun saveName(newname : String){
         name = newname
@@ -55,14 +56,14 @@ class User (val context: Context)
 
 
     fun saveScenario(scenariokey: String, step : Int, vars : MutableMap<String, Int>){
-        val keyvar = name + scenariokey + KEY_SCENARIOVARS
-        val keystep = name + scenariokey + KEY_SCENARIOSTEP
+        val keyvar = getKeyVar(scenariokey)
+        val keystep = getKeyStep(scenariokey)
 
         with (sharedPref.edit()) {
-            putInt(keyvar, step)
+            putInt(keystep, step)
             commit()
         }
-        val stream = ObjectOutputStream( context.openFileOutput(keystep, Context.MODE_PRIVATE))
+        val stream = ObjectOutputStream( context.openFileOutput(keyvar, Context.MODE_PRIVATE))
         stream.writeObject(vars)
         stream.flush()
         stream.close()
@@ -70,8 +71,8 @@ class User (val context: Context)
 
 
     fun loadScenario(scenariokey: String): Pair<Int, MutableMap<String, Any>>? {
-        val keyvar = name + scenariokey + KEY_SCENARIOVARS
-        val keystep = name + scenariokey + KEY_SCENARIOSTEP
+        val keyvar = getKeyVar(scenariokey)
+        val keystep = getKeyStep(scenariokey)
 
         val step = sharedPref.getInt(keystep,0)
         val stream : ObjectInputStream

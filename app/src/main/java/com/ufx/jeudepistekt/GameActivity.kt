@@ -258,7 +258,9 @@ class GameActivity : CommonsActivity() {
     }
 
     private fun loadElemsFromWaiters(list : MutableList<String>, id : String){
+        println("testing element to find $id")
         for(w in getEtap().qrwaiters) {
+            println("testing $w")
             if (w == id) {
                 list.remove(w)
                 for (elist in getEtap().underelems)
