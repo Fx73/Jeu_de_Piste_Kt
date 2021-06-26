@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var mlayout : LinearLayout
     lateinit var nlayout : LinearLayout
     lateinit var clayout : LinearLayout
+    lateinit var ilayout : ScrollView
     lateinit var scenario : Scenario
     lateinit var mappic : ImageView
     lateinit var user : User
@@ -51,6 +52,8 @@ class MainActivity : AppCompatActivity() {
         mappic = findViewById<ImageView>(R.id.imageViewMap)
         nlayout = findViewById<LinearLayout>(R.id.nameLayout)
         clayout = findViewById<LinearLayout>(R.id.codeLayout)
+        ilayout = findViewById<ScrollView>(R.id.creditslayout)
+        findViewById<TextView>(R.id.version).text = "Version " + BuildConfig.VERSION_NAME + "\n"
         scenario = Scenario(this,layout)
 
         //Loading User
@@ -71,10 +74,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
+        //menuInflater.inflate(R.menu.menu_main, menu)
         menuInflater.inflate(R.menu.menu_teamname, menu)
         menuInflater.inflate(R.menu.menu_code,menu)
         menuInflater.inflate(R.menu.menu_scenario, menu)
+        menuInflater.inflate(R.menu.menu_credits, menu)
         return true
     }
 
@@ -83,16 +87,18 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> MyOptions()
+            //R.id.action_settings -> MyOptions()
             R.id.code -> EnterCode()
             R.id.teamnamechange ->changename()
             R.id.scenario ->ChooseScenario()
+            R.id.credits->Credits()
             else -> super.onOptionsItemSelected(item)
         }
     }
 
     fun ChooseScenario():Boolean
     {
+        SwapLayout(0)
         user.scenarioSave = scenario.SendSave()
         user.SaveScenario()
 
@@ -216,6 +222,13 @@ class MainActivity : AppCompatActivity() {
             SwapLayout(0)
     }
 
+    fun Credits():Boolean
+    {
+        user.scenarioSave = scenario.SendSave()
+        user.SaveScenario()
+        SwapLayout(4)
+        return true
+    }
 
     fun MyOptions():Boolean
     {
@@ -232,24 +245,35 @@ class MainActivity : AppCompatActivity() {
                 nlayout.visibility = View.INVISIBLE
                 clayout.visibility = View.INVISIBLE
                 mlayout.visibility = View.INVISIBLE
+                ilayout.visibility = View.INVISIBLE
             }
             1->{
                 layout.visibility = View.INVISIBLE
                 nlayout.visibility = View.VISIBLE
                 clayout.visibility = View.INVISIBLE
                 mlayout.visibility = View.INVISIBLE
+                ilayout.visibility = View.INVISIBLE
             }
             2->{
                 layout.visibility = View.INVISIBLE
                 nlayout.visibility = View.INVISIBLE
                 clayout.visibility = View.VISIBLE
                 mlayout.visibility = View.INVISIBLE
+                ilayout.visibility = View.INVISIBLE
             }
             3->{
                 layout.visibility = View.INVISIBLE
                 nlayout.visibility = View.INVISIBLE
                 clayout.visibility = View.INVISIBLE
                 mlayout.visibility = View.VISIBLE
+                ilayout.visibility = View.INVISIBLE
+            }
+            4->{
+                layout.visibility = View.INVISIBLE
+                nlayout.visibility = View.INVISIBLE
+                clayout.visibility = View.INVISIBLE
+                mlayout.visibility = View.INVISIBLE
+                ilayout.visibility = View.VISIBLE
             }
 
         }

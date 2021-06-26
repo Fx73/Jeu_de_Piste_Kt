@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:screenOrientation="portrait"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -128,6 +129,66 @@
             android:textSize="30dp"
             android:contentDescription="@string/action_settings" />
     </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/creditslayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="120dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:visibility="invisible">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+
+        <TextView
+            android:id="@+id/version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Version : \n"
+            android:textSize="24dp"
+            android:contentDescription="@string/action_settings" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:text="Comment jouer :\n\nEn passant par le menu, choisissez votre nom d'équipe. Puis sélectionnez une histoire dans scenario.\nAvancez d'étape en étape grâce à la carte (bas-gauche). A chaque étape, grace au lecteur (bas-droite),  scannez le code central, lisez et enfin scannez les éventuelles autres codes, résolvez les mini-jeux, etc ...\nLa carte ne change pas tant que l'étape n'est pas complétée.\nEn cas de problème avec les QR Code, ou de bloquage à une étape, n'hésiter pas à demander une aide. Un code peut être entré pour débloquer la suite.\n\n"
+            android:textSize="22dp"
+            android:contentDescription="@string/action_settings" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:gravity="center_horizontal"
+            android:text="Crédits\n\n Application créée par François-Xavier Gros\n Contact : fx73000@yahoo.fr \n -- \nScenario 1\n Histoire du livre : 'Les grottes de Kalte' de la série 'Loup Solitaire' de Joe Dever\n Images du jeu 'The Elder Scrolls Online' de Bethesda SoftWorks \n\n\n\n"
+            android:textSize="18dp"
+            android:contentDescription="@string/action_settings" />
+
+
+    </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
