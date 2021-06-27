@@ -17,21 +17,21 @@ class ScenarioTest {
         val e0 = Etape(0,listOf(
             EtapElem(TXT,"Bienvenue a vous, voyageurs. Vous êtes les derniers apprentis de l'ordre des moines-guerriers Kai. Un terrible sorcier du nom de Vonotar s'est installé dans les terres reculées de Kalte, et vous seuls pouvez l'arrêter. \n Dans cette épreuve, l'art du Kai pourra vous être utile, et votre maitre peut vous enseigner une technique avant de partir. Choisissez bien, et mettez vous en route. Une grande aventure vous attends !"),
             EtapElem(IMG,"e0i0"),
-            EtapElem(QRC,"Skill_Camouflage"),
-            EtapElem(QRC,"Skill_6eSens"),
-            EtapElem(QRC,"Skill_Telekinesie"),
+            EtapElem(QRC,"Skill_Camouflage",additional1="0"),
+            EtapElem(QRC,"Skill_6eSens",additional1="1"),
+            EtapElem(QRC,"Skill_Telekinesie",additional1="2"),
             ),
             mapOf(Pair("ETAPE1 : Direction",1)),
-            listOf(Pair("Skill_Camouflage", listOf(
+            listOf(listOf(
                 EtapElem(TXT,"Vous avez finalement choisi d'apprendre le camouflage") ,
                 EtapElem(VAR,"skill=1")
-            )),Pair("Skill_6eSens", listOf(
+            ),listOf(
                 EtapElem(TXT,"Vous avez finalement choisi d'apprendre le 6e sens"),
                 EtapElem(VAR,"skill=2")
-            )),Pair("Skill_Telekinesie", listOf(
+            ), listOf(
                 EtapElem(TXT,"Vous avez finalement choisi d'apprendre la télékinésie"),
                 EtapElem(VAR,"skill=3")
-            )),
+            )
             )
         )
 
@@ -56,24 +56,20 @@ class ScenarioTest {
             EtapElem(TXT,"Bravo, tout les loups sont deja en fuite ! Vous pouvez bivouaquer tranquille et reprendre la route ensuite.","loup == 0"),
             ),
             mapOf(Pair("ETAPE4 : Montage2",4)), listOf(
-                Pair("LoupA", listOf(
+               listOf(
                 EtapElem(TXT,"Bravo, un loup à terre"),
                 EtapElem(VAR,"loup=-=1"),
                 EtapElem(TXT,"Bravo, tout les loups sont en fuite ! Vous pouvez bivouaquer tranquille et reprendre la route ensuite.","loup == 0")
-                )
-                ),
-                Pair("LoupB", listOf(
+                ), listOf(
                     EtapElem(TXT,"Bravo, un loup a pris la fuite"),
                     EtapElem(VAR,"loup=-=1"),
                     EtapElem(TXT,"Bravo, tout les loups sont neutralisés ! Vous pouvez bivouaquer tranquille et reprendre la route ensuite.","loup == 0")
-                )
-                ),
-                Pair("LoupA", listOf(
+                ), listOf(
                     EtapElem(TXT,"Bravo, un loup a été assommé"),
                     EtapElem(VAR,"loup=-=1"),
                     EtapElem(TXT,"Bravo, vous êtes hors de danger ! Vous pouvez bivouaquer tranquille et reprendre la route ensuite.","loup == 0")
                 )
-                )
+
         )
         )
 
@@ -119,20 +115,16 @@ class ScenarioTest {
             EtapElem(BTN,"Tenter d'aller faire réagir la statue")
             ),
             mapOf(Pair("ETAPE8 : Tour",8)), listOf(
-                Pair("Monter l'escalier", listOf(
+                listOf(
                     EtapElem(TXT,"Vous vous avancez et commencez à monter l'escalier ...","tour == 0"),
                     EtapElem(TXT,"Vous changez d'avis et vous dirigez vers l'escalier ...","tour != 0"),
                     EtapElem(VAR,"tour=1")
 
-                    )
-                ),
-                Pair("Aller vers la porte", listOf(
+                    ), listOf(
                     EtapElem(TXT,"Vous traversez la salle, passez à coté de la statue et poussez la porte ...","tour == 0"),
                     EtapElem(TXT,"Vous vous ravisez et traversez la salle en direction de la porte ...","tour != 0"),
                     EtapElem(VAR,"tour=2"),
-                    )
-                ),
-                Pair("Tenter d'aller faire réagir la statue", listOf(
+                    ), listOf(
                     EtapElem(TXT,"Vous vous échinez sur la statue, mais elle ne bouge pas d'un millimètre. Si seulement vous maîtrisiez la télékinésie ...","tour == 0 && skill != 3"),
                     EtapElem(TXT,"Vous revenez sur vos pas et explorez la statue. Elle ne bouge pas d'un millimètre. Si seulement vous maîtrisiez la télékinésie ...","tour != 0 && skill != 3"),
                     EtapElem(TXT,"Vous vous approchez de la statue et êtes pris d'une intuition. Vous vous concentrez fortement, et envoyez une décharge télékinésique vers la statue. Elle s'effondre sur le coté, libérant un passage que vous vous dépêchez d'emprunter...","tour == 0 && skill == 3"),
@@ -140,7 +132,7 @@ class ScenarioTest {
                     EtapElem(VAR,"tour=1"),
                     EtapElem(VAR,"tour=3","skill == 3")
                 )
-                ),
+
             )
 
         )
@@ -156,11 +148,10 @@ class ScenarioTest {
             EtapElem(EDT,"Lancer un sort","tour=1",additional1 = "poussifeu")
             ),
             mapOf(Pair("ETAPE9 : Cachots",9)), listOf(
-                Pair("Lancer un sort", listOf(
+               listOf(
                     EtapElem(TXT,"Le bois s'enflamme d'un coup, et flamme atteint les nuages. Le plancher commence à s'embraser. Vous sortez de la tour en courant et empruntez un autre chemin") ,
                     EtapElem(VAR,"renfort=1")
                     )
-                )
             )
         )
 
@@ -201,13 +192,13 @@ class ScenarioTest {
             Pair("ETAPE9 : Cachots",9),
             Pair("ETAPE14 : Cour",14)
         ),listOf(
-            Pair("Pousser le verrou et ouvrir", listOf(
+             listOf(
                 EtapElem(IMG,"e12i1"),
                 EtapElem(TXT,"Un vieil homme se trouve derrière la porte. En échange de la liberté, il est prêt à vous guider jusqu'au trésor du chateau. Vous le suivez donc !") ,
                 EtapElem(VAR, "vieux=1"),
                 EtapElem(UCK,"14")
             )
-        ))
+        )
         )
 
         val e13 = Etape(13,listOf(
@@ -241,15 +232,13 @@ class ScenarioTest {
         ),mapOf(
             Pair("ETAPE18 : Donjon",18)
         ),listOf(
-            Pair("Lancer un sort", listOf(
+             listOf(
                 EtapElem(TXT, "Les soldats infernaux sont immobilisés !") ,
                 EtapElem(UCK,"18"),
                 EtapElem(TXT, "Vous vous apercevez que le vieux a pris un coup mortel durant le combat. Il repose au sol, l'air tranquille. Le pauvre n'aura pas profité longtemps de la liberté. Vous entrez dans le donjon et commencez à monter.") ,
                 EtapElem(VAR, "vieux=0")
-
                 )
             )
-        )
         )
 
         val e16 = Etape(15,listOf(
@@ -272,10 +261,9 @@ class ScenarioTest {
         ),mapOf(
             Pair("ETAPE18 : Donjon",18)
         ),listOf(
-            Pair("Engager le combat", listOf(
+            listOf(
                 EtapElem(ETP,"15")
             )
-        )
         )
         )
 
@@ -302,7 +290,7 @@ class ScenarioTest {
             EtapElem(TXT,"Vous reconnaissez leurs armures comme celle de la milice du comté à l'est de Kalte, mais leur visage n'exprime plus rien. De toute évidence, ils sont envoûtés par le sorcier. Vous allez devoir vous défendre","renfort == 0"),
             EtapElem(VAR,"renfort = 2","renfort == 1")
             ),mapOf(
-            Pair("ETAPE21 : ",21)
+            Pair("ETAPE21 : Porte",21)
         ))
 
         val e20 = Etape(20,listOf(
@@ -313,12 +301,11 @@ class ScenarioTest {
         ),mapOf(
             Pair("ETAPE21 : Porte",21)
         ),listOf(
-            Pair("Dire", listOf(
+            listOf(
                 EtapElem(TXT,"Bien joué ! La porte s'ouvre lentement. Vous vous avancez ..."),
                 EtapElem(UCK,"21")
                 )
             )
-        )
         )
 
         val e21 = Etape(21,listOf(
@@ -334,12 +321,12 @@ class ScenarioTest {
         ),mapOf(
             Pair("ETAPE22 : Boss",22)
         ),listOf(
-            Pair("Dire", listOf(
+            listOf(
                 EtapElem(TXT,"Un claquement se produit, les battants se séparent et la porte commence à s'ouvrir. Vous rassemblez votre courage et avancez vers un dernier combat."),
                 EtapElem(UCK,"22")
             )
-            )
-        ))
+        )
+        )
 
 
         val e22 = Etape(22,listOf(

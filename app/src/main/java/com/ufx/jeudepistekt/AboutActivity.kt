@@ -28,7 +28,7 @@ class AboutActivity : CommonsActivity() {
         val aboutPage: View = AboutPage(this)
             .isRTL(false)
             .setDescription(getString(R.string.aide))
-            .setImage(R.drawable.my_ic_launcher)
+            .setImage(R.drawable.ic_banner)
             .addGroup(getString(R.string.about))
             .addItem(Element().setTitle("Version "+BuildConfig.VERSION_NAME))
             .addItem(Element().setTitle("Android SDK "+ Build.VERSION.SDK_INT + " / " + appinfo.targetSdkVersion))

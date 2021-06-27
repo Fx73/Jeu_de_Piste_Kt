@@ -20,14 +20,17 @@ class InfoActivity : CommonsActivity() {
         val creator = intent.getStringExtra("SCENARIO_CREATOR")
         val description = intent.getStringExtra("SCENARIO_DESCRIPTION")
         val copyright = intent.getStringExtra("SCENARIO_COPYRIGHT")
+        val version = intent.getStringExtra("SCENARIO_VERSION")
 
         val aboutPage: View = AboutPage(this)
             .isRTL(false)
             .setDescription(description)
-            .setImage(R.drawable.my_ic_launcher)
+            //.setImage()
             .addGroup(title)
             .addItem(Element().setTitle("par : $creator"))
             .addItem(Element().setTitle(copyright))
+            .addItem(Element().setTitle("version de l'app : $version"))
+
             .create()
 
         binding.root.findViewById<FrameLayout>(R.id.infolayout).addView(aboutPage)

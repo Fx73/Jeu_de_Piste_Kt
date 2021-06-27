@@ -4,10 +4,10 @@ class Etape(
     var number : Int,
     var elems : List<EtapElem>,
     var next : Map<String,Int>,
-    var underelems : List<Pair<String,List<EtapElem>>> = listOf()
+    var underelems : List<List<EtapElem>> = listOf()
 ){
-    val qrwaiters : MutableList<String>  = mutableListOf()
-    val buttonwaiters : MutableList<String>  = mutableListOf()
+    val qrwaiters : MutableMap<String,Int>  = mutableMapOf()
+    val buttonwaiters : MutableMap<String,Int>  = mutableMapOf()
     val lockers : MutableList<Int>  = mutableListOf()
 
 }

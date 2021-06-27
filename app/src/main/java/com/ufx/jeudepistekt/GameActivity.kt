@@ -80,8 +80,8 @@ class GameActivity : CommonsActivity() {
             TYPE.IMG -> instantiateImage(e.content)
             TYPE.TXT -> instantiateText(e.content)
             TYPE.VAR -> evaluateVar(e.content)
-            TYPE.QRC -> instantiateQrWaiter(e.content)
-            TYPE.BTN -> instantiateButton(e.content)
+            TYPE.QRC -> instantiateQrWaiter(e.content,e.additional1)
+            TYPE.BTN -> instantiateButton(e.content,e.additional1)
             TYPE.EDT -> instantiateEdit(e.content,e.additional1, e.additional2)
             TYPE.ETP -> instantiateEtape(e.content)
             TYPE.LCK -> instantiateLock(e.content)
@@ -99,7 +99,7 @@ class GameActivity : CommonsActivity() {
     private fun instantiateText(s:String)
     {
         val tv = TextView(this)
-        tv.textSize = 16f
+        tv.textSize = 18f
         tv.text = s
         tv.layoutParams = ltpar
 
@@ -141,16 +141,17 @@ class GameActivity : CommonsActivity() {
     }
 
 
-    private fun instantiateButton(s:String)
+    private fun instantiateButton(key:String, id: String)
     {
         val b = Button(this)
-        b.text = s
-        b.setOnClickListener{evaluateButtonListener(s)}
+        b.text = key
+        b.setOnClickListener{evaluateButtonListener(key)}
         b.layoutParams = ltpar
 
         glayout.addView(b)
 
-        getEtap().buttonwaiters.add(s)
+        val rid = id.toInt()
+        getEtap().buttonwaiters[key] = rid
     }
 
     private fun evaluateButtonListener(id:String){
@@ -175,13 +176,18 @@ class GameActivity : CommonsActivity() {
         getEtap().lockers.remove(s.trim().toInt())
     }
 
-    private fun instantiateQrWaiter(id : String){
-        getEtap().qrwaiters.add(id)
+    private fun instantiateQrWaiter(key : String, id : String){
+        val rid = id.toInt()
+        getEtap().qrwaiters[key] = rid
+
     }
     override fun evaluateQr(s : String) {
-        if (cheat(s)) return
+        println("Qr  : $s")
+        if (cheat(s))
+            return
 
-        loadElemsFromWaiters(getEtap().qrwaiters,s)
+        if(loadElemsFromWaiters(getEtap().qrwaiters,s))
+            return
 
         for (w in getEtap().next){
             if(w.key == s){
@@ -210,6 +216,13 @@ class GameActivity : CommonsActivity() {
             val variable = s.substring("Forcer Var ".length,s.length - newval.length)
             scenario.variable[variable]=newval.toInt()
             loadStep()
+            return true
+        }
+
+        if(s == "Afficher Vars"){
+            val sb = StringBuilder()
+            scenario.variable.forEach { (key, value) -> sb.append("$key = $value \n") }
+            instantiateText(sb.toString())
             return true
         }
 
@@ -257,20 +270,14 @@ class GameActivity : CommonsActivity() {
 
     }
 
-    private fun loadElemsFromWaiters(list : MutableList<String>, id : String){
-        println("testing element to find $id")
-        for(w in getEtap().qrwaiters) {
-            println("testing $w")
-            if (w == id) {
-                list.remove(w)
-                for (elist in getEtap().underelems)
-                    if (elist.first == id) {
-                        for (e in elist.second)
-                            loadElem(e)
-                        return
-                    }
-            }
-        }
+    private fun loadElemsFromWaiters(waiters : MutableMap<String, Int>, id : String):Boolean{
+        val ue = waiters[id]?:return false
+
+        for (e in getEtap().underelems[ue])
+            loadElem(e)
+
+        waiters.remove(id)
+        return true
     }
 //endregion
 

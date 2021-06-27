@@ -20,8 +20,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
 
-        tools:ignore="LabelFor"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        android:inputType="text"
+        tools:ignore="LabelFor" />
 
     <Button
         android:id="@+id/code_button"

@@ -167,7 +167,7 @@ class MainActivity : CommonsActivity() {
 
         println(zipper.storer.title)
         for (scenario in scenariolist)
-            if(scenario.second+"_"+scenario.first == zipper.storer.getKey()){
+            if(Storer.key(scenario.first,scenario.second)  == zipper.storer.getKey()){
                 Toast.makeText(this, "Same scenario from same creator already exists. Delete the old one !", Toast.LENGTH_LONG).show()
                 return@registerForActivityResult
             }

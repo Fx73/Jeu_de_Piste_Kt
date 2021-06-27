@@ -20,7 +20,7 @@
 
 
     <!-- Info -->
-    <string name="aide">Comment jouer : \n\n N\'oubliez pas de renseigner votre nom dans le menu, il sera lié à la sauvegarde.\n\n Depuis l\'accueil, sélectionnez un scenario, et c\'est parti ^^. Vous pouvez aussi en importer un nouveau avec le + \n\nA chaque étape, grace au lecteur Qr(bas-droite),  scannez les codes que vous trouvez. S\'il se passe quelque-chose, c\'est que vous avez un bon code ! Lisez, si besoin résolvez les mini-jeux, puis c\'est parti pour l\'étape suivante \n\nLes QR Code peuvent être rentrés manuellement via \'code\' dans le menu.\n\n</string>
+    <string name="aide">Comment jouer : \n\n N\‘oubliez pas de renseigner votre nom dans le menu, il sera lié à la sauvegarde.\n\n Depuis l\’accueil, sélectionnez un scenario, et c\‘est parti ^^. Vous pouvez aussi en importer un nouveau avec le + \n\nA chaque étape, grace au lecteur Qr(bas-droite),  scannez les codes que vous trouvez. S\’il se passe quelque-chose, c\'est que vous avez un bon code ! Lisez, si besoin résolvez les mini-jeux, puis c\'est parti pour l\'étape suivante \n\nLes QR Code peuvent être rentrés manuellement via \'code\' dans le menu.\n\n</string>
     <string name="app_description">Application de jeu de piste interactif</string>
     <string name="contacts">Contacts</string>
     <string name="copy_right">Copyright</string>

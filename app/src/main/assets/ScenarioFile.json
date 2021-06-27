@@ -18,7 +18,7 @@
       "elems": [
         {
           "type": "TXT",
-          "content": "Bienvenue a vous, voyageurs. Vous etes les derniers apprentis de l\u0027ordre des moines-guerriers Kai. Un terrible sorcier du nom de Vonotar s\u0027est installé dans les terres reculées de Kalte, et vous seuls pouvez l\u0027arreter. \\n Dans cette epreuve, l\u0027art du Kai pourra vous etre utile, et votre maitre peut vous enseigner une technique avant de partir. Choisissez bien, et mettez vous en route. Une grande aventure vous attends !",
+          "content": "Bienvenue a vous, voyageurs. Vous êtes les derniers apprentis de l\u0027ordre des moines-guerriers Kai. Un terrible sorcier du nom de Vonotar s\u0027est installé dans les terres reculées de Kalte, et vous seuls pouvez l\u0027arrêter. \n Dans cette épreuve, l\u0027art du Kai pourra vous être utile, et votre maitre peut vous enseigner une technique avant de partir. Choisissez bien, et mettez vous en route. Une grande aventure vous attends !",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -34,21 +34,21 @@
           "type": "QRC",
           "content": "Skill_Camouflage",
           "condition": "",
-          "additional1": "",
+          "additional1": "0",
           "additional2": ""
         },
         {
           "type": "QRC",
           "content": "Skill_6eSens",
           "condition": "",
-          "additional1": "",
+          "additional1": "1",
           "additional2": ""
         },
         {
           "type": "QRC",
           "content": "Skill_Telekinesie",
           "condition": "",
-          "additional1": "",
+          "additional1": "2",
           "additional2": ""
         }
       ],
@@ -56,66 +56,57 @@
         "ETAPE1 : Direction": 1
       },
       "underelems": [
-        {
-          "first": "Skill_Camouflage",
-          "second": [
-            {
-              "type": "TXT",
-              "content": "Vous avez finallement choisi d\u0027apprendre le camouflage",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "VAR",
-              "content": "skill\u003d1",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        },
-        {
-          "first": "Skill_6eSens",
-          "second": [
-            {
-              "type": "TXT",
-              "content": "Vous avez finallement choisi d\u0027apprendre le 6e sens",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "VAR",
-              "content": "skill\u003d2",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        },
-        {
-          "first": "Skill_Telekinesie",
-          "second": [
-            {
-              "type": "TXT",
-              "content": "Vous avez finallement choisi d\u0027apprendre la telekinesie",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "VAR",
-              "content": "skill\u003d3",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        }
+        [
+          {
+            "type": "TXT",
+            "content": "Vous avez finalement choisi d\u0027apprendre le camouflage",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "VAR",
+            "content": "skill\u003d1",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          }
+        ],
+        [
+          {
+            "type": "TXT",
+            "content": "Vous avez finalement choisi d\u0027apprendre le 6e sens",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "VAR",
+            "content": "skill\u003d2",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          }
+        ],
+        [
+          {
+            "type": "TXT",
+            "content": "Vous avez finalement choisi d\u0027apprendre la télékinésie",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "VAR",
+            "content": "skill\u003d3",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          }
+        ]
       ],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -123,7 +114,7 @@
       "elems": [
         {
           "type": "TXT",
-          "content": "Vous voila parti pour traverser la contrée gelée de Kalte. Le dernier village avant la contrée inospitalière est maintenant derrière vous. Le vent froid souffle doucement sur votre expedition.",
+          "content": "Vous voila parti pour traverser la contrée gelée de Kalte. Le dernier village avant la contrée inhospitalière est maintenant derrière vous. Le vent froid souffle doucement sur votre expedition.",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -148,8 +139,8 @@
         "ETAPE3 : Vallee": 3
       },
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -171,14 +162,14 @@
         },
         {
           "type": "TXT",
-          "content": "Vous avancez prudement dans les montagnes depuis un jour sans encombre. La nuit commence à tomber, et vous decidez de monter le camp. Soudain retentit le hurlement d\u0027un loup. Un autre lui répond. Et un troisième.",
+          "content": "Vous avancez prudemment dans les montagnes depuis un jour sans encombre. La nuit commence à tomber, et vous décidez de monter le camp. Soudain retentit le hurlement d\u0027un loup. Un autre lui répond. Et un troisième.",
           "condition": "",
           "additional1": "",
           "additional2": ""
         },
         {
           "type": "TXT",
-          "content": "Ils sont autours de vous ! Vite, trouvez les, avant qu\u0027ils ne vous trouvent !",
+          "content": "Ils sont autour de vous ! Vite, trouvez les, avant qu\u0027ils ne vous trouvent !",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -216,87 +207,78 @@
         "ETAPE4 : Montage2": 4
       },
       "underelems": [
-        {
-          "first": "LoupA",
-          "second": [
-            {
-              "type": "TXT",
-              "content": "Bravo, un loup à terre",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "VAR",
-              "content": "loup\u003d-\u003d1",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "TXT",
-              "content": "Bravo, tout les loups sont en fuite ! Vous pouvez bivouaquer tranquille et reprendre la route ensuite.",
-              "condition": "loup \u003d\u003d 0",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        },
-        {
-          "first": "LoupB",
-          "second": [
-            {
-              "type": "TXT",
-              "content": "Bravo, un loup a pris la fuite",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "VAR",
-              "content": "loup\u003d-\u003d1",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "TXT",
-              "content": "Bravo, tout les loups sont neutralisés ! Vous pouvez bivouaquer tranquille et reprendre la route ensuite.",
-              "condition": "loup \u003d\u003d 0",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        },
-        {
-          "first": "LoupA",
-          "second": [
-            {
-              "type": "TXT",
-              "content": "Bravo, un loup a été assommé",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "VAR",
-              "content": "loup\u003d-\u003d1",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "TXT",
-              "content": "Bravo, vous êtes hors de danger ! Vous pouvez bivouaquer tranquille et reprendre la route ensuite.",
-              "condition": "loup \u003d\u003d 0",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        }
+        [
+          {
+            "type": "TXT",
+            "content": "Bravo, un loup à terre",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "VAR",
+            "content": "loup\u003d-\u003d1",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "TXT",
+            "content": "Bravo, tout les loups sont en fuite ! Vous pouvez bivouaquer tranquille et reprendre la route ensuite.",
+            "condition": "loup \u003d\u003d 0",
+            "additional1": "",
+            "additional2": ""
+          }
+        ],
+        [
+          {
+            "type": "TXT",
+            "content": "Bravo, un loup a pris la fuite",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "VAR",
+            "content": "loup\u003d-\u003d1",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "TXT",
+            "content": "Bravo, tout les loups sont neutralisés ! Vous pouvez bivouaquer tranquille et reprendre la route ensuite.",
+            "condition": "loup \u003d\u003d 0",
+            "additional1": "",
+            "additional2": ""
+          }
+        ],
+        [
+          {
+            "type": "TXT",
+            "content": "Bravo, un loup a été assommé",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "VAR",
+            "content": "loup\u003d-\u003d1",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "TXT",
+            "content": "Bravo, vous êtes hors de danger ! Vous pouvez bivouaquer tranquille et reprendre la route ensuite.",
+            "condition": "loup \u003d\u003d 0",
+            "additional1": "",
+            "additional2": ""
+          }
+        ]
       ],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -318,7 +300,7 @@
         },
         {
           "type": "TXT",
-          "content": "Vous avez deja marché 2 jours dans la valée. L\u0027air est froid et sec. Votre progression est rapide, mais le chemin a parcourir est encore long. Vous faites une pause pour reprendre votre souffle, et admirer le paysage. Les montagnes que vous contournez sont imposantes.",
+          "content": "Vous avez deja marché 2 jours dans la vallée. L\u0027air est froid et sec. Votre progression est rapide, mais le chemin a parcourir est encore long. Vous faites une pause pour reprendre votre souffle, et admirer le paysage. Les montagnes que vous contournez sont imposantes.",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -335,8 +317,8 @@
         "ETAPE5 : Vallee2": 5
       },
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -361,8 +343,8 @@
         "ETAPE6 : Chateau": 6
       },
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -370,7 +352,7 @@
       "elems": [
         {
           "type": "TXT",
-          "content": "Vous avancez à toute vitesse à l\u0027entrée de la vallee. Le chateau apparait à l\u0027horizon et à ce rythme, vous y serez avant la nuit. Tout à coup, le sol se dérobe sous vos pieds.",
+          "content": "Vous avancez à toute vitesse à l\u0027entrée de la vallee. Le chateau apparaît à l\u0027horizon et à ce rythme, vous y serez avant la nuit. Tout à coup, le sol se dérobe sous vos pieds.",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -391,7 +373,7 @@
         },
         {
           "type": "TXT",
-          "content": "Vous ne perdez pas votre sang froid et avancez dans la grotte, en direction d\u0027une lumière. Au fond, un tunnel étroit s\u0027ouvre dans la paroi. Des coupes enflammés sont pendues au plafond, eclairant la route. Vous avancez sur ce chemin !",
+          "content": "Vous ne perdez pas votre sang froid et avancez dans la grotte, en direction d\u0027une lumière. Au fond, un tunnel étroit s\u0027ouvre dans la paroi. Des coupes enflammés sont pendues au plafond, éclairant la route. Vous avancez sur ce chemin !",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -401,8 +383,8 @@
         "ETAPE6 : Chateau": 6
       },
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -410,7 +392,7 @@
       "elems": [
         {
           "type": "TXT",
-          "content": "Vous emergez enfin à l\u0027air libre",
+          "content": "Vous émergez enfin à l\u0027air libre",
           "condition": "chemin \u003d\u003d 3",
           "additional1": "",
           "additional2": ""
@@ -434,8 +416,8 @@
         "ETAPE7 : Statue": 7
       },
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -443,7 +425,7 @@
       "elems": [
         {
           "type": "TXT",
-          "content": "Vous passez la cour du chateau et entrez dans une grande salle. Au centre repose une statue qui semble avoir été sculptée dans de la pierre blanche et lisse. A gauche de la statue, un escalier monte dans l\u0027ombre. Une porte est situé à l\u0027oposée de la salle, de l\u0027autre coté de la statue.",
+          "content": "Vous passez la cour du chateau et entrez dans une grande salle. Au centre repose une statue qui semble avoir été sculptée dans de la pierre blanche et lisse. A gauche de la statue, un escalier monte dans l\u0027ombre. Une porte est situé à l\u0027opposé de la salle, de l\u0027autre coté de la statue.",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -481,108 +463,99 @@
         "ETAPE8 : Tour": 8
       },
       "underelems": [
-        {
-          "first": "Monter l\u0027escalier",
-          "second": [
-            {
-              "type": "TXT",
-              "content": "Vous vous avancez et commencez à monter l\u0027escalier ...",
-              "condition": "tour \u003d\u003d 0",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "TXT",
-              "content": "Vous changez d\u0027avis et vous dirigez vers l\u0027escalier ...",
-              "condition": "tour !\u003d 0",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "VAR",
-              "content": "tour\u003d1",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        },
-        {
-          "first": "Aller vers la porte",
-          "second": [
-            {
-              "type": "TXT",
-              "content": "Vous traversez la salle, passez à coté de la statue et poussez la porte ...",
-              "condition": "tour \u003d\u003d 0",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "TXT",
-              "content": "Vous vous ravisez et traversez la salle en direction de la porte ...",
-              "condition": "tour !\u003d 0",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "VAR",
-              "content": "tour\u003d2",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        },
-        {
-          "first": "Tenter d\u0027aller faire réagir la statue",
-          "second": [
-            {
-              "type": "TXT",
-              "content": "Vous vous echinez sur la statue, mais elle ne bouge pas d\u0027un millimètre. Si seulement vous maitrisiez la telekinesie ...",
-              "condition": "tour \u003d\u003d 0 \u0026\u0026 skill !\u003d 3",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "TXT",
-              "content": "Vous revenez sur vos pas et explorez la statue. Elle ne bouge pas d\u0027un millimètre. Si seulement vous maitrisiez la telekinesie ...",
-              "condition": "tour !\u003d 0 \u0026\u0026 skill !\u003d 3",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "TXT",
-              "content": "Vous vous approchez de la statue et etes pris d\u0027une intuition. Vous vous concentrez fortement, et envoyez une décharge telekinésique vers la statue. Elle s\u0027effondre sur le coté, libérant un passage que vous vous dépéchez d\u0027emprunter...",
-              "condition": "tour \u003d\u003d 0 \u0026\u0026 skill \u003d\u003d 3",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "TXT",
-              "content": "Vous revenez au centre de la pièce et approchez de la statue. Vous etes pris d\u0027une intuition. Vous vous concentrez fortement, et envoyez une décharge telekinésique vers la statue. Elle s\u0027effondre sur le coté, libérant un passage que vous vous dépéchez d\u0027emprunter...",
-              "condition": "tour !\u003d 0 \u0026\u0026 skill \u003d\u003d 3",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "VAR",
-              "content": "tour\u003d1",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "VAR",
-              "content": "tour\u003d3",
-              "condition": "skill \u003d\u003d 3",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        }
+        [
+          {
+            "type": "TXT",
+            "content": "Vous vous avancez et commencez à monter l\u0027escalier ...",
+            "condition": "tour \u003d\u003d 0",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "TXT",
+            "content": "Vous changez d\u0027avis et vous dirigez vers l\u0027escalier ...",
+            "condition": "tour !\u003d 0",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "VAR",
+            "content": "tour\u003d1",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          }
+        ],
+        [
+          {
+            "type": "TXT",
+            "content": "Vous traversez la salle, passez à coté de la statue et poussez la porte ...",
+            "condition": "tour \u003d\u003d 0",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "TXT",
+            "content": "Vous vous ravisez et traversez la salle en direction de la porte ...",
+            "condition": "tour !\u003d 0",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "VAR",
+            "content": "tour\u003d2",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          }
+        ],
+        [
+          {
+            "type": "TXT",
+            "content": "Vous vous échinez sur la statue, mais elle ne bouge pas d\u0027un millimètre. Si seulement vous maîtrisiez la télékinésie ...",
+            "condition": "tour \u003d\u003d 0 \u0026\u0026 skill !\u003d 3",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "TXT",
+            "content": "Vous revenez sur vos pas et explorez la statue. Elle ne bouge pas d\u0027un millimètre. Si seulement vous maîtrisiez la télékinésie ...",
+            "condition": "tour !\u003d 0 \u0026\u0026 skill !\u003d 3",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "TXT",
+            "content": "Vous vous approchez de la statue et êtes pris d\u0027une intuition. Vous vous concentrez fortement, et envoyez une décharge télékinésique vers la statue. Elle s\u0027effondre sur le coté, libérant un passage que vous vous dépêchez d\u0027emprunter...",
+            "condition": "tour \u003d\u003d 0 \u0026\u0026 skill \u003d\u003d 3",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "TXT",
+            "content": "Vous revenez au centre de la pièce et approchez de la statue. Vous êtes pris d\u0027une intuition. Vous vous concentrez fortement, et envoyez une décharge télékinésique vers la statue. Elle s\u0027effondre sur le coté, libérant un passage que vous vous dépêchez d\u0027emprunter...",
+            "condition": "tour !\u003d 0 \u0026\u0026 skill \u003d\u003d 3",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "VAR",
+            "content": "tour\u003d1",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "VAR",
+            "content": "tour\u003d3",
+            "condition": "skill \u003d\u003d 3",
+            "additional1": "",
+            "additional2": ""
+          }
+        ]
       ],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -590,7 +563,7 @@
       "elems": [
         {
           "type": "TXT",
-          "content": "Vous montez, encore et encore. L\u0027escalier n\u0027en finit pas. Les murs sont nus et sans fenetres. Au bout d\u0027une eternite, vous débouchez sur un spectacle à couper le souffle.",
+          "content": "Vous montez, encore et encore. L\u0027escalier n\u0027en finit pas. Les murs sont nus et sans fenêtres. Au bout d\u0027une éternité, vous débouchez sur un spectacle à couper le souffle.",
           "condition": "tour\u003d1",
           "additional1": "",
           "additional2": ""
@@ -604,7 +577,7 @@
         },
         {
           "type": "TXT",
-          "content": "Apres être descendu un court escalier de pierre vous arrivez près d\u0027un cadre de pierre. L\u0027air dans le cadre frémit legerement. Vous passez à travers la cadre, et d\u0027un coup, le vent vous fouette le visage.",
+          "content": "Apres être descendu un court escalier de pierre vous arrivez près d\u0027un cadre de pierre. L\u0027air dans le cadre frémit légèrement. Vous passez à travers la cadre, et d\u0027un coup, le vent vous fouette le visage.",
           "condition": "tour\u003d3",
           "additional1": "",
           "additional2": ""
@@ -618,14 +591,14 @@
         },
         {
           "type": "TXT",
-          "content": "Vous etes tout en haut d\u0027une tour de guet. Une tas de bois gigantesque est présent. Si vous connaissez un sort de feu, vous pouvez tenter de l\u0027enflammer, sinon vous repartez par un autre chemin.",
+          "content": "Vous êtes tout en haut d\u0027une tour de guet. Une tas de bois gigantesque est présent. Si vous connaissez un sort de feu, vous pouvez tenter de l\u0027enflammer, sinon vous repartez par un autre chemin.",
           "condition": "tour\u003d1",
           "additional1": "",
           "additional2": ""
         },
         {
           "type": "TXT",
-          "content": "Vous etes tout en haut d\u0027une tour de guet. Une tas de bois gigantesque est présent. Vous repassez le portail pour prendre une torche dans le souterrain et enflammez le bois. La flamme qui s\u0027ensuit doit se voire depuis le pays voisin. Elle a probablement une utilitée, mais vous n\u0027avez pas le loisir de rester pour vérifier. Vous décidez de repartir par l\u0027escalier qui se découpe au sol de la tour.",
+          "content": "Vous êtes tout en haut d\u0027une tour de guet. Une tas de bois gigantesque est présent. Vous repassez le portail pour prendre une torche dans le souterrain et enflammez le bois. La flamme qui s\u0027ensuit doit se voire depuis le pays voisin. Elle a probablement une utilité, mais vous n\u0027avez pas le loisir de rester pour vérifier. Vous décidez de repartir par l\u0027escalier qui se découpe au sol de la tour.",
           "condition": "tour\u003d3",
           "additional1": "",
           "additional2": ""
@@ -649,28 +622,25 @@
         "ETAPE9 : Cachots": 9
       },
       "underelems": [
-        {
-          "first": "Lancer un sort",
-          "second": [
-            {
-              "type": "TXT",
-              "content": "Le bois s\u0027enflamme d\u0027un coup, et flamme atteind les nuages. Le plancher commence à s\u0027embraser. Vous sortez de la tour en courant et empruntez un autre chemin",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "VAR",
-              "content": "renfort\u003d1",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        }
+        [
+          {
+            "type": "TXT",
+            "content": "Le bois s\u0027enflamme d\u0027un coup, et flamme atteint les nuages. Le plancher commence à s\u0027embraser. Vous sortez de la tour en courant et empruntez un autre chemin",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "VAR",
+            "content": "renfort\u003d1",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          }
+        ]
       ],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -678,7 +648,7 @@
       "elems": [
         {
           "type": "TXT",
-          "content": "Vous arrivez dans les cachots du chateau. Ca a l\u0027air d\u0027un cul de sac, mais il y a quatres portes de cellules. Vous decidez d\u0027en ouvrir une !",
+          "content": "Vous arrivez dans les cachots du chateau. Ca a l\u0027air d\u0027un cul de sac, mais il y a quatre portes de cellules. Vous décidez d\u0027en ouvrir une !",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -705,8 +675,8 @@
         "ETAPE13 : Cachot4": 13
       },
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -714,7 +684,7 @@
       "elems": [
         {
           "type": "TXT",
-          "content": "Un enorme monstre vous attends juste derriere la porte !",
+          "content": "Un énorme monstre vous attends juste derriere la porte !",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -731,8 +701,8 @@
         "ETAPE9 : Cachots": 9
       },
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -757,8 +727,8 @@
         "ETAPE9 : Cachots": 9
       },
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -791,42 +761,39 @@
         "ETAPE14 : Cour": 14
       },
       "underelems": [
-        {
-          "first": "Pousser le verrou et ouvrir",
-          "second": [
-            {
-              "type": "IMG",
-              "content": "e12i1",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "TXT",
-              "content": "Un vieil homme se trouve derrière la porte. En echange de la liberté, il est prêt à vous guider jusqu\u0027au trésor du chateau. Vous le suivez donc !",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "VAR",
-              "content": "vieux\u003d1",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "UCK",
-              "content": "14",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        }
+        [
+          {
+            "type": "IMG",
+            "content": "e12i1",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "TXT",
+            "content": "Un vieil homme se trouve derrière la porte. En échange de la liberté, il est prêt à vous guider jusqu\u0027au trésor du chateau. Vous le suivez donc !",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "VAR",
+            "content": "vieux\u003d1",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "UCK",
+            "content": "14",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          }
+        ]
       ],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -834,7 +801,7 @@
       "elems": [
         {
           "type": "TXT",
-          "content": "La porte s\u0027ouvre sur une cellule immense, et completement vide. Il flotte encore une légère odeur de cochon grillé.",
+          "content": "La porte s\u0027ouvre sur une cellule immense, et complètement vide. Il flotte encore une légère odeur de cochon grillé.",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -865,8 +832,8 @@
         "ETAPE9 : Cachots": 9
       },
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -874,7 +841,7 @@
       "elems": [
         {
           "type": "TXT",
-          "content": "Restant sur vos garde, vous suivez le vieux bonhomme au travers de la forteresse. Un long moment s\u0027ecoule, et après avoir poussé une lourde porte de bois, vous voila dans une cour intérieur, au pied du donjon central.",
+          "content": "Restant sur vos garde, vous suivez le vieux bonhomme au travers de la forteresse. Un long moment s\u0027écoule, et après avoir poussé une lourde porte de bois, vous voila dans une cour intérieur, au pied du donjon central.",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -888,7 +855,7 @@
         },
         {
           "type": "TXT",
-          "content": "Vous entendez des bruits venant de l\u0027entrée du donjon. Vous supposez qu\u0027un groupe de soldats doit en garder l\u0027entree. Vous pouvez vous préparer à passer en force, essayer de trouver une autre entrée ou tenter de vous camoufler.",
+          "content": "Vous entendez des bruits venant de l\u0027entrée du donjon. Vous supposez qu\u0027un groupe de soldats doit en garder l\u0027entrée. Vous pouvez vous préparer à passer en force, essayer de trouver une autre entrée ou tenter de vous camoufler.",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -900,8 +867,8 @@
         "ETAPE17 : Camouflage": 17
       },
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -954,42 +921,39 @@
         "ETAPE18 : Donjon": 18
       },
       "underelems": [
-        {
-          "first": "Lancer un sort",
-          "second": [
-            {
-              "type": "TXT",
-              "content": "Les soldats infernaux sont immobilisés !",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "UCK",
-              "content": "18",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "TXT",
-              "content": "Vous vous apercevez que le vieux a pris un coup mortel durant le combat. Il repose au sol, l\u0027air tranquille. Le pauvre n\u0027aura pas profité longtemps de la liberté. Vous entrez dans le donjon et commencez à monter.",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "VAR",
-              "content": "vieux\u003d0",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        }
+        [
+          {
+            "type": "TXT",
+            "content": "Les soldats infernaux sont immobilisés !",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "UCK",
+            "content": "18",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "TXT",
+            "content": "Vous vous apercevez que le vieux a pris un coup mortel durant le combat. Il repose au sol, l\u0027air tranquille. Le pauvre n\u0027aura pas profité longtemps de la liberté. Vous entrez dans le donjon et commencez à monter.",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "VAR",
+            "content": "vieux\u003d0",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          }
+        ]
       ],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -997,7 +961,7 @@
       "elems": [
         {
           "type": "TXT",
-          "content": "Bien joué ! Une porte derobee vous permet d\u0027entrer. Il n\u0027y a aucun garde ici. Prudement vous entrez dans le donjon et en entamez l\u0027ascension.",
+          "content": "Bien joué ! Une porte dérobée vous permet d\u0027entrer. Il n\u0027y a aucun garde ici. Prudemment vous entrez dans le donjon et en entamez l\u0027ascension.",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -1014,8 +978,8 @@
         "ETAPE18 : Donjon": 15
       },
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -1030,7 +994,7 @@
         },
         {
           "type": "TXT",
-          "content": "Votre camouflage ne tient pas la route et les monstres vous reperent instantanément. Vous allez devoir vous battre !",
+          "content": "Votre camouflage ne tient pas la route et les monstres vous repèrent instantanément. Vous allez devoir vous battre !",
           "condition": "skill !\u003d 1",
           "additional1": "",
           "additional2": ""
@@ -1058,7 +1022,7 @@
         },
         {
           "type": "TXT",
-          "content": "Le vieux tremble, mais vous le tenez fermement pour qu\u0027il ne fasse pas de bêtise. Une fois le son des soldats estompé, vous le lachez enfin, et entamez la montée du donjon.",
+          "content": "Le vieux tremble, mais vous le tenez fermement pour qu\u0027il ne fasse pas de bêtise. Une fois le son des soldats estompé, vous le lâchez enfin, et entamez la montée du donjon.",
           "condition": "skill \u003d\u003d 1",
           "additional1": "",
           "additional2": ""
@@ -1068,21 +1032,18 @@
         "ETAPE18 : Donjon": 18
       },
       "underelems": [
-        {
-          "first": "Engager le combat",
-          "second": [
-            {
-              "type": "ETP",
-              "content": "15",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        }
+        [
+          {
+            "type": "ETP",
+            "content": "15",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          }
+        ]
       ],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -1090,7 +1051,7 @@
       "elems": [
         {
           "type": "TXT",
-          "content": "Vous montez en courant depuis de longues minutes, lorsque vous arrivez à un palier d\u0027ou part un couloir enfumé, rempli de statuettes. Vous avancez dans le couloir. A son extremite, une issue est présente de chaque coté",
+          "content": "Vous montez en courant depuis de longues minutes, lorsque vous arrivez à un palier d\u0027oû part un couloir enfumé, rempli de statuettes. Vous avancez dans le couloir. A son extrémité, une issue est présente de chaque coté",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -1111,7 +1072,7 @@
         },
         {
           "type": "TXT",
-          "content": "Vous entendez des coups sourd venant de la gauche, comme des pas lourds et desordonnés",
+          "content": "Vous entendez des coups sourd venant de la gauche, comme des pas lourds et désordonnés",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -1125,7 +1086,7 @@
         },
         {
           "type": "TXT",
-          "content": "Votre 6e sens s\u0027active soudain, comme un appel très fort. Le bruit de pas du couloir gauche vous est extremement désagreable. Du genre qu\u0027il faut éviter à tout prix.",
+          "content": "Votre 6e sens s\u0027active soudain, comme un appel très fort. Le bruit de pas du couloir gauche vous est extrêmement désagréable. Du genre qu\u0027il faut éviter à tout prix.",
           "condition": "skill \u003d\u003d 2 \u0026\u0026 renfort !\u003d 1",
           "additional1": "",
           "additional2": ""
@@ -1143,8 +1104,8 @@
         "ETAPE20 : DonjonD": 20
       },
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -1152,7 +1113,7 @@
       "elems": [
         {
           "type": "TXT",
-          "content": "Vous montez les escaliers à gauche. Les pas sont de plus en plus fort. Enfin vous les apercevez. Il s\u0027agit de grands guerriers revètus d\u0027armure et lourdement armés.",
+          "content": "Vous montez les escaliers à gauche. Les pas sont de plus en plus fort. Enfin vous les apercevez. Il s\u0027agit de grands guerriers revêtus d\u0027armures et lourdement armés.",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -1166,14 +1127,14 @@
         },
         {
           "type": "TXT",
-          "content": "L\u0027un d\u0027eux s\u0027avance et vous gratifie d\u0027un salut. Vous reconnaissez leur armure, qui est celle des soldats d\u0027élite du comté à l\u0027est de Kalte. Vous lui rendez son salut. Il a reconnu votre blason egalement, et vous indique qu\u0027ils sont venu à cause d\u0027un signal de la forme d\u0027un feu qui a été allumé sur une des tours. Ils se joignent à votre troupe et vous reprenez l\u0027ascension du donjon.",
+          "content": "L\u0027un d\u0027eux s\u0027avance et vous gratifie d\u0027un salut. Vous reconnaissez leur armure, qui est celle des soldats d\u0027élite du comté à l\u0027est de Kalte. Vous lui rendez son salut. Il a reconnu votre blason également, et vous indique qu\u0027ils sont venu à cause d\u0027un signal de la forme d\u0027un feu qui a été allumé sur une des tours. Ils se joignent à votre troupe et vous reprenez l\u0027ascension du donjon.",
           "condition": "renfort \u003d\u003d 1",
           "additional1": "",
           "additional2": ""
         },
         {
           "type": "TXT",
-          "content": "En reprenant la marche, vous remarquez que le vieil homme a profité de la bousculade pour s\u0027eclipser. Tant pis, vous allez devoir continuer sans lui",
+          "content": "En reprenant la marche, vous remarquez que le vieil homme a profité de la bousculade pour s\u0027éclipser. Tant pis, vous allez devoir continuer sans lui",
           "condition": "renfort \u003d\u003d 1",
           "additional1": "",
           "additional2": ""
@@ -1197,8 +1158,8 @@
         "ETAPE21 : ": 21
       },
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -1237,28 +1198,25 @@
         "ETAPE21 : Porte": 21
       },
       "underelems": [
-        {
-          "first": "Dire",
-          "second": [
-            {
-              "type": "TXT",
-              "content": "Bien joué ! La porte s\u0027ouvre lentement. Vous vous avancez ...",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "UCK",
-              "content": "21",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        }
+        [
+          {
+            "type": "TXT",
+            "content": "Bien joué ! La porte s\u0027ouvre lentement. Vous vous avancez ...",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "UCK",
+            "content": "21",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          }
+        ]
       ],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -1273,7 +1231,7 @@
         },
         {
           "type": "TXT",
-          "content": "Vous êtes enfin au sommet du donjon. Un grand tapis de velour rouge recouvre la pièce. Deux grandes fenêtres laissent aprecevoir l\u0027horizon derrière la vallée enneigée.",
+          "content": "Vous êtes enfin au sommet du donjon. Un grand tapis de velour rouge recouvre la pièce. Deux grandes fenêtres laissent apercevoir l\u0027horizon derrière la vallée enneigée.",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -1294,14 +1252,14 @@
         },
         {
           "type": "TXT",
-          "content": "Puis il pointe l\u0027opposée de la grande salle : \u0027Le sorcier se trouve là !\u0027",
+          "content": "Puis il pointe l\u0027opposé de la grande salle : \u0027Le sorcier se trouve là !\u0027",
           "condition": "vieux \u003d\u003d 1",
           "additional1": "",
           "additional2": ""
         },
         {
           "type": "TXT",
-          "content": "Vous traversez prudement la salle rouge. Une porte immense vous fait face.",
+          "content": "Vous traversez prudemment la salle rouge. Une porte immense vous fait face.",
           "condition": "",
           "additional1": "",
           "additional2": ""
@@ -1332,28 +1290,25 @@
         "ETAPE22 : Boss": 22
       },
       "underelems": [
-        {
-          "first": "Dire",
-          "second": [
-            {
-              "type": "TXT",
-              "content": "Un claquement se produit, les battants se séparent et la porte commence à s\u0027ouvrir. Vous rassemblez votre courage et avancez vers un dernier combat.",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            },
-            {
-              "type": "UCK",
-              "content": "22",
-              "condition": "",
-              "additional1": "",
-              "additional2": ""
-            }
-          ]
-        }
+        [
+          {
+            "type": "TXT",
+            "content": "Un claquement se produit, les battants se séparent et la porte commence à s\u0027ouvrir. Vous rassemblez votre courage et avancez vers un dernier combat.",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          },
+          {
+            "type": "UCK",
+            "content": "22",
+            "condition": "",
+            "additional1": "",
+            "additional2": ""
+          }
+        ]
       ],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -1396,7 +1351,7 @@
         },
         {
           "type": "TXT",
-          "content": "Heuresement les renforts que vous avez reçu vous donne un avantage indéniable",
+          "content": "Heureusement les renforts que vous avez reçu vous donne un avantage indéniable",
           "condition": "renfort \u003d\u003d 2",
           "additional1": "",
           "additional2": ""
@@ -1406,8 +1361,8 @@
         "ETAPE23 : Fin": 23
       },
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     },
     {
@@ -1429,7 +1384,7 @@
         },
         {
           "type": "TXT",
-          "content": "Malgré la précipitation, vous avez réussi à emporter avec vous une grande partie du trésor. Vous etes victorieux sur tout les tableaux. Une grande vie vous attend.",
+          "content": "Malgré la précipitation, vous avez réussi à emporter avec vous une grande partie du trésor. Vous êtes victorieux sur tout les tableaux. Une grande vie vous attend.",
           "condition": "vieux \u003d\u003d 1",
           "additional1": "",
           "additional2": ""
@@ -1458,8 +1413,8 @@
       ],
       "next": {},
       "underelems": [],
-      "qrwaiters": [],
-      "buttonwaiters": [],
+      "qrwaiters": {},
+      "buttonwaiters": {},
       "lockers": []
     }
   ]
