@@ -1,16 +1,8 @@
 package com.ufx.jeudepistekt
 
-import com.google.gson.GsonBuilder
-import com.ufx.jeudepistekt.jeu.EtapElem
-import com.ufx.jeudepistekt.jeu.Etape
-import com.ufx.jeudepistekt.jeu.Scenario
-import com.ufx.jeudepistekt.jeu.TYPE.*
-import org.junit.Test
-import java.io.File
-
 class ScenarioTest {
 
-
+/*
     @Test
     fun buildJsonFile() {
 
@@ -373,5 +365,5 @@ class ScenarioTest {
 
     }
 
-
+*/
 }
