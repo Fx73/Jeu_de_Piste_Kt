@@ -3,7 +3,7 @@
 
 <h2>Présentation</h2>
 
-Cette application Android est un jeu de piste interractif.
+Cette application Android est un jeu de piste interactif.
 
 L'objectif est de completer toute l'histoire, en résolvant des puzzles, enigmes, etc., certaines grace à l'application seules, certaines via des recherches/interractions réelles.
 
