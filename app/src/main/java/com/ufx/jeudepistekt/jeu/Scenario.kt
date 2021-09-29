@@ -1,10 +1,11 @@
 package com.ufx.jeudepistekt.jeu
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.ufx.jeudepistekt.BuildConfig
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 
-
+@Serializable
 class Scenario(
     var title : String,
     var creator : String,
@@ -18,12 +19,6 @@ class Scenario(
 
     var etape = 0
     fun getEtap () = etapes[etape]
-
-
-
-
-
-
 
 
 
@@ -58,9 +53,10 @@ class Scenario(
 
     companion object {
 
-        fun buildScenarioFromJson(jsonFileString:String): Scenario {
-            val outtype = object : TypeToken<Scenario>() {}.type
-            return Gson().fromJson(jsonFileString, outtype)
+        fun buildScenarioFromJson(jsonFile: String): Scenario {
+            //val outtype = object : TypeToken<Scenario>() {}.type
+            //return Gson().fromJson(jsonFile, outtype)
+            return Json.decodeFromString(jsonFile)
         }
 
     }

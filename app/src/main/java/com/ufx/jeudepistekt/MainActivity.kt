@@ -156,9 +156,15 @@ class MainActivity : CommonsActivity() {
 
         return card
     }
-//endregion
+//endregio
 
 //region addScenario
+    private fun browseFile() {
+    //Check and ask storage permission
+    if(askPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE))
+        getContent.launch("application/*")
+    }
+
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
     if (uri == null) return@registerForActivityResult
     println("OKAY0")
@@ -179,12 +185,6 @@ class MainActivity : CommonsActivity() {
             startActivity(intent)
         }
 
-    }
-
-    private fun browseFile() {
-        //Check and ask storage permission
-        if(askPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE))
-            getContent.launch("application/*")
     }
 
 //endregion

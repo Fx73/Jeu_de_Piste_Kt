@@ -2,8 +2,10 @@ package com.ufx.jeudepistekt.jeu
 
 import com.ufx.jeudepistekt.GameActivity
 import com.ufx.jeudepistekt.jeu.elem.EtapElem
+import kotlinx.serialization.Serializable
 import java.util.*
 
+@Serializable
 class Etape(
     var number : Int,
     var elems : List<EtapElem>,
