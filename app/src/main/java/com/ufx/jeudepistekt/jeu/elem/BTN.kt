@@ -6,7 +6,13 @@ import android.widget.Button
 import android.widget.LinearLayout
 import com.ufx.jeudepistekt.jeu.Scenario
 
-class BTN(content: String, private val additional : String) : EtapElem(content) {
+
+/**
+ * BTN: Instanciate a button
+ * content : text of button (will be the name of the listener)
+ * 1 Additional = buttonwaiters.id
+ */
+class BTN(content: String, additional: Array<String>) : Elem(content, additional) {
 
 
     override fun instantiate(context : Context, l : LinearLayout,scenario:Scenario) {
@@ -20,7 +26,7 @@ class BTN(content: String, private val additional : String) : EtapElem(content) 
 
         l.addView(b)
 
-        val rid = additional.toInt()
+        val rid = additional[0].toInt()
         scenario.getEtap().buttonwaiters[content] = rid
     }
 

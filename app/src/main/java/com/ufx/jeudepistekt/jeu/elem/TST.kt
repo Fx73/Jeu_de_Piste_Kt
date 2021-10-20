@@ -5,7 +5,12 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import com.ufx.jeudepistekt.jeu.Scenario
 
-class TST(content: String) : EtapElem(content) {
+/**
+ * TST: Instanciate a toast
+ * content : toast text
+ *
+ */
+class TST(content: String) : Elem(content) {
 
     override fun instantiate(context : Context, l : LinearLayout,scenario:Scenario) {
         showToast(context)

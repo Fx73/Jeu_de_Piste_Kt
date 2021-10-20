@@ -7,7 +7,11 @@ import android.widget.LinearLayout
 import com.ufx.jeudepistekt.GameActivity
 import com.ufx.jeudepistekt.jeu.Scenario
 
-class IMG(content: String) : EtapElem(content) {
+/**
+ * BTN: Instanciate an image
+ * content : image name
+ */
+class IMG(content: String) : Elem(content) {
 
 
     override fun instantiate(context : Context, l : LinearLayout,scenario:Scenario) {

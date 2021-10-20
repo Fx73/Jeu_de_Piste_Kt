@@ -7,7 +7,14 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import com.ufx.jeudepistekt.jeu.Scenario
 
-class EDT(content: String, private val additional1 : String, private val additional2 : String) : EtapElem(content) {
+
+/**
+ * EDT: Instanciate a edit text
+ * content : text to show
+ * 2 Additional = answer 1 / answer 2
+ */
+
+class EDT(content: String, additional : Array<String>) : Elem(content, additional) {
 
 
     override fun instantiate(context : Context, l : LinearLayout,scenario:Scenario) {
@@ -23,7 +30,7 @@ class EDT(content: String, private val additional1 : String, private val additio
 
         val b = Button(context)
         b.text = content
-        b.setOnClickListener{scenario.getEtap().evaluateEditListener(content,et.text.toString(),additional1,additional2)}
+        b.setOnClickListener{scenario.getEtap().evaluateEditListener(content,et.text.toString(),additional[0],additional[0])}
         b.layoutParams = par
 
         l.addView(b)

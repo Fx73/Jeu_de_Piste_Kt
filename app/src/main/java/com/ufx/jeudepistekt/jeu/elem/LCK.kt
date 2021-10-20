@@ -4,7 +4,11 @@ import android.content.Context
 import android.widget.LinearLayout
 import com.ufx.jeudepistekt.jeu.Scenario
 
-class LCK(content: String) : EtapElem(content) {
+/**
+ * LCK: Instanciate a lock
+ * content : lock id
+ */
+class LCK(content: String) : Elem(content) {
 
     override fun instantiate(context : Context, l : LinearLayout, scenario: Scenario) {
         scenario.getEtap().lockers.add(content.trim().toInt())

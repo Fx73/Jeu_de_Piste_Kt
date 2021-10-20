@@ -6,7 +6,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.ufx.jeudepistekt.jeu.Scenario
 
-class TXT(content: String) : EtapElem(content) {
+
+/**
+ * TXT: Instanciate a qr code waiter
+ * content : text text
+ */
+
+class TXT(content: String) : Elem(content) {
 
     override fun instantiate(context : Context, l : LinearLayout,scenario:Scenario) {
         val par = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
