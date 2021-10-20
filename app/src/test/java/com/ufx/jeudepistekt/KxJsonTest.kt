@@ -25,7 +25,7 @@ class KxJsonTest {
 
 
         val json = Json.encodeToString(s)
-        println(json) // {"name":"kotlinx.serialization","language":"Kotlin"}
+        println(json)
 
 
 
