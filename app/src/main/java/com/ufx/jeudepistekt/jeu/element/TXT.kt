@@ -1,4 +1,4 @@
-package com.ufx.jeudepistekt.jeu.elem
+package com.ufx.jeudepistekt.jeu.element
 
 import android.content.Context
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import com.ufx.jeudepistekt.jeu.Scenario
  * content : text text
  */
 
-class TXT(content: String) : Elem(content) {
+class TXT(content: String) : Element(content) {
 
     override fun instantiate(context : Context, l : LinearLayout,scenario:Scenario) {
         val par = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)

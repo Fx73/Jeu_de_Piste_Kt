@@ -1,4 +1,4 @@
-package com.ufx.jeudepistekt.jeu.elem
+package com.ufx.jeudepistekt.jeu.element
 
 import android.content.Context
 import android.widget.LinearLayout
@@ -10,10 +10,10 @@ import com.ufx.jeudepistekt.jeu.Scenario
  *
  */
 
-class UCK(content: String) : Elem(content) {
+class UCK(content: String) : Element(content) {
 
     override fun instantiate(context : Context, l : LinearLayout, scenario: Scenario) {
-        scenario.getEtap().lockers.remove(content.trim().toInt())
+        scenario.getEtape().lockers.remove(content.trim().toInt())
     }
 
 

@@ -1,4 +1,4 @@
-package com.ufx.jeudepistekt.jeu.elem
+package com.ufx.jeudepistekt.jeu.element
 
 import android.content.Context
 import android.widget.LinearLayout
@@ -10,12 +10,12 @@ import com.ufx.jeudepistekt.jeu.Scenario
  * content : qr content
  * 1 Additional = buttonwaiters.id
  */
-class QRC(content: String, additional : Array<String>) : Elem(content,additional) {
+class QRC(content: String, additional : Array<String>) : Element(content,additional) {
 
 
     override fun instantiate(context : Context, l : LinearLayout, scenario: Scenario) {
         val rid = additional[0].toInt()
-        scenario.getEtap().qrwaiters[content] = rid
+        scenario.getEtape().qrwaiters[content] = rid
     }
 
 

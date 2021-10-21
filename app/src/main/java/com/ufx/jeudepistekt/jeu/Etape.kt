@@ -1,16 +1,16 @@
 package com.ufx.jeudepistekt.jeu
 
 import com.ufx.jeudepistekt.GameActivity
-import com.ufx.jeudepistekt.jeu.elem.EtapElem
+import com.ufx.jeudepistekt.jeu.element.EtapElement
 import kotlinx.serialization.Serializable
 import java.util.*
 
 @Serializable
 class Etape(
     var number : Int,
-    var elems : List<EtapElem>,
+    var elements : List<EtapElement>,
     var next : Map<String,Int>,
-    var underelems : List<List<EtapElem>> = listOf()
+    var underelems : List<List<EtapElement>> = listOf()
 ){
     val qrwaiters : MutableMap<String,Int>  = mutableMapOf()
     val buttonwaiters : MutableMap<String,Int>  = mutableMapOf()

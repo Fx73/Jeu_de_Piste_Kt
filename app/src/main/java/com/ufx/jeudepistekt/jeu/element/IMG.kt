@@ -1,4 +1,4 @@
-package com.ufx.jeudepistekt.jeu.elem
+package com.ufx.jeudepistekt.jeu.element
 
 import android.content.Context
 import android.view.ViewGroup
@@ -11,7 +11,7 @@ import com.ufx.jeudepistekt.jeu.Scenario
  * BTN: Instanciate an image
  * content : image name
  */
-class IMG(content: String) : Elem(content) {
+class IMG(content: String) : Element(content) {
 
 
     override fun instantiate(context : Context, l : LinearLayout,scenario:Scenario) {

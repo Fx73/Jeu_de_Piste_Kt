@@ -1,4 +1,4 @@
-package com.ufx.jeudepistekt.jeu.elem
+package com.ufx.jeudepistekt.jeu.element
 
 import android.content.Context
 import android.widget.LinearLayout
@@ -6,10 +6,10 @@ import com.ufx.jeudepistekt.jeu.Scenario
 import kotlinx.serialization.Serializable
 
 @Serializable
-open class EtapElem(
+open class EtapElement(
     var type : TYPE,
     var content : String,
-    var additional: Array<String>,
+    var additional: Array<String> = arrayOf(),
     var condition : String = ""
     ){
 
@@ -17,11 +17,11 @@ open class EtapElem(
         factory(type).instantiate(context,l,scenario)
     }
 
-    fun factory (type: TYPE):Elem{
+    fun factory (type: TYPE):Element{
             return when (type){
                 TYPE.IMG -> IMG(content)
                 TYPE.TXT -> TXT(content)
-                TYPE.QRC -> QRC(content,additional[0])
+                TYPE.QRC -> QRC(content,additional)
                 TYPE.VAR -> VAR(content)
                 TYPE.BTN -> BTN(content,additional)
                 TYPE.EDT -> EDT(content,additional)

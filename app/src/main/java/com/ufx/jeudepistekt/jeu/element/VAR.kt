@@ -1,4 +1,4 @@
-package com.ufx.jeudepistekt.jeu.elem
+package com.ufx.jeudepistekt.jeu.element
 
 import android.content.Context
 import android.widget.LinearLayout
@@ -9,7 +9,7 @@ import com.ufx.jeudepistekt.jeu.Scenario
  * content : variable content : "var=value"
  */
 
-class VAR(content: String) : Elem(content) {
+class VAR(content: String) : Element(content) {
 
     override fun instantiate(context : Context, l : LinearLayout,scenario:Scenario) {
         val split = content.split("=")

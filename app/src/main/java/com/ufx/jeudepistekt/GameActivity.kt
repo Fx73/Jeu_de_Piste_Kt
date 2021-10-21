@@ -2,12 +2,11 @@ package com.ufx.jeudepistekt
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.ViewGroup
 import android.widget.*
 import com.ufx.jeudepistekt.databinding.ActivityGameBinding
 import com.ufx.jeudepistekt.jeu.Scenario
-import com.ufx.jeudepistekt.jeu.elem.EtapElem
-import com.ufx.jeudepistekt.jeu.elem.TXT
+import com.ufx.jeudepistekt.jeu.element.EtapElement
+import com.ufx.jeudepistekt.jeu.element.TXT
 import com.ufx.jeudepistekt.tools.Storer
 import com.ufx.jeudepistekt.tools.User
 
@@ -61,10 +60,10 @@ class GameActivity : CommonsActivity() {
         user.saveScenario(storer.getKey(),scenario.etape,scenario.variable)
         glayout.removeAllViews()
         val etape = scenario.etapes[scenario.etape]
-        for (e in etape.elems)
+        for (e in etape.elements)
             loadElem(e)
     }
-    fun loadElem(e : EtapElem) {
+    fun loadElem(e : EtapElement) {
         if(e.condition == "" || scenario.evaluateCondition(e.condition))
             e.instantiate(this,glayout,scenario)
     }
@@ -76,7 +75,7 @@ class GameActivity : CommonsActivity() {
         if (cheat(s))
             return
 
-        if(scenario.getEtap().evaluateQr(s))
+        if(scenario.getEtape().evaluateQr(s))
             return
 
         super.evaluateQr(s)

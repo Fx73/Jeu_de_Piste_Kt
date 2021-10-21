@@ -18,7 +18,7 @@ class Scenario(
 {
 
     var etape = 0
-    fun getEtap () = etapes[etape]
+    fun getEtape () = etapes[etape]
 
 
 
