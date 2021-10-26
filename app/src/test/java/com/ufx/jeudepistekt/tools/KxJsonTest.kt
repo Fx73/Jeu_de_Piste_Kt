@@ -10,6 +10,7 @@ import java.io.File
 
 import com.ufx.jeudepistekt.jeu.Etape
 import com.ufx.jeudepistekt.jeu.Scenario
+import com.ufx.jeudepistekt.jeu.ScenarioTest
 import com.ufx.jeudepistekt.jeu.element.EtapElement
 import com.ufx.jeudepistekt.jeu.element.IMG
 import com.ufx.jeudepistekt.jeu.element.TXT
@@ -20,25 +21,20 @@ class KxJsonTest {
 
     @Test
     fun writeJsonFile() {
-        val elements: List<EtapElement> = listOf(TXT("Hello?").reverseFactory(), IMG("world.png").reverseFactory())
-        val e = Etape(0, elements = elements, mapOf())
-        val s = Scenario("Kalte", "fx", "Yo ceci est un scenario test", "", etapes = listOf(e))
-        s.variable["var1"] = 1
-        s.variable["var2"] = 3
-
+        val s = ScenarioTest().complexScenario()
 
         val json = Json.encodeToString(s)
         println(json)
 
         val jsonpretty = Json { prettyPrint = true }
 
-        File("src/main/assets/test2.json").writeText(jsonpretty.encodeToString(s))
+        File("src/main/assets/ScenarioTest.json").writeText(jsonpretty.encodeToString(s))
 
     }
 
     @Test
     fun readJsonFile() {
-        val jsonFileString = File("src/main/assets/test2.json").readText()
+        val jsonFileString = File("src/main/assets/ScenarioTest.json").readText()
 
 
         val scenario = Json.decodeFromString<Scenario>(jsonFileString)

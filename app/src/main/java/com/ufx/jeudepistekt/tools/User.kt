@@ -2,8 +2,9 @@ package com.ufx.jeudepistekt.tools
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import java.io.FileNotFoundException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
@@ -38,7 +39,7 @@ class User (val context: Context)
     }
 
     fun saveScenarioList(list :MutableList<Pair<String,String>>){
-        val json: String = Gson().toJson(list)
+        val json: String = Json.encodeToString(list)
 
         with (sharedPref.edit()) {
             putString(KEY_SCELIST, json)
@@ -49,8 +50,7 @@ class User (val context: Context)
     fun loadScenarioList(): MutableList<Pair<String,String>> {
         val json = sharedPref.getString(KEY_SCELIST, "") ?: ""
         if (json == "") return mutableListOf()
-        val outtype = object : TypeToken<List<Pair<String,String>>>() {}.type
-        return Gson().fromJson(json, outtype)
+        return Json.decodeFromString(json)
     }
 
 

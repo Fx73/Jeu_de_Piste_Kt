@@ -4,6 +4,7 @@ import com.ufx.jeudepistekt.GameActivity
 import com.ufx.jeudepistekt.jeu.element.EtapElement
 import kotlinx.serialization.Serializable
 import java.util.*
+import java.util.Locale.getDefault
 
 @Serializable
 class Etape(
@@ -20,12 +21,11 @@ class Etape(
 
 //region waiters
     fun evaluateButtonListener(id:String){
-        loadElemsFromWaiters(qrwaiters,id)
+        loadElemsFromWaiters(buttonwaiters,id)
     }
 
     fun evaluateEditListener(id:String, response : String ,verif1 : String, verif2 : String){
-        if(response.trim().lowercase(Locale.getDefault()) == verif1.lowercase(Locale.getDefault()) || (verif2 != "" && response.trim().lowercase(
-                Locale.getDefault()) == verif2.lowercase(Locale.getDefault())))
+        if(response.trim().lowercase(getDefault()) == verif1.lowercase(getDefault()) || (verif2 != "" && response.trim().lowercase(getDefault()) == verif2.lowercase(getDefault())))
             loadElemsFromWaiters(qrwaiters,id)
 
     }

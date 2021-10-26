@@ -9,8 +9,8 @@ import com.ufx.jeudepistekt.jeu.Scenario
 
 /**
  * BTN: Instanciate a button
- * content : text of button (will be the name of the listener)
- * 1 Additional = buttonwaiters.id
+ * @param content : text of button (will be the name of the listener)
+ * @param Additional = 1 - id of block of elements to run
  */
 class BTN(content: String, additional: Array<String>) : Element(content, additional) {
 

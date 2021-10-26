@@ -1,0 +1,31 @@
+{
+    "title": "Kalte",
+    "creator": "fx",
+    "description": "Yo ceci est un scenario test",
+    "copyright": "",
+    "variable": {
+        "var1": 1,
+        "var2": 3
+    },
+    "etapes": [
+        {
+            "number": 0,
+            "elements": [
+                {
+                    "type": "TXT",
+                    "content": "Hello?",
+                    "additional": [
+                    ]
+                },
+                {
+                    "type": "IMG",
+                    "content": "world.png",
+                    "additional": [
+                    ]
+                }
+            ],
+            "next": {
+            }
+        }
+    ]
+}

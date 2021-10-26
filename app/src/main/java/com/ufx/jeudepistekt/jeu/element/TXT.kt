@@ -9,7 +9,7 @@ import com.ufx.jeudepistekt.jeu.Scenario
 
 /**
  * TXT: Instanciate a qr code waiter
- * content : text text
+ * @param content : text text
  */
 
 class TXT(content: String) : Element(content) {

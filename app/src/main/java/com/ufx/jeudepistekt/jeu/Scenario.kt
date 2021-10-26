@@ -54,8 +54,6 @@ class Scenario(
     companion object {
 
         fun buildScenarioFromJson(jsonFile: String): Scenario {
-            //val outtype = object : TypeToken<Scenario>() {}.type
-            //return Gson().fromJson(jsonFile, outtype)
             return Json.decodeFromString(jsonFile)
         }
 

@@ -9,7 +9,7 @@ import com.ufx.jeudepistekt.jeu.Scenario
 
 /**
  * BTN: Instanciate an image
- * content : image name
+ * @param content : image name
  */
 class IMG(content: String) : Element(content) {
 
