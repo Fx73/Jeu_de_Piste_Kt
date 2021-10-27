@@ -1,6 +1,7 @@
 package com.ufx.jeudepistekt
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -15,14 +16,13 @@ import androidx.cardview.widget.CardView
 import com.ufx.jeudepistekt.databinding.ActivityMainBinding
 import com.ufx.jeudepistekt.tools.Permissions.Companion.askPermission
 import com.ufx.jeudepistekt.tools.Storer
-import com.ufx.jeudepistekt.tools.User
+import com.ufx.jeudepistekt.jeu.User
 import com.ufx.jeudepistekt.tools.Zipper
 
 
 class MainActivity : CommonsActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var user: User
 
     private lateinit var scenariolist: MutableList<Pair<String,String>>
 
@@ -35,10 +35,10 @@ class MainActivity : CommonsActivity() {
 
         binding.fab.setOnClickListener { scanQr() }
 
-        user = User(this)
-        user.loadName()
+        User.initSharedPref(this)
+        User.loadName()
 
-        scenariolist = user.loadScenarioList()
+        scenariolist = User.loadScenarioList()
 
 
         createScenarioGrid()
@@ -180,7 +180,7 @@ class MainActivity : CommonsActivity() {
 
         if(zipper.unpackZip()){
             scenariolist.add(Pair(zipper.storer.title,zipper.storer.creator))
-            user.saveScenarioList(scenariolist)
+            User.saveScenarioList(scenariolist)
             finish()
             startActivity(intent)
         }
@@ -206,7 +206,7 @@ class MainActivity : CommonsActivity() {
                     if (Storer.key(scenario.first,scenario.second) == selectedview.tag.toString()){
                         Zipper(this,scenario.first,scenario.second).deleteScenarioFiles()
                         scenariolist.remove(scenario)
-                        user.saveScenarioList(scenariolist)
+                        User.saveScenarioList(scenariolist)
                         finish()
                         startActivity(intent)
                         return true

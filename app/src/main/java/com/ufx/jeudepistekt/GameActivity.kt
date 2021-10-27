@@ -1,34 +1,27 @@
 package com.ufx.jeudepistekt
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import com.ufx.jeudepistekt.databinding.ActivityGameBinding
 import com.ufx.jeudepistekt.jeu.Scenario
-import com.ufx.jeudepistekt.jeu.element.EtapElement
+import com.ufx.jeudepistekt.jeu.Stage
 import com.ufx.jeudepistekt.jeu.element.TXT
 import com.ufx.jeudepistekt.tools.Storer
-import com.ufx.jeudepistekt.tools.User
+import com.ufx.jeudepistekt.jeu.User
 
 class GameActivity : CommonsActivity() {
-    private lateinit var binding: ActivityGameBinding
-    private lateinit var glayout: LinearLayout
-
-    lateinit var scenario : Scenario
-    lateinit var storer : Storer
-    private lateinit var user : User
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityGameBinding.inflate(layoutInflater)
+        val binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-
-        glayout = binding.root.findViewById(R.id.gamelayout)
         binding.fab.setOnClickListener { scanQr() }
+        context = this
+        layout = binding.root.findViewById(R.id.gamelayout)
 
-        instance = this
 
         val title = intent.getStringExtra("SCENARIO_TITLE")
         val creator = intent.getStringExtra("SCENARIO_CREATOR")
@@ -38,35 +31,22 @@ class GameActivity : CommonsActivity() {
         }
 
 
-        storer = Storer(title,creator,this)
+        val storer = Storer(title,creator,this)
         scenario = Scenario.buildScenarioFromJson(storer.loadJson("ScenarioFile"))
+        scenario.storer = storer
 
-        user = User(this)
-        val save = user.loadScenario(storer.getKey())
+        val save = User.loadScenario(storer.getKey(),this)
 
         if(save != null) {
-            scenario.etape = save.first
-            for (v in save.second)
-                scenario.variable[v.key] = v.value as Int
+            for (v in save.second.values)
+                scenario.variables.values[v.key] = v.value
+            scenario.loadStage(save.first)
         }else{
             println("No save")
+            scenario.loadStage(scenario.stages[0].name)
         }
-
-        loadStep()
     }
 
-
-    fun loadStep(){
-        user.saveScenario(storer.getKey(),scenario.etape,scenario.variable)
-        glayout.removeAllViews()
-        val etape = scenario.etapes[scenario.etape]
-        for (e in etape.elements)
-            loadElem(e)
-    }
-    fun loadElem(e : EtapElement) {
-        if(e.condition == "" || scenario.evaluateCondition(e.condition))
-            e.instantiate(this,glayout,scenario)
-    }
 
 
 
@@ -75,7 +55,7 @@ class GameActivity : CommonsActivity() {
         if (cheat(s))
             return
 
-        if(scenario.getEtape().evaluateQr(s))
+        if(scenario.evaluateQr(s))
             return
 
         super.evaluateQr(s)
@@ -86,29 +66,29 @@ class GameActivity : CommonsActivity() {
             return false
 
         if(s.startsWith("Forcer Etape ")){
-            val newstep = s.substring("Forcer Etape ".length).toInt()
-            scenario.etape = newstep
-            loadStep()
+            val newstep = s.substring("Forcer Etape ".length)
+            scenario.loadStage(newstep)
             return true
         }
 
         if(s.startsWith("Forcer Var ")){
             val newval = s.split(" ").last()
             val variable = s.substring("Forcer Var ".length,s.length - newval.length)
-            scenario.variable[variable]=newval.toInt()
-            loadStep()
+            scenario.variables.values[variable]=newval.toInt()
             return true
         }
 
         if(s == "Afficher Vars"){
             val sb = StringBuilder()
-            scenario.variable.forEach { (key, value) -> sb.append("$key = $value \n") }
-            TXT(sb.toString()).instantiate(this,glayout,scenario)
+            scenario.variables.values.forEach { (key, value) -> sb.append("$key = $value \n") }
+            TXT(sb.toString()).instantiate(Stage("Vars"))
             return true
         }
 
         return false
     }
+
+
 
 //region swapper
     override fun swapToSettings() {
@@ -128,7 +108,9 @@ class GameActivity : CommonsActivity() {
 //endregion
 
     companion object{
-        lateinit var instance :GameActivity
+        lateinit var context :Context
+        lateinit var layout: LinearLayout
+        lateinit var scenario : Scenario
     }
 
 }

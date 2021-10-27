@@ -1,27 +1,25 @@
 package com.ufx.jeudepistekt.jeu.element
 
-import android.content.Context
-import android.widget.LinearLayout
-import com.ufx.jeudepistekt.jeu.Scenario
+import com.ufx.jeudepistekt.jeu.Stage
 import kotlinx.serialization.Serializable
 
 @Serializable
-open class EtapElement(
+open class StageElement(
     var type : TYPE,
     var content : String,
-    var additional: Array<String> = arrayOf(),
+    private var additional: Array<String> = arrayOf()
+){
     var condition : String = ""
-    ){
 
-    open fun instantiate(context : Context, l : LinearLayout, scenario: Scenario){
-        factory(type).instantiate(context,l,scenario)
+    open fun instantiate(stage: Stage){
+        factory(type).instantiate(stage)
     }
 
     fun factory (type: TYPE):Element{
             return when (type){
                 TYPE.IMG -> IMG(content)
                 TYPE.TXT -> TXT(content)
-                TYPE.QRC -> QRC(content,additional)
+                TYPE.QRC -> QRC(content)
                 TYPE.VAR -> VAR(content)
                 TYPE.BTN -> BTN(content,additional)
                 TYPE.EDT -> EDT(content,additional)

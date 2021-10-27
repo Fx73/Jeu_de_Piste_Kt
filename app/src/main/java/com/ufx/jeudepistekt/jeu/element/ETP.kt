@@ -1,9 +1,8 @@
 package com.ufx.jeudepistekt.jeu.element
 
-import android.content.Context
-import android.widget.LinearLayout
 import com.ufx.jeudepistekt.GameActivity
 import com.ufx.jeudepistekt.jeu.Scenario
+import com.ufx.jeudepistekt.jeu.Stage
 
 /**
  * ETP: Instanciate an Etape
@@ -11,9 +10,8 @@ import com.ufx.jeudepistekt.jeu.Scenario
  */
 class ETP(content: String) : Element(content) {
 
-    override fun instantiate(context : Context, l : LinearLayout, scenario: Scenario) {
-        scenario.etape = content.toInt()
-        GameActivity.instance.loadStep()
+    override fun instantiate(stage: Stage) {
+        GameActivity.scenario.loadStage(content)
         return
     }
 

@@ -1,25 +1,22 @@
 package com.ufx.jeudepistekt.jeu.element
 
-import android.content.Context
-import android.widget.LinearLayout
-import com.ufx.jeudepistekt.jeu.Scenario
+import com.ufx.jeudepistekt.jeu.Stage
 
-import com.ufx.jeudepistekt.jeu.element.EtapElement.Companion.TYPE
+import com.ufx.jeudepistekt.jeu.element.StageElement.Companion.TYPE
 
 open class Element(val content: String, val additional: Array<String> = arrayOf()) {
 
-
-    open fun instantiate(context : Context, l : LinearLayout, scenario: Scenario){
+    open fun instantiate(stage: Stage){
         println("THIS IS DEFAULT ELEM : IT CANNOT APPEAR !")
     }
 
-    fun reverseFactory():EtapElement{
+    fun reverseFactory():StageElement{
         val type : TYPE? = this::class.simpleName?.let { TYPE.valueOf(it) }
 
         return if(type == null){
-            EtapElement(TYPE.TST, "!ERROR OF TYPE ELEM! $content",additional)
+            StageElement(TYPE.TST, "!ERROR OF TYPE ELEM! $content",additional)
         }else{
-            EtapElement(type, content, additional)
+            StageElement(type, content, additional)
         }
     }
 }

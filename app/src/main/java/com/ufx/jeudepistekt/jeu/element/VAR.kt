@@ -1,19 +1,18 @@
 package com.ufx.jeudepistekt.jeu.element
 
-import android.content.Context
-import android.widget.LinearLayout
-import com.ufx.jeudepistekt.jeu.Scenario
+import com.ufx.jeudepistekt.GameActivity
+import com.ufx.jeudepistekt.jeu.Stage
 
 /**
- * VAR: Instanciate a variable
- * content : variable content : "var=value"
+ * VAR: Instanciate a variables
+ * content : variables content : "var=value"
  */
 
 class VAR(content: String) : Element(content) {
 
-    override fun instantiate(context : Context, l : LinearLayout,scenario:Scenario) {
+    override fun instantiate(stage: Stage) {
         val split = content.split("=")
-        var v = scenario.variable[split[0]] ?: return
+        var v = GameActivity.scenario.variables.values[split[0]] ?: return
 
         if(split.size == 2){
             v = split[1].toInt()
@@ -28,7 +27,7 @@ class VAR(content: String) : Element(content) {
             }
         }
 
-        scenario.variable[split[0]] = v
+        GameActivity.scenario.variables.values[split[0]] = v
 
     }
 

@@ -1,9 +1,13 @@
 package com.ufx.jeudepistekt.jeu
 
-import com.ufx.jeudepistekt.BuildConfig
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
+import com.ufx.jeudepistekt.BuildConfig
+import com.ufx.jeudepistekt.tools.Storer
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import com.ufx.jeudepistekt.GameActivity.Companion.context
+import com.ufx.jeudepistekt.GameActivity.Companion.layout
 
 @Serializable
 class Scenario(
@@ -12,33 +16,22 @@ class Scenario(
     var description : String,
     var copyright: String,
     var version : String = BuildConfig.VERSION_NAME,
-    val variable : MutableMap<String, Int> = mutableMapOf(),
-    val etapes : List<Etape> = listOf()
+    val variables : Variables = Variables(),
+    val stages : List<Stage> = listOf()
 )
 {
-
-    var etape = 0
-    fun getEtape () = etapes[etape]
+    @Transient lateinit var storer:Storer
 
 
+    private var stage = stages[0]
 
-    fun evaluateCondition(cond : String):Boolean{
-        var all = true
-        val aa = cond.split("&&")
-        for (a in aa){
-            val bb = a.split("||")
-            var ball = false
-            for (b in bb){
-                val c = if(b.contains("==")) b.split("==") else b.split("!=")
-
-                val c0 = variable[c[0].trim()]?:c[0].trim().toInt()
-                val c1 = variable[c[1].trim()]?:c[1].trim().toInt()
-
-                ball = ball || (c0 == c1)
-            }
-            all = all && ball
-        }
-        return  all
+    fun loadStage (name:String){
+        stage = stages.first { it.name == name }
+        println("LOADING STAGE : ${stage.name}")
+        User.saveScenario(storer.getKey(),stage.name,variables,context)
+        layout.removeAllViews()
+        for (e in stage.elements)
+            stage.loadElement(e)
     }
 
 
@@ -47,15 +40,23 @@ class Scenario(
 
 
 
+    fun evaluateQr(s : String):Boolean{
+        if(stage.evaluateQrListener(s))
+            return true
 
+        for (w in stage.next){
+            if(w == s){
+                loadStage(s)
+            }
+        }
+        return false
+    }
 
 
 
     companion object {
-
         fun buildScenarioFromJson(jsonFile: String): Scenario {
             return Json.decodeFromString(jsonFile)
         }
-
     }
 }

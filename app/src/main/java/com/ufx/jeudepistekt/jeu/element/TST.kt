@@ -1,9 +1,9 @@
 package com.ufx.jeudepistekt.jeu.element
 
 import android.content.Context
-import android.widget.LinearLayout
 import android.widget.Toast
-import com.ufx.jeudepistekt.jeu.Scenario
+import com.ufx.jeudepistekt.GameActivity
+import com.ufx.jeudepistekt.jeu.Stage
 
 /**
  * TST: Instanciate a toast
@@ -12,8 +12,8 @@ import com.ufx.jeudepistekt.jeu.Scenario
  */
 class TST(content: String) : Element(content) {
 
-    override fun instantiate(context : Context, l : LinearLayout,scenario:Scenario) {
-        showToast(context)
+    override fun instantiate(stage: Stage) {
+        showToast(GameActivity.context)
     }
 
     private fun showToast(context : Context) = Toast.makeText(context,content, Toast.LENGTH_LONG ).show()

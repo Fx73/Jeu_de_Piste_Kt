@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.ufx.jeudepistekt.databinding.ActivitySettingBinding
-import com.ufx.jeudepistekt.tools.User
+import com.ufx.jeudepistekt.jeu.User
 
 class SettingActivity : CommonsActivity() {
     private lateinit var binding: ActivitySettingBinding
@@ -31,7 +31,7 @@ class SettingActivity : CommonsActivity() {
     }
     private fun saveName(){
         val newname = findViewById<EditText>(R.id.nameedit).text.toString()
-        User(this).saveName(newname)
+        User.saveName(newname)
         Toast.makeText(this, getString(R.string.newname) + newname, Toast.LENGTH_LONG).show()
         findViewById<EditText>(R.id.nameedit).clearFocus()
     }

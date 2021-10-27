@@ -1,21 +1,17 @@
 package com.ufx.jeudepistekt.jeu.element
 
-import android.content.Context
-import android.widget.LinearLayout
-import com.ufx.jeudepistekt.jeu.Scenario
+import com.ufx.jeudepistekt.jeu.Stage
 
 
 /**
  * QRC: Instanciate a qr code waiter
- * content : qr content
- * 1 Additional = buttonwaiters.id
+ * content : qr content = name of the under stage to run
  */
-class QRC(content: String, additional : Array<String>) : Element(content,additional) {
+class QRC(content: String) : Element(content) {
 
 
-    override fun instantiate(context : Context, l : LinearLayout, scenario: Scenario) {
-        val rid = additional[0].toInt()
-        scenario.getEtape().qrwaiters[content] = rid
+    override fun instantiate(stage: Stage) {
+       // stage.waiters[content] = additional[0]
     }
 
 
