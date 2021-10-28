@@ -19,7 +19,10 @@ import com.ufx.jeudepistekt.tools.Zipper
 
 
 /**
- *
+ * The view of the lobby with all card with scenario
+ * 2 regions :
+ *  - Scenario Panel : instantiate all the cards with scenario
+ *  - Add and remove : function to add or to remove a scenario
  */
 class LobbyFragment : Fragment() {
 
