@@ -12,6 +12,7 @@ open class StageElement(
     var condition : String = ""
 
     open fun instantiate(stage: Stage){
+        println("Instantiating a " + type.name + " with content  '" + content + "' and " + additional.size + " additionals")
         factory(type).instantiate(stage)
     }
 

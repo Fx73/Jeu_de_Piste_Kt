@@ -47,6 +47,7 @@ class Scenario(
         for (w in stage.next){
             if(w == s){
                 loadStage(s)
+                return true
             }
         }
         return false

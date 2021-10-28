@@ -21,7 +21,7 @@ class BTN(content: String, additional: Array<String>) : Element(content, additio
 
         val b = Button(GameActivity.context)
         b.text = content
-        b.setOnClickListener{stage.evaluateButtonListener(content)}
+        b.setOnClickListener{stage.evaluateButtonListener(additional[0])}
         b.layoutParams = par
 
         GameActivity.layout.addView(b)

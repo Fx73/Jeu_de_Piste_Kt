@@ -59,15 +59,12 @@ object User
 
 
     fun saveScenario(scenariokey: String, phase : String, variables : Variables,context: Context){
-        val keyvar = getKeyVar(scenariokey)
-        val keyphase = getKeyPhase(scenariokey)
-
         with (sharedPref.edit()) {
-            putString(keyphase, phase)
+            putString(getKeyPhase(scenariokey), phase)
             commit()
         }
 
-        val stream = context.openFileOutput(keyvar, Context.MODE_PRIVATE)
+        val stream = context.openFileOutput(getKeyVar(scenariokey), Context.MODE_PRIVATE)
         stream.write(Json.encodeToString(variables).toByteArray())
         stream.flush()
         stream.close()
@@ -75,16 +72,12 @@ object User
 
 
     fun loadScenario(scenariokey: String,context: Context): Pair<String, Variables>? {
-        val keyvar = getKeyVar(scenariokey)
-        val keystep = getKeyPhase(scenariokey)
-
-        val step = sharedPref.getString(keystep,"").orEmpty()
+        val step = sharedPref.getString(getKeyPhase(scenariokey),"").orEmpty()
         val stream : InputStream
         try{
-            stream = context.openFileInput(keyvar)
+            stream = context.openFileInput(getKeyVar(scenariokey))
         }catch (e : FileNotFoundException){return null}
-
-       val variables : Variables = Json.decodeFromString(stream.readBytes().toString()) as Variables
+        val variables : Variables = Json.decodeFromString(String(stream.readBytes())) as Variables
 
         return Pair(step,variables)
 }

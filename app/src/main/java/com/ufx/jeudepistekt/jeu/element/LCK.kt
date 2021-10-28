@@ -9,7 +9,7 @@ import com.ufx.jeudepistekt.jeu.Stage
 class LCK(content: String) : Element(content) {
 
     override fun instantiate(stage: Stage) {
-        stage.next.add(content.trim())
+        stage.next.remove(content.trim())
     }
 
 

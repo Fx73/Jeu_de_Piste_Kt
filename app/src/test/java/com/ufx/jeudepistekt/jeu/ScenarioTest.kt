@@ -26,7 +26,7 @@ class ScenarioTest {
                 TXT("This is the test 1 of BTN").reverseFactory(),
                 BTN("BTN ?", arrayOf("u0")).reverseFactory()
             ),
-            next = mutableListOf("e2"),
+            next = mutableListOf("e2","e0"),
             understages = mutableListOf(
                 Stage(
                     name = "u0",
@@ -42,7 +42,7 @@ class ScenarioTest {
                 TXT("This is the test 2 of EDT").reverseFactory(),
                 EDT("Write answer", arrayOf("u0","response","answer")).reverseFactory()
             ),
-            next = mutableListOf("e3"),
+            next = mutableListOf("e3","e1"),
             understages = mutableListOf(
                 Stage(
                     name = "u0",
@@ -59,7 +59,7 @@ class ScenarioTest {
                 TXT("This is the test 3 of ETP part 1").reverseFactory(),
                 ETP("e4").reverseFactory()
             ),
-            next = mutableListOf("e4")
+            next = mutableListOf("e4","e3")
         )
 
         val e4 = Stage(
@@ -68,7 +68,7 @@ class ScenarioTest {
                 TXT("This is the test 4 of ETP part 2 and TST").reverseFactory(),
                 TST ("Test ok, should have jumped the 3").reverseFactory()
             ),
-            next = mutableListOf("e5")
+            next = mutableListOf("e5","e3")
         )
 
         val e5 = Stage(
@@ -78,7 +78,7 @@ class ScenarioTest {
                 LCK ("e6").reverseFactory() ,
                 BTN ("unlock",additional= arrayOf("u0")).reverseFactory()
             ),
-            next = mutableListOf("e6"),
+            next = mutableListOf("e6","e4"),
             understages = mutableListOf(
                 Stage(
                     name = "u0",
@@ -97,7 +97,7 @@ class ScenarioTest {
                 TXT("This is the test 6 of QRC").reverseFactory(),
                 QRC ("QRC").reverseFactory()
             ),
-            next = mutableListOf("e100"),
+            next = mutableListOf("e100","e5"),
             understages = mutableListOf(
                 Stage(
                     name = "QRC",

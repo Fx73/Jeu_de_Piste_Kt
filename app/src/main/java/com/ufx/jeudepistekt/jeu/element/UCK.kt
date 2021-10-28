@@ -11,7 +11,7 @@ import com.ufx.jeudepistekt.jeu.Stage
 class UCK(content: String) : Element(content) {
 
     override fun instantiate(stage: Stage) {
-        stage.next.remove(content.trim())
+        stage.next.add(content.trim())
     }
 
 
