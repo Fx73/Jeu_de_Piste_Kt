@@ -1,7 +1,6 @@
 package com.ufx.jeudepistekt
 
 import android.Manifest
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -24,7 +23,6 @@ class MainActivity : CommonsActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var scenariolist: MutableList<Pair<String,String>>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,186 +35,7 @@ class MainActivity : CommonsActivity() {
 
         User.initSharedPref(this)
         User.loadName()
-
-        scenariolist = User.loadScenarioList()
-
-
-        createScenarioGrid()
-
-    }
-
-
-//region Scenario Panel
-
-    private fun createScenarioGrid() {
-        val sAlayout: LinearLayout = findViewById(R.id.scenariolayoutA)
-        val sBlayout: LinearLayout = findViewById(R.id.scenariolayoutB)
-
-        var sens = true
-        for (scenario in scenariolist) {
-            val card = createCard(scenario.first, scenario.second)
-            card.setOnClickListener { swapToGame(scenario.first, scenario.second) }
-            registerForContextMenu(card)
-            if (sens) sAlayout.addView(card) else sBlayout.addView(card)
-            sens = !sens
-        }
-
-        val pluscard = createPlusCard()
-        pluscard.setOnClickListener { browseFile() }
-        if (sens) sAlayout.addView(pluscard) else sBlayout.addView(pluscard)
-
-
-    }
-
-
-    private fun createCard(title: String, creator : String): CardView {
-        val card = CardView(this)
-        val imgview = ImageView(this)
-        val titleview = TextView(this)
-        val creatorview = TextView(this)
-
-        val cardpar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 500)
-        val imgpar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 300)
-        val titlepar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        val creatorpar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-
-        cardpar.setMargins(6, 6, 6, 6)
-        card.radius = 10f
-
-
-        imgview.setImageBitmap(Storer(title,creator, this).loadImage("ScenarioIcon"))
-
-        imgpar.setMargins(8, 8, 8, 8)
-        imgpar.gravity = Gravity.CENTER_HORIZONTAL
-
-        titleview.text = title
-        titleview.textSize = 18f
-        titlepar.setMargins(10, 10, 10, 10)
-
-        creatorview.text = creator
-        creatorview.setTextColor(Color.LTGRAY)
-        creatorview.textSize = 10f
-        creatorview.gravity = Gravity.END
-        creatorpar.setMargins(10, 10, 10, 10)
-
-
-        titleview.layoutParams = titlepar
-        card.layoutParams = cardpar
-        imgview.layoutParams = imgpar
-        creatorview.layoutParams = creatorpar
-
-
-        val l = LinearLayout(this)
-        l.orientation = LinearLayout.VERTICAL
-        card.addView(l)
-
-
-        l.addView(imgview)
-        l.addView(titleview)
-        l.addView(creatorview)
-
-        card.tag = Storer.key(title, creator)
-
-        return card
-    }
-
-    private fun createPlusCard(): CardView {
-        val card = CardView(this)
-        val imgview = ImageView(this)
-        val titleview = TextView(this)
-
-        val cardpar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 500)
-        val imgpar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 300)
-        val titlepar = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300)
-
-        cardpar.setMargins(6, 6, 6, 6)
-        card.radius = 10f
-
-
-        imgview.setImageResource(R.drawable.plusicon)
-
-        imgpar.setMargins(8, 8, 8, 8)
-        imgpar.gravity = Gravity.CENTER_HORIZONTAL
-
-        titleview.text = getString(R.string.addscenario)
-        titlepar.setMargins(8, 8, 8, 8)
-
-        titleview.layoutParams = titlepar
-        card.layoutParams = cardpar
-        imgview.layoutParams = imgpar
-
-
-        val l = LinearLayout(this)
-        l.orientation = LinearLayout.VERTICAL
-        card.addView(l)
-
-
-        l.addView(imgview)
-        l.addView(titleview)
-
-        return card
-    }
-//endregio
-
-//region addScenario
-    private fun browseFile() {
-    //Check and ask storage permission
-    if(askPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE))
-        getContent.launch("application/*")
-    }
-
-    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-    if (uri == null) return@registerForActivityResult
-    println("OKAY0")
-
-        val zipper = Zipper(this, uri)
-
-        println(zipper.storer.title)
-        for (scenario in scenariolist)
-            if(Storer.key(scenario.first,scenario.second)  == zipper.storer.getKey()){
-                Toast.makeText(this, "Same scenario from same creator already exists. Delete the old one !", Toast.LENGTH_LONG).show()
-                return@registerForActivityResult
-            }
-
-        if(zipper.unpackZip()){
-            scenariolist.add(Pair(zipper.storer.title,zipper.storer.creator))
-            User.saveScenarioList(scenariolist)
-            finish()
-            startActivity(intent)
-        }
-
-    }
-
-//endregion
-
-//region Context Menu
-    private lateinit var selectedview : View
-    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo?) {
-        selectedview = v
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.context_menu, menu)
-        super.onCreateContextMenu(menu, v, menuInfo)
-
-}
-
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.scenario_delete -> {
-                for (scenario in scenariolist){
-                    if (Storer.key(scenario.first,scenario.second) == selectedview.tag.toString()){
-                        Zipper(this,scenario.first,scenario.second).deleteScenarioFiles()
-                        scenariolist.remove(scenario)
-                        User.saveScenarioList(scenariolist)
-                        finish()
-                        startActivity(intent)
-                        return true
-                    }
-                }
-
-                false
-            }
-            else -> super.onContextItemSelected(item)
-        }
+        
     }
 
 
