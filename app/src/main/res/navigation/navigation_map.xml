@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_map"
+    app:startDestination="@id/lobbyFragment">
+
+    <fragment
+        android:id="@+id/lobbyFragment"
+        android:name="com.ufx.jeudepistekt.LobbyFragment"
+        android:label="fragment_lobby"
+        tools:layout="@layout/fragment_lobby" >
+        <action
+            android:id="@+id/action_lobbyF_to_gameF"
+            app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_lobbyF_to_aboutF"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_lobbyF_to_settingF"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_lobbyF_self"
+            app:destination="@id/lobbyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.ufx.jeudepistekt.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" >
+        <action
+            android:id="@+id/action_gameF_to_settingF"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_gameF_to_infoF"
+            app:destination="@id/infoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.ufx.jeudepistekt.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.ufx.jeudepistekt.InfoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.ufx.jeudepistekt.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
+</navigation>

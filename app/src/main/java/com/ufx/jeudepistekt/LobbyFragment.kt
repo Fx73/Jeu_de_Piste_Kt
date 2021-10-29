@@ -29,6 +29,8 @@ class LobbyFragment : Fragment() {
     private lateinit var scenariolist: MutableList<Pair<String,String>>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        println("Fragment creation")
+
         scenariolist = User.loadScenarioList()
         createScenarioGrid()
     }
@@ -146,6 +148,7 @@ class LobbyFragment : Fragment() {
         return card
     }
 //endregion
+
 // region Add and remove scenario
 
     private fun browseFile() {
