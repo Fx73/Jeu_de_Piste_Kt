@@ -24,11 +24,12 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_view"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        app:navGraph="@navigation/navigation_map"
-        />
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:layout_gravity="bottom|end"
+        app:navGraph="@navigation/navigation_map" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

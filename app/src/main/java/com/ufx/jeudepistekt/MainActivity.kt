@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         User.initSharedPref(this)
         println("Activity creation")
         val binding = ActivityMainBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 

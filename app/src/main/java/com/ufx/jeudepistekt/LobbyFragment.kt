@@ -32,16 +32,20 @@ class LobbyFragment : Fragment() {
         println("Fragment creation")
 
         scenariolist = User.loadScenarioList()
-        createScenarioGrid()
     }
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_lobby, container, false)
+        createScenarioGrid(view)
+        return view
+    }
 
 
 //region Scenario Panel
 
-    private fun createScenarioGrid() {
-        val sAlayout: LinearLayout = requireView().findViewById(R.id.scenariolayoutA)
-        val sBlayout: LinearLayout = requireView().findViewById(R.id.scenariolayoutB)
+    private fun createScenarioGrid(view: View) {
+        val sAlayout: LinearLayout = view.findViewById(R.id.scenariolayoutA)
+        val sBlayout: LinearLayout = view.findViewById(R.id.scenariolayoutB)
 
         var sens = true
         for (scenario in scenariolist) {
