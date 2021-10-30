@@ -2,7 +2,9 @@ package com.ufx.jeudepistekt
 
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -16,12 +18,13 @@ import com.ufx.jeudepistekt.jeu.User
  */
 class SettingFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_setting, container, false)
 
-        requireView().findViewById<EditText>(R.id.nameedit).setText(User.name)
-        requireView().findViewById<EditText>(R.id.nameedit).setOnKeyListener{ _: View, _: Int, keyEvent: KeyEvent -> saveKey(keyEvent)}
-        requireView().findViewById<Button>(R.id.button_name).setOnClickListener{saveName()}
+        view.findViewById<EditText>(R.id.nameedit).setText(User.name)
+        view.findViewById<EditText>(R.id.nameedit).setOnKeyListener{ _: View, _: Int, keyEvent: KeyEvent -> saveKey(keyEvent)}
+        view.findViewById<Button>(R.id.button_name).setOnClickListener{saveName()}
+        return view
     }
 
     private fun saveKey(keyEvent: KeyEvent):Boolean{

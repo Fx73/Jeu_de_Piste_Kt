@@ -5,8 +5,10 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Toast
 import mehdi.sakout.aboutpage.AboutPage
@@ -20,13 +22,15 @@ import java.util.*
 class AboutFragment : Fragment() {
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_about, container, false)
+
         val appinfo: ApplicationInfo = requireActivity().packageManager.getApplicationInfo(BuildConfig.APPLICATION_ID,
             PackageManager.GET_META_DATA
         )
 
         val aboutPage: View = AboutPage(requireContext())
+
             .isRTL(false)
             .setDescription(getString(R.string.aide))
             .setImage(R.drawable.ic_banner)
@@ -42,7 +46,8 @@ class AboutFragment : Fragment() {
             .addItem(getCopyRightsElement())
             .create()
 
-        requireView().findViewById<FrameLayout>(R.id.aboutlayout).addView(aboutPage)
+        view.findViewById<FrameLayout>(R.id.aboutlayout).addView(aboutPage)
+        return view
     }
 
     private fun getCopyRightsElement(): Element {

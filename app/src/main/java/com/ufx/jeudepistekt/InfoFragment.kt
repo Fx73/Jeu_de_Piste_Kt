@@ -1,9 +1,13 @@
 package com.ufx.jeudepistekt
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.navigation.fragment.navArgs
+import com.ufx.jeudepistekt.GameFragment.Companion.scenario
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
 
@@ -13,15 +17,16 @@ import mehdi.sakout.aboutpage.Element
  */
 class InfoFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_info, container, false)
 
-        //TODO:Correct intents
-        val title = requireActivity().intent.getStringExtra("SCENARIO_TITLE")
-        val creator = requireActivity().intent.getStringExtra("SCENARIO_CREATOR")
-        val description = requireActivity().intent.getStringExtra("SCENARIO_DESCRIPTION")
-        val copyright = requireActivity().intent.getStringExtra("SCENARIO_COPYRIGHT")
-        val version = requireActivity().intent.getStringExtra("SCENARIO_VERSION")
+
+
+        val title = scenario.title
+        val creator = scenario.creator
+        val description = scenario.description
+        val copyright = scenario.copyright
+        val version = scenario.version
 
         val aboutPage: View = AboutPage(requireContext())
             .isRTL(false)
@@ -35,6 +40,7 @@ class InfoFragment : Fragment() {
             .create()
 
         requireView().findViewById<FrameLayout>(R.id.infolayout).addView(aboutPage)
+        return view
     }
 
 

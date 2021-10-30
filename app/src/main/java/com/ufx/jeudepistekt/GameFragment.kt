@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.ufx.jeudepistekt.jeu.Scenario
 import com.ufx.jeudepistekt.jeu.Stage
 import com.ufx.jeudepistekt.jeu.User
@@ -18,18 +20,18 @@ import com.ufx.jeudepistekt.tools.Storer
  * The real game view, where game elements are showed
  */
 class GameFragment : Fragment() {
+    private val args: GameFragmentArgs by navArgs()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_game, container, false)
+
         GameActivity.context = requireContext()
-        GameActivity.layout = requireView().findViewById(R.id.gamelayout)
-
-        val storer = Storer("title","creator",requireContext())
+        GameActivity.layout = view.findViewById(R.id.gamelayout)
+        val storer = Storer(args.argumentTitle,args.argumentCreator,requireContext())
         GameActivity.scenario = Scenario.buildScenarioFromJson(storer.loadJson("ScenarioFile"))
         GameActivity.scenario.storer = storer
 
         val save = User.loadScenario(storer.getKey(),requireContext())
-
         if(save != null) {
             for (v in save.second.values)
                 GameActivity.scenario.variables.values[v.key] = v.value
@@ -38,6 +40,7 @@ class GameFragment : Fragment() {
             println("No save")
             GameActivity.scenario.loadStage(GameActivity.scenario.stages[0].name)
         }
+        return view
     }
 
     fun evaluateQr(s : String) {

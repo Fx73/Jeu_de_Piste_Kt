@@ -12,6 +12,10 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.ufx.jeudepistekt.jeu.User
 import com.ufx.jeudepistekt.tools.Permissions
 import com.ufx.jeudepistekt.tools.Storer
@@ -50,7 +54,12 @@ class LobbyFragment : Fragment() {
         var sens = true
         for (scenario in scenariolist) {
             val card = createCard(scenario.first, scenario.second)
-            //TODO : card.setOnClickListener { swapToGame(scenario.first, scenario.second) }
+
+            card.setOnClickListener {
+                val dir = LobbyFragmentDirections.actionLobbyFToGameF(scenario.first,scenario.second)
+                findNavController().navigate(dir)
+            }
+
             registerForContextMenu(card)
             if (sens) sAlayout.addView(card) else sBlayout.addView(card)
             sens = !sens
@@ -177,7 +186,7 @@ class LobbyFragment : Fragment() {
         if(zipper.unpackZip()){
             scenariolist.add(Pair(zipper.storer.title,zipper.storer.creator))
             User.saveScenarioList(scenariolist)
-            //TODO: reload
+            Navigation.findNavController(requireActivity(), R.id.fragment_container_view).navigate(R.id.lobbyFragment)
         }
 
     }
@@ -199,8 +208,7 @@ class LobbyFragment : Fragment() {
                         Zipper(requireContext(),scenario.first,scenario.second).deleteScenarioFiles()
                         scenariolist.remove(scenario)
                         User.saveScenarioList(scenariolist)
-                        //TODO: reload
-
+                        Navigation.findNavController(requireActivity(), R.id.fragment_container_view).navigate(R.id.lobbyFragment)
                         return true
                     }
                 }

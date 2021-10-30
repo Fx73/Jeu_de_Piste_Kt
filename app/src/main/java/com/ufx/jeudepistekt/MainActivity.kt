@@ -11,6 +11,9 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentContainerView
+import androidx.navigation.NavController
+import androidx.navigation.Navigation.findNavController
 import com.google.zxing.integration.android.IntentIntegrator
 import com.ufx.jeudepistekt.databinding.ActivityMainBinding
 import com.ufx.jeudepistekt.jeu.User
@@ -18,6 +21,7 @@ import com.ufx.jeudepistekt.jeu.User
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         binding.fab.setOnClickListener { scanQr() }
+
 
         User.loadName()
 
@@ -43,11 +48,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        navController = findNavController(this, R.id.fragment_container_view)
+        val v = findViewById<FragmentContainerView>(R.id.fragment_container_view)
         return when (item.itemId) {
-            /*R.id.action_home -> {swapToMain(); true}
+            R.id.action_home -> { navController.navigate(R.id.lobbyFragment); true}
             R.id.action_code -> {codeEdit(); true}
-            R.id.action_settings -> { swapToSettings(); true }
-            R.id.action_about -> { swapToAbout(); true }*/
+            R.id.action_settings -> { navController.navigate(R.id.settingFragment); true }
+            R.id.action_about -> {
+                navController.navigate(R.id.aboutFragment); true }
             else -> super.onOptionsItemSelected(item)
         }
     }

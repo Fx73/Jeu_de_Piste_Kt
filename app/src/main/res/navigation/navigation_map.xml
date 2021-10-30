@@ -34,6 +34,11 @@
         <action
             android:id="@+id/action_gameF_to_infoF"
             app:destination="@id/infoFragment" />
+        <argument
+            android:name="argumentTitle"
+            app:argType="string" />
+        <argument android:name="argumentCreator"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"

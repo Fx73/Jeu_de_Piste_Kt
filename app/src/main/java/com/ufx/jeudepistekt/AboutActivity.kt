@@ -41,7 +41,7 @@ class AboutActivity : CommonsActivity() {
             .addItem(getCopyRightsElement())
             .create()
 
-        binding.root.findViewById<FrameLayout>(R.id.aboutlayout).addView(aboutPage)
+        binding.root.findViewById<FrameLayout>(R.id.aboutlayout2).addView(aboutPage)
 
     }
 
