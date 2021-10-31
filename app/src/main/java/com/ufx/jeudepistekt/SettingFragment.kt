@@ -53,7 +53,7 @@ class SettingFragment : Fragment() {
     private fun saveName() {
         val name = requireView().findViewById<EditText>(R.id.nameEdit).text.toString()
         User.saveName(name)
-        Toast.makeText(requireContext(), getString(R.string.newname) + name, Toast.LENGTH_LONG)
+        Toast.makeText(requireContext(), getString(R.string.new_name) + name, Toast.LENGTH_LONG)
             .show()
         requireView().findViewById<EditText>(R.id.nameEdit).clearFocus()
     }

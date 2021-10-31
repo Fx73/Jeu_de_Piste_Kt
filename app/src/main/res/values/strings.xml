@@ -1,33 +1,38 @@
 <resources>
-    <string name="app_name">Jeu de Piste Kt</string>
+    <string name="app_name">Treasure Hunt Kt</string>
     <!-- Menu -->
     <string name="home">Home</string>
     <string name="code">Code</string>
-    <string name="settings">Paramètres</string>
-    <string name="about">A propos</string>
+    <string name="settings">Parameters</string>
+    <string name="about">About</string>
 
     <!-- Lobby -->
     <string name="capture">Capture</string>
-    <string name="qr_unknown">Qr inconnu</string>
-    <string name="addscenario">Ajouter un scenario</string>
+    <string name="qr_unknown">Unknown QR</string>
+    <string name="add_scenario">Add a scenario</string>
     <string name="delete">Delete</string>
     <string name="reset">Reset</string>
+    <string name="reset_success">Scenario successfully reset</string>
 
     <!-- Settings -->
-    <string name="name">Nom de joueur</string>
-    <string name="name_warning">Attention la sauvegarde est liée au nom ! Si vous changez, vous devrez vous souvenir pour la récupérer.</string>
-    <string name="defaut">Default</string>
-    <string name="newname">Votre nom est maintenant : </string>
+    <string name="name">Player Name</string>
+    <string name="name_warning">Warning ! Game saves are linked to player ! Remember your previous name if you want to have your save back.</string>
+    <string name="my_default">Default</string>
+    <string name="new_name">Your name is now : </string>
+    <string name="valid">Validate</string>
 
 
     <!-- Info -->
-    <string name="aide">Comment jouer : \n\n N\‘oubliez pas de renseigner votre nom dans le menu, il sera lié à la sauvegarde.\n\n Depuis l\’accueil, sélectionnez un scenario, et c\‘est parti ^^. Vous pouvez aussi en importer un nouveau avec le + \n\nA chaque étape, grace au lecteur Qr(bas-droite),  scannez les codes que vous trouvez. S\’il se passe quelque-chose, c\'est que vous avez un bon code ! Lisez, si besoin résolvez les mini-jeux, puis c\'est parti pour l\'étape suivante \n\nLes QR Code peuvent être rentrés manuellement via \'code\' dans le menu.\n\n</string>
-    <string name="app_description">Application de jeu de piste interactif</string>
+    <string name="aide">How to play : \n\nDo not forget to set your name in setting, it will be linked to save !\n\nFrom the lobby, select a scenario, and have fun ^^.\n\n You can import scenarios with the + \n\nAt each step, scan the code with the scanner button (bottom-right). If something happens, you have the right code ! Read, play and finally move on ! \n\nIf you have problems with Qr, write them manually from the Code menu\n\n</string>
+    <string name="app_description">Interactive Treasure Hunt Application</string>
     <string name="contacts">Contacts</string>
-    <string name="copy_right">Copyright</string>
-    <string name="app_author">Ufx</string>
+    <string name="copy_right">Free to Use for no commercial purpose</string>
+    <string name="app_author">Application by Ufx</string>
     <string name="app_mail">fx73000@yahoo.fr</string>
-    <string name="valid">Valider</string>
+    <string name="same_scenario">Same scenario from same creator already exists. Delete the old one !</string>
+    <string name="version">Version </string>
+    <string name="scenario_by">Scenario made by </string>
+    <string name="scenario_app_version">Scenario use application version : </string>
 
 
 </resources>

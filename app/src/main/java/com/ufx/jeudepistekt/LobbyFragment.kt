@@ -27,7 +27,7 @@ import com.ufx.jeudepistekt.tools.Zipper
  */
 class LobbyFragment : Fragment() {
 
-    private lateinit var scenariolist: MutableList<Pair<String, String>>
+    private lateinit var scenarios: MutableList<Pair<String, String>>
 
     /**
      * onCreateView
@@ -39,7 +39,7 @@ class LobbyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_lobby, container, false)
-        scenariolist = User.loadScenarioList()
+        scenarios = User.loadScenarioList()
         createScenarioGrid(view)
         return view
     }
@@ -52,11 +52,11 @@ class LobbyFragment : Fragment() {
      * populate the grid with card from scenario list
      */
     private fun createScenarioGrid(view: View) {
-        val sAlayout: LinearLayout = view.findViewById(R.id.scenariolayoutA)
-        val sBlayout: LinearLayout = view.findViewById(R.id.scenariolayoutB)
+        val aLayout: LinearLayout = view.findViewById(R.id.scenariolayoutA)
+        val bLayout: LinearLayout = view.findViewById(R.id.scenariolayoutB)
 
         var sens = true
-        for ((first, second) in scenariolist) {
+        for ((first, second) in scenarios) {
             val card = createCard(first, second)
 
             card.setOnClickListener {
@@ -65,13 +65,13 @@ class LobbyFragment : Fragment() {
             }
 
             registerForContextMenu(card)
-            if (sens) sAlayout.addView(card) else sBlayout.addView(card)
+            if (sens) aLayout.addView(card) else bLayout.addView(card)
             sens = !sens
         }
 
         val pluscard = createPlusCard()
         pluscard.setOnClickListener { browseFile() }
-        if (sens) sAlayout.addView(pluscard) else sBlayout.addView(pluscard)
+        if (sens) aLayout.addView(pluscard) else bLayout.addView(pluscard)
 
 
     }
@@ -159,7 +159,7 @@ class LobbyFragment : Fragment() {
         imgpar.setMargins(8, 8, 8, 8)
         imgpar.gravity = Gravity.CENTER_HORIZONTAL
 
-        titleview.text = getString(R.string.addscenario)
+        titleview.text = getString(R.string.add_scenario)
         titlepar.setMargins(8, 8, 8, 8)
 
         titleview.layoutParams = titlepar
@@ -182,7 +182,7 @@ class LobbyFragment : Fragment() {
 // region Add and remove scenario
     /**
      * browseFile
-     * Lauch the intent of the file browser
+     * Launch the intent of the file browser
      */
     private fun browseFile() {
         //Check and ask storage permission
@@ -201,20 +201,19 @@ class LobbyFragment : Fragment() {
 
             val zipper = Zipper(requireContext(), uri)
 
-            println(zipper.storer.title)
-            for ((first, second) in scenariolist)
+            for ((first, second) in scenarios)
                 if (Storer.key(first, second) == zipper.storer.getKey()) {
                     Toast.makeText(
                         requireContext(),
-                        "Same scenario from same creator already exists. Delete the old one !",
+                        getString(R.string.same_scenario),
                         Toast.LENGTH_LONG
                     ).show()
                     return@registerForActivityResult
                 }
 
             if (zipper.unpackZip()) {
-                scenariolist.add(Pair(zipper.storer.title, zipper.storer.creator))
-                User.saveScenarioList(scenariolist)
+                scenarios.add(Pair(zipper.storer.title, zipper.storer.creator))
+                User.saveScenarioList(scenarios)
                 findNavController(
                     requireActivity(),
                     R.id.fragment_container_view
@@ -227,13 +226,13 @@ class LobbyFragment : Fragment() {
      * onCreateContextMenu & onContextItemSelected
      * Shows a menu when user can pick destructive operations on scenario
      */
-    private lateinit var selectedview: View
+    private lateinit var selectedView: View
     override fun onCreateContextMenu(
         menu: ContextMenu,
         v: View,
         menuInfo: ContextMenu.ContextMenuInfo?
     ) {
-        selectedview = v
+        selectedView = v
         val inflater: MenuInflater = requireActivity().menuInflater
         inflater.inflate(R.menu.context_menu, menu)
         super.onCreateContextMenu(menu, v, menuInfo)
@@ -242,14 +241,14 @@ class LobbyFragment : Fragment() {
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val scenarioSelected =
-            scenariolist.first { Storer.key(it.first, it.second) == selectedview.tag.toString() }
+            scenarios.first { Storer.key(it.first, it.second) == selectedView.tag.toString() }
 
         return when (item.itemId) {
             R.id.scenario_reset -> {
                 User.resetScenario(Storer.key(scenarioSelected.first, scenarioSelected.second))
                 Toast.makeText(
                     requireContext(),
-                    "Scenario ${scenarioSelected.first} successful reset",
+                    getString(R.string.reset_success),
                     Toast.LENGTH_SHORT
                 ).show()
                 true
@@ -260,8 +259,8 @@ class LobbyFragment : Fragment() {
                     scenarioSelected.first,
                     scenarioSelected.second
                 ).deleteScenarioFiles()
-                scenariolist.remove(scenarioSelected)
-                User.saveScenarioList(scenariolist)
+                scenarios.remove(scenarioSelected)
+                User.saveScenarioList(scenarios)
                 findNavController(
                     requireActivity(),
                     R.id.fragment_container_view

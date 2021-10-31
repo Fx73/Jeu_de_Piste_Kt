@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:ems="10"
-                    android:hint="@string/defaut"
+                    android:hint="@string/my_default"
                     android:inputType="textPersonName"
                     android:importantForAutofill="no" />
 

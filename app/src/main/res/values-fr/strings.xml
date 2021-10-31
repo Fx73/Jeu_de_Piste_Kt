@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Jeu de Piste Kt</string>
+    <!-- Menu -->
+    <string name="home">Home</string>
+    <string name="code">Code</string>
+    <string name="settings">Paramètres</string>
+    <string name="about">A propos</string>
+
+    <!-- Lobby -->
+    <string name="capture">Capture</string>
+    <string name="qr_unknown">Qr inconnu</string>
+    <string name="add_scenario">Ajouter un scenario</string>
+    <string name="delete">Delete</string>
+    <string name="reset">Reset</string>
+    <string name="same_scenario">Ce scenario existe déjà ! Supprimez le d\'abord !</string>
+    <string name="reset_success">Scenario supprimé avec succès</string>
+
+    <!-- Settings -->
+    <string name="name">Nom de joueur</string>
+    <string name="name_warning">Attention la sauvegarde est liée au nom ! Si vous changez, vous devrez vous souvenir pour la récupérer.</string>
+    <string name="my_default">Default</string>
+    <string name="new_name">Votre nom est maintenant : </string>
+    <string name="valid">Valider</string>
+
+
+    <!-- Info -->
+    <string name="aide">Comment jouer : \n\n N\‘oubliez pas de renseigner votre nom dans le menu, il sera lié à la sauvegarde.\n\n Depuis l\’accueil, sélectionnez un scenario, et c\‘est parti ^^. \n\nVous pouvez en importer un nouveau avec le + \n\nA chaque étape, grace au lecteur Qr(bas-droite),  scannez les codes que vous trouvez. S\’il se passe quelque-chose, c\'est que vous avez un bon code ! Lisez, jouer, puis c\'est parti pour l\'étape suivante \n\nLes QR Code peuvent être rentrés manuellement via \'code\' dans le menu.\n\n</string>
+    <string name="app_description">Application de jeu de piste interactif</string>
+    <string name="contacts">Contacts</string>
+    <string name="copy_right">Application libre, pour toute utilisation non commerciale</string>
+    <string name="app_author">Application par Ufx</string>
+    <string name="app_mail">fx73000@yahoo.fr</string>
+    <string name="version">Version </string>
+    <string name="scenario_by">Scenario créé par </string>
+    <string name="scenario_app_version">Version de l\'application utilisé par le scénario : </string>
+
+
+</resources>

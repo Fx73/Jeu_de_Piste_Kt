@@ -36,9 +36,9 @@ class InfoFragment : Fragment() {
             .setDescription(description)
             //.setImage()
             .addGroup(title)
-            .addItem(Element().setTitle("par : $creator"))
+            .addItem(Element().setTitle(getString(R.string.scenario_by) + creator))
             .addItem(Element().setTitle(copyright))
-            .addItem(Element().setTitle("version de l'app : $version"))
+            .addItem(Element().setTitle(getString(R.string.scenario_app_version) + version))
 
             .create()
 

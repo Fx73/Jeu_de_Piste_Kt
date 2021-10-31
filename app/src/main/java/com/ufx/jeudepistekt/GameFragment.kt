@@ -73,8 +73,6 @@ class GameFragment : Fragment() {
      * Cheats first, the scenario used codes
      */
     private fun cheat(s: String): Boolean {
-        if (User.name != getString(R.string.app_author))
-            return false
 
         if (s.startsWith("Force Phase ")) {
             scenario.loadStage(s.substring("Force Phase ".length))

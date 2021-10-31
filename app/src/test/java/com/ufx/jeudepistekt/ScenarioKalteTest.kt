@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 class ScenarioKalteTest {
 
     @Test
-    fun ScenarioKalte(){
+    fun scenarioKalte() {
         /*
         val e0 = Stage(0,listOf(
             StageElement(StageElement.Companion.TYPE.TXT,"Bienvenue a vous, voyageurs. Vous êtes les derniers apprentis de l'ordre des moines-guerriers Kai. Un terrible sorcier du nom de Vonotar s'est installé dans les terres reculées de Kalte, et vous seuls pouvez l'arrêter. \n Dans cette épreuve, l'art du Kai pourra vous être utile, et votre maitre peut vous enseigner une technique avant de partir. Choisissez bien, et mettez vous en route. Une grande aventure vous attends !"),

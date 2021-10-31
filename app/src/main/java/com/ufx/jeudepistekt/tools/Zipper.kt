@@ -46,7 +46,6 @@ class Zipper {
             var count: Int
             var ze = zipStream.nextEntry
             while (ze != null) {
-                println(ze.name)
                 filename = storer.getKey() + ze.name
 
                 context.openFileOutput(filename, Context.MODE_PRIVATE).use { it ->
