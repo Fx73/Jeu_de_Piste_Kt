@@ -49,13 +49,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         navController = findNavController(this, R.id.fragment_container_view)
-        val v = findViewById<FragmentContainerView>(R.id.fragment_container_view)
         return when (item.itemId) {
             R.id.action_home -> { navController.navigate(R.id.lobbyFragment); true}
             R.id.action_code -> {codeEdit(); true}
             R.id.action_settings -> { navController.navigate(R.id.settingFragment); true }
             R.id.action_about -> {
-                navController.navigate(R.id.aboutFragment); true }
+                if(supportFragmentManager.fragments.first().childFragmentManager.fragments.first() is GameFragment)
+                    navController.navigate(R.id.infoFragment)
+                else
+                    navController.navigate(R.id.aboutFragment)
+                true }
             else -> super.onOptionsItemSelected(item)
         }
     }

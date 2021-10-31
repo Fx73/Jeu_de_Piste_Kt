@@ -3,7 +3,7 @@ package com.ufx.jeudepistekt.jeu.element
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
-import com.ufx.jeudepistekt.GameActivity
+import com.ufx.jeudepistekt.GameFragment
 import com.ufx.jeudepistekt.jeu.Stage
 
 
@@ -19,12 +19,12 @@ class BTN(content: String, additional: Array<String>) : Element(content, additio
         val par = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         par.setMargins(10,10,10,10)
 
-        val b = Button(GameActivity.context)
+        val b = Button(GameFragment.context)
         b.text = content
         b.setOnClickListener{stage.evaluateButtonListener(additional[0])}
         b.layoutParams = par
 
-        GameActivity.layout.addView(b)
+        GameFragment.layout.addView(b)
 
     }
 

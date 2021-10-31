@@ -25,20 +25,20 @@ class GameFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_game, container, false)
 
-        GameActivity.context = requireContext()
-        GameActivity.layout = view.findViewById(R.id.gamelayout)
+        GameFragment.context = requireContext()
+        GameFragment.layout = view.findViewById(R.id.gamelayout)
         val storer = Storer(args.argumentTitle,args.argumentCreator,requireContext())
-        GameActivity.scenario = Scenario.buildScenarioFromJson(storer.loadJson("ScenarioFile"))
-        GameActivity.scenario.storer = storer
+        scenario = Scenario.buildScenarioFromJson(storer.loadJson("ScenarioFile"))
+        scenario.storer = storer
 
         val save = User.loadScenario(storer.getKey(),requireContext())
         if(save != null) {
             for (v in save.second.values)
-                GameActivity.scenario.variables.values[v.key] = v.value
-            GameActivity.scenario.loadStage(save.first)
+                scenario.variables.values[v.key] = v.value
+            scenario.loadStage(save.first)
         }else{
             println("No save")
-            GameActivity.scenario.loadStage(GameActivity.scenario.stages[0].name)
+            scenario.loadStage(scenario.stages[0].name)
         }
         return view
     }
@@ -48,7 +48,7 @@ class GameFragment : Fragment() {
         if (cheat(s))
             return
 
-        if(GameActivity.scenario.evaluateQr(s))
+        if(scenario.evaluateQr(s))
             return
 
     }
@@ -59,20 +59,20 @@ class GameFragment : Fragment() {
 
         if(s.startsWith("Forcer Etape ")){
             val newstep = s.substring("Forcer Etape ".length)
-            GameActivity.scenario.loadStage(newstep)
+            scenario.loadStage(newstep)
             return true
         }
 
         if(s.startsWith("Forcer Var ")){
             val newval = s.split(" ").last()
             val variable = s.substring("Forcer Var ".length,s.length - newval.length)
-            GameActivity.scenario.variables.values[variable]=newval.toInt()
+            scenario.variables.values[variable]=newval.toInt()
             return true
         }
 
         if(s == "Afficher Vars"){
             val sb = StringBuilder()
-            GameActivity.scenario.variables.values.forEach { (key, value) -> sb.append("$key = $value \n") }
+            scenario.variables.values.forEach { (key, value) -> sb.append("$key = $value \n") }
             TXT(sb.toString()).instantiate(Stage("Vars"))
             return true
         }

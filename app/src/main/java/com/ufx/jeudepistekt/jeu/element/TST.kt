@@ -2,7 +2,7 @@ package com.ufx.jeudepistekt.jeu.element
 
 import android.content.Context
 import android.widget.Toast
-import com.ufx.jeudepistekt.GameActivity
+import com.ufx.jeudepistekt.GameFragment
 import com.ufx.jeudepistekt.jeu.Stage
 
 /**
@@ -13,7 +13,7 @@ import com.ufx.jeudepistekt.jeu.Stage
 class TST(content: String) : Element(content) {
 
     override fun instantiate(stage: Stage) {
-        showToast(GameActivity.context)
+        showToast(GameFragment.context)
     }
 
     private fun showToast(context : Context) = Toast.makeText(context,content, Toast.LENGTH_LONG ).show()

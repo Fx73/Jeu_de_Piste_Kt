@@ -39,7 +39,7 @@ class InfoFragment : Fragment() {
 
             .create()
 
-        requireView().findViewById<FrameLayout>(R.id.infolayout).addView(aboutPage)
+        view.findViewById<FrameLayout>(R.id.infolayout).addView(aboutPage)
         return view
     }
 

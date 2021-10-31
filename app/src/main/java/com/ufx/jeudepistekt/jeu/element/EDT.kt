@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
-import com.ufx.jeudepistekt.GameActivity
+import com.ufx.jeudepistekt.GameFragment
 import com.ufx.jeudepistekt.jeu.Scenario
 import com.ufx.jeudepistekt.jeu.Stage
 
@@ -23,19 +23,19 @@ class EDT(content: String, additional : Array<String>) : Element(content, additi
         val par = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         par.setMargins(10,10,10,10)
 
-        val et = EditText(GameActivity.context)
+        val et = EditText(GameFragment.context)
         et.textSize = 16f
         et.layoutParams = par
         et.setSingleLine()
 
-        GameActivity.layout.addView(et)
+        GameFragment.layout.addView(et)
 
-        val b = Button(GameActivity.context)
+        val b = Button(GameFragment.context)
         b.text = content
         b.setOnClickListener{stage.evaluateEditListener(additional[0],et.text.toString(),additional[1],additional[2])}
         b.layoutParams = par
 
-        GameActivity.layout.addView(b)
+        GameFragment.layout.addView(b)
     }
 
 }

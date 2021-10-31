@@ -6,8 +6,8 @@ import com.ufx.jeudepistekt.BuildConfig
 import com.ufx.jeudepistekt.tools.Storer
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import com.ufx.jeudepistekt.GameActivity.Companion.context
-import com.ufx.jeudepistekt.GameActivity.Companion.layout
+import com.ufx.jeudepistekt.GameFragment.Companion.context
+import com.ufx.jeudepistekt.GameFragment.Companion.layout
 
 @Serializable
 class Scenario(

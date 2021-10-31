@@ -1,6 +1,6 @@
 package com.ufx.jeudepistekt.jeu
 
-import com.ufx.jeudepistekt.GameActivity
+import com.ufx.jeudepistekt.GameFragment
 import com.ufx.jeudepistekt.jeu.element.StageElement
 import kotlinx.serialization.Serializable
 import java.util.Locale.getDefault
@@ -44,7 +44,7 @@ class Stage(
 //endregion
 
     fun loadElement(e : StageElement) {
-        if(e.condition == "" || GameActivity.scenario.variables.evaluateCondition(e.condition))
+        if(e.condition == "" || GameFragment.scenario.variables.evaluateCondition(e.condition))
             e.instantiate(this)
     }
 

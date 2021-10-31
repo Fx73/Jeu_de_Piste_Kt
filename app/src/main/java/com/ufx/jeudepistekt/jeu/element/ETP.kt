@@ -1,6 +1,6 @@
 package com.ufx.jeudepistekt.jeu.element
 
-import com.ufx.jeudepistekt.GameActivity
+import com.ufx.jeudepistekt.GameFragment
 import com.ufx.jeudepistekt.jeu.Scenario
 import com.ufx.jeudepistekt.jeu.Stage
 
@@ -11,7 +11,7 @@ import com.ufx.jeudepistekt.jeu.Stage
 class ETP(content: String) : Element(content) {
 
     override fun instantiate(stage: Stage) {
-        GameActivity.scenario.loadStage(content)
+        GameFragment.scenario.loadStage(content)
         return
     }
 

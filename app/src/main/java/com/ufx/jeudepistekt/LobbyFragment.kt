@@ -186,7 +186,7 @@ class LobbyFragment : Fragment() {
         if(zipper.unpackZip()){
             scenariolist.add(Pair(zipper.storer.title,zipper.storer.creator))
             User.saveScenarioList(scenariolist)
-            Navigation.findNavController(requireActivity(), R.id.fragment_container_view).navigate(R.id.lobbyFragment)
+            findNavController(requireActivity(), R.id.fragment_container_view).navigate(R.id.lobbyFragment)
         }
 
     }
@@ -208,7 +208,7 @@ class LobbyFragment : Fragment() {
                         Zipper(requireContext(),scenario.first,scenario.second).deleteScenarioFiles()
                         scenariolist.remove(scenario)
                         User.saveScenarioList(scenariolist)
-                        Navigation.findNavController(requireActivity(), R.id.fragment_container_view).navigate(R.id.lobbyFragment)
+                        findNavController(requireActivity(), R.id.fragment_container_view).navigate(R.id.lobbyFragment)
                         return true
                     }
                 }
