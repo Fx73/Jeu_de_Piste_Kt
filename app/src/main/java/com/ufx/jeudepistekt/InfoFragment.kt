@@ -14,6 +14,7 @@ import mehdi.sakout.aboutpage.Element
 /**
  * The view of a scenario information
  * It override the view of the lobby about page, when access from a game
+ * Generated with Api mehdi.sakout.aboutpage
  */
 class InfoFragment : Fragment() {
 

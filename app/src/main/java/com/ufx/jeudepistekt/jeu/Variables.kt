@@ -2,12 +2,24 @@ package com.ufx.jeudepistekt.jeu
 
 import kotlinx.serialization.Serializable
 
+/**
+ * Variable class
+ * Used to contain scenario variable
+ * can evaluate simple conditions on them
+ */
 @Serializable
 class Variables {
     val values : MutableMap<String, Int> = mutableMapOf()
 
 
-
+    /**
+     * Evaluate a condition between variables
+     * For now, can evaluate :
+     * a == b
+     * a != b
+     * x && y
+     * x || y
+     */
     fun evaluateCondition(cond : String):Boolean{
         var all = true
         val aa = cond.split("&&")

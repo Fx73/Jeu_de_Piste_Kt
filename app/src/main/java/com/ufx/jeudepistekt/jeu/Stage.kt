@@ -5,6 +5,13 @@ import com.ufx.jeudepistekt.jeu.element.StageElement
 import kotlinx.serialization.Serializable
 import java.util.Locale.getDefault
 
+/**
+ * Scenario
+ * Medium Level Game Object
+ * Handle the medium level needs :
+ * - Show current used element
+ * - Wait for user game inputs and run the elements needed
+ */
 @Serializable
 class Stage(
     var name: String,

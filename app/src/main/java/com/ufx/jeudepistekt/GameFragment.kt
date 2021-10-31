@@ -22,6 +22,11 @@ import com.ufx.jeudepistekt.tools.Storer
 class GameFragment : Fragment() {
     private val args: GameFragmentArgs by navArgs()
 
+    /**
+     * onCreateView
+     * Instanciate game objects
+     * Load the scenario, then the save
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_game, container, false)
 
@@ -37,14 +42,17 @@ class GameFragment : Fragment() {
                 scenario.variables.values[v.key] = v.value
             scenario.loadStage(save.first)
         }else{
-            println("No save")
             scenario.loadStage(scenario.stages[0].name)
         }
         return view
     }
 
+    /**
+     * evaluateQr
+     * Evaluate a Qr code received from Activity
+     * Cheats first, the scenario used codes
+     */
     fun evaluateQr(s : String) {
-        println("Qr  : $s")
         if (cheat(s))
             return
 
@@ -53,24 +61,29 @@ class GameFragment : Fragment() {
 
     }
 
+    /**
+     * evaluateQr
+     * Evaluate a Qr code received from Activity
+     * Cheats first, the scenario used codes
+     */
     private fun cheat(s : String): Boolean {
         if(User.name != getString(R.string.app_author))
             return false
 
-        if(s.startsWith("Forcer Etape ")){
-            val newstep = s.substring("Forcer Etape ".length)
+        if(s.startsWith("Force Phase ")){
+            val newstep = s.substring("Force Phase ".length)
             scenario.loadStage(newstep)
             return true
         }
 
-        if(s.startsWith("Forcer Var ")){
+        if(s.startsWith("Force Var ")){
             val newval = s.split(" ").last()
-            val variable = s.substring("Forcer Var ".length,s.length - newval.length)
+            val variable = s.substring("Force Var ".length,s.length - newval.length)
             scenario.variables.values[variable]=newval.toInt()
             return true
         }
 
-        if(s == "Afficher Vars"){
+        if(s == "Print Vars"){
             val sb = StringBuilder()
             scenario.variables.values.forEach { (key, value) -> sb.append("$key = $value \n") }
             TXT(sb.toString()).instantiate(Stage("Vars"))

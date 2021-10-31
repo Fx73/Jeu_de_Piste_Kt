@@ -7,7 +7,11 @@ import java.io.BufferedInputStream
 import java.io.IOException
 import java.util.zip.ZipInputStream
 
-
+/**
+ * Zipper
+ * This class handles methods to unzip a scenario package properly.
+ * It require the Storer class to work !
+ */
 class Zipper {
     val context : Context
     private var uri : Uri? = null
@@ -26,6 +30,11 @@ class Zipper {
     }
 
 
+    /**
+     * unpackZip
+     * Copy the zip contents in the app data folder, renaming with the proper key
+     * WARNING : it need the storer built (with one the constructor)
+     */
     fun unpackZip(): Boolean {
         if(uri == null)return false
         try {
@@ -57,6 +66,11 @@ class Zipper {
     }
 
 
+    /**
+     * readMetaData
+     * Build a storer to a proper file storage, from the name + creator found in the zip
+     * Needed before unzipping
+     */
     private fun readMetaData(){
         val zipStream = ZipInputStream(BufferedInputStream(context.contentResolver.openInputStream(uri!!)))
 
@@ -87,7 +101,10 @@ class Zipper {
         zipStream.close()
     }
 
-
+    /**
+     * deleteScenarioFiles
+     * Delete files linked to the scenario
+     */
     fun deleteScenarioFiles(){
         val files: Array<String> = context.fileList()
         for(file in files){

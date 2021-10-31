@@ -17,7 +17,7 @@ import java.util.*
 
 /**
  * The credits of the games
- * Created with Api mehdi.sakout.aboutpage
+ * Generated with Api mehdi.sakout.aboutpage
  */
 class AboutFragment : Fragment() {
 

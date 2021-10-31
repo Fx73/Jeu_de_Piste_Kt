@@ -110,6 +110,11 @@ class MainActivity : AppCompatActivity() {
             evaluateQr(result.contents)
         }
     }
+
+    /**
+     * evaluateQr
+     * Send result to Game if in Game
+     */
     fun evaluateQr(s : String) {
         if(fragmentManager.fragments.first() is GameFragment)
             (fragmentManager.fragments.first() as GameFragment).evaluateQr(s)
@@ -117,6 +122,10 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, getString(R.string.qr_unknown) + " : " + s, Toast.LENGTH_LONG).show()
     }
 
+    /**
+     * manualQrCode
+     * Shows and editText wich will be evaluated as a Qr input
+     */
     private fun manualQrCode(){
         object : Dialog(this){
             override fun onCreate(savedInstanceState: Bundle?) {
@@ -129,6 +138,10 @@ class MainActivity : AppCompatActivity() {
     }
 //endregion
 
+    /**
+     * onBackPressed
+     * Go back to Lobby if back key is pressed
+     */
     override fun onBackPressed() {
         if(fragmentManager.fragments.first() !is LobbyFragment)
             navController.navigate(R.id.lobbyFragment)

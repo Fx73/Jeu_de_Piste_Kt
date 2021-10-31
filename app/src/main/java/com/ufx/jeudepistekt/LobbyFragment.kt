@@ -31,15 +31,14 @@ import com.ufx.jeudepistekt.tools.Zipper
 class LobbyFragment : Fragment() {
 
     private lateinit var scenariolist: MutableList<Pair<String,String>>
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        println("Fragment creation")
 
-        scenariolist = User.loadScenarioList()
-    }
-
+    /**
+     * onCreateView
+     * inflate views and scenario grid
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_lobby, container, false)
+        scenariolist = User.loadScenarioList()
         createScenarioGrid(view)
         return view
     }
@@ -47,6 +46,10 @@ class LobbyFragment : Fragment() {
 
 //region Scenario Panel
 
+    /**
+     * createScenarioGrid
+     * populate the grid with card from scenario list
+     */
     private fun createScenarioGrid(view: View) {
         val sAlayout: LinearLayout = view.findViewById(R.id.scenariolayoutA)
         val sBlayout: LinearLayout = view.findViewById(R.id.scenariolayoutB)
@@ -72,7 +75,10 @@ class LobbyFragment : Fragment() {
 
     }
 
-
+    /**
+     * createCard
+     * create a card from scenario metadata
+     */
     private fun createCard(title: String, creator : String): CardView {
         val card = CardView(requireContext())
         val imgview = ImageView(requireContext())
@@ -124,6 +130,10 @@ class LobbyFragment : Fragment() {
         return card
     }
 
+    /**
+     * createPlusCard
+     * create the last card, used to import new scenarios
+     */
     private fun createPlusCard(): CardView {
         val card = CardView(requireContext())
         val imgview = ImageView(requireContext())
@@ -163,16 +173,23 @@ class LobbyFragment : Fragment() {
 //endregion
 
 // region Add and remove scenario
-
+    /**
+     * browseFile
+     * Lauch the intent of the file browser
+     */
     private fun browseFile() {
         //Check and ask storage permission
-        if(Permissions.askPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE))
+        if(Permissions.askStoragePermission(requireContext()))
             getContent.launch("application/*")
     }
 
+    /**
+     * getContent
+     * object registered to get the browseFile activity result
+     * Launch the zipper importation
+     */
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         if (uri == null) return@registerForActivityResult
-        println("OKAY0")
 
         val zipper = Zipper(requireContext(), uri)
 
@@ -191,6 +208,10 @@ class LobbyFragment : Fragment() {
 
     }
 
+    /**
+     * onCreateContextMenu & onContextItemSelected
+     * Shows a menu when user can pick destructive operations on scenario
+     */
     private lateinit var selectedview : View
     override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo?) {
         selectedview = v

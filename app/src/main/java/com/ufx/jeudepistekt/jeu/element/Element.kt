@@ -3,7 +3,13 @@ package com.ufx.jeudepistekt.jeu.element
 import com.ufx.jeudepistekt.jeu.Stage
 
 import com.ufx.jeudepistekt.jeu.element.StageElement.Companion.TYPE
+import kotlinx.serialization.Serializable
 
+/**
+ * StageElement
+ * Elements used to show an item on screen
+ * Runned element
+ */
 open class Element(val content: String, val additional: Array<String> = arrayOf()) {
 
     open fun instantiate(stage: Stage){

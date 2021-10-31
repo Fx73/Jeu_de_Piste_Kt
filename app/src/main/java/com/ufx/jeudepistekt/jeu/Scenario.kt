@@ -9,6 +9,15 @@ import kotlinx.serialization.json.Json
 import com.ufx.jeudepistekt.GameFragment.Companion.context
 import com.ufx.jeudepistekt.GameFragment.Companion.layout
 
+/**
+ * Scenario
+ * High Level Game Object
+ * Contain all the data used to play
+ * Handle the high level needs :
+ * - Saving
+ * - changing stage
+ * - link the low level game class to fragment
+ */
 @Serializable
 class Scenario(
     var title : String,
@@ -25,6 +34,11 @@ class Scenario(
 
     private var stage = stages[0]
 
+    /**
+     * loadStage
+     * Instantiate all elements of a stage in the view
+     * Save the game state
+     */
     fun loadStage (name:String){
         stage = stages.firstOrNull { it.name == name } ?: stages.first()
         User.saveScenario(storer.getKey(),stage.name,variables,context)
@@ -36,9 +50,11 @@ class Scenario(
 
 
 
-
-
-
+    /**
+     * evaluateQr
+     * Called by activity intent Qr. Contain the Qr scanned
+     * Check if usable inside Stage, if not, try to use it to change stage
+     */
     fun evaluateQr(s : String):Boolean{
         if(stage.evaluateQrListener(s))
             return true
@@ -55,6 +71,10 @@ class Scenario(
 
 
     companion object {
+        /**
+         * buildScenarioFromJson
+         * Get a Scenario class from a Json String
+         */
         fun buildScenarioFromJson(jsonFile: String): Scenario {
             return Json.decodeFromString(jsonFile)
         }

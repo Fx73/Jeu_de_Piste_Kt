@@ -18,20 +18,33 @@ import com.ufx.jeudepistekt.jeu.User
  */
 class SettingFragment : Fragment() {
 
+    /**
+     * onCreateView
+     * Inflate view and instantiate listeners
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_setting, container, false)
 
         view.findViewById<EditText>(R.id.nameedit).setText(User.name)
-        view.findViewById<EditText>(R.id.nameedit).setOnKeyListener{ _: View, _: Int, keyEvent: KeyEvent -> saveKey(keyEvent)}
+        view.findViewById<EditText>(R.id.nameedit).setOnKeyListener{ _: View, _: Int, keyEvent: KeyEvent -> enterName(keyEvent)}
         view.findViewById<Button>(R.id.button_name).setOnClickListener{saveName()}
         return view
     }
 
-    private fun saveKey(keyEvent: KeyEvent):Boolean{
+    /**
+     * enterName
+     * Listen for Enter Key to go to Savename
+     */
+    private fun enterName(keyEvent: KeyEvent):Boolean{
         if (keyEvent.keyCode == KeyEvent.KEYCODE_ENTER)
             saveName()
         return true
     }
+
+    /**
+     * saveName
+     * Save the new name in User
+     */
     private fun saveName(){
         val newname = requireView().findViewById<EditText>(R.id.nameedit).text.toString()
         User.saveName(newname)

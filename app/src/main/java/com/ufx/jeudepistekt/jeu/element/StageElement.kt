@@ -3,6 +3,11 @@ package com.ufx.jeudepistekt.jeu.element
 import com.ufx.jeudepistekt.jeu.Stage
 import kotlinx.serialization.Serializable
 
+/**
+ * StageElement
+ * Elements used to show an item on screen
+ * Constructed element
+ */
 @Serializable
 open class StageElement(
     var type : TYPE,
@@ -16,7 +21,7 @@ open class StageElement(
         factory(type).instantiate(stage)
     }
 
-    fun factory (type: TYPE):Element{
+    private fun factory (type: TYPE):Element{
             return when (type){
                 TYPE.IMG -> IMG(content)
                 TYPE.TXT -> TXT(content)
