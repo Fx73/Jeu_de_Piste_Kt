@@ -38,6 +38,11 @@ class MainActivity : AppCompatActivity() {
         User.loadName()
 
     }
+    override fun onStart() {
+        super.onStart()
+        navController = findNavController(this, R.id.fragment_container_view)
+    }
+
 
     //region Menu
 
@@ -48,7 +53,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        navController = findNavController(this, R.id.fragment_container_view)
         return when (item.itemId) {
             R.id.action_home -> { navController.navigate(R.id.lobbyFragment); true}
             R.id.action_code -> {codeEdit(); true}
@@ -64,7 +68,7 @@ class MainActivity : AppCompatActivity() {
     }
 //endregion
 
-    fun codeEdit(){
+    private fun codeEdit(){
         object : Dialog(this){
             override fun onCreate(savedInstanceState: Bundle?) {
                 super.onCreate(savedInstanceState)
@@ -77,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 
 
     //region Utils
-    fun scanQr()
+    private fun scanQr()
     {
         val integrator = IntentIntegrator(this)
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
@@ -102,4 +106,12 @@ class MainActivity : AppCompatActivity() {
     }
 
 //endregion
+
+    override fun onBackPressed() {
+        if(supportFragmentManager.fragments.first().childFragmentManager.fragments.first() !is LobbyFragment)
+            navController.navigate(R.id.lobbyFragment)
+        else
+            super.onBackPressed()
+
+    }
 }
