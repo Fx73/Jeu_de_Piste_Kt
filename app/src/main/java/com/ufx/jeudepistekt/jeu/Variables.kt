@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 class Variables {
-    val values : MutableMap<String, Int> = mutableMapOf()
+    val values: MutableMap<String, Int> = mutableMapOf()
 
 
     /**
@@ -20,22 +20,22 @@ class Variables {
      * x && y
      * x || y
      */
-    fun evaluateCondition(cond : String):Boolean{
+    fun evaluateCondition(cond: String): Boolean {
         var all = true
         val aa = cond.split("&&")
-        for (a in aa){
+        for (a in aa) {
             val bb = a.split("||")
             var ball = false
-            for (b in bb){
-                val c = if(b.contains("==")) b.split("==") else b.split("!=")
+            for (b in bb) {
+                val c = if (b.contains("==")) b.split("==") else b.split("!=")
 
-                val c0 = values[c[0].trim()]?:c[0].trim().toInt()
-                val c1 = values[c[1].trim()]?:c[1].trim().toInt()
+                val c0 = values[c[0].trim()] ?: c[0].trim().toInt()
+                val c1 = values[c[1].trim()] ?: c[1].trim().toInt()
 
                 ball = ball || (c0 == c1)
             }
             all = all && ball
         }
-        return  all
+        return all
     }
 }

@@ -13,17 +13,23 @@ import androidx.core.content.ContextCompat
  */
 object Permissions {
 
-    fun askStoragePermission(context:Context):Boolean{
+    fun askStoragePermission(context: Context): Boolean {
         return askPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
     }
 
-    fun askPermission(context:Context, permission : String):Boolean{
-        return if (ContextCompat.checkSelfPermission( context, permission   ) != PackageManager.PERMISSION_GRANTED ) {
-                ActivityCompat.requestPermissions(  context as Activity,   arrayOf(permission), 1)
-                ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
+    private fun askPermission(context: Context, permission: String): Boolean {
+        return if (ContextCompat.checkSelfPermission(
+                context,
+                permission
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(context as Activity, arrayOf(permission), 1)
+            ContextCompat.checkSelfPermission(
+                context,
+                permission
+            ) == PackageManager.PERMISSION_GRANTED
         } else true
     }
-
 
 
 }

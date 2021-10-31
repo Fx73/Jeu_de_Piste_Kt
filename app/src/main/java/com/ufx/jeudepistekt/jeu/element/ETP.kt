@@ -1,11 +1,10 @@
 package com.ufx.jeudepistekt.jeu.element
 
 import com.ufx.jeudepistekt.GameFragment
-import com.ufx.jeudepistekt.jeu.Scenario
 import com.ufx.jeudepistekt.jeu.Stage
 
 /**
- * ETP: Instanciate an Etape
+ * ETP: Instantiate an Phase
  * content : step id
  */
 class ETP(content: String) : Element(content) {
@@ -14,7 +13,6 @@ class ETP(content: String) : Element(content) {
         GameFragment.scenario.loadStage(content)
         return
     }
-
 
 
 }

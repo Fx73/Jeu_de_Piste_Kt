@@ -22,20 +22,25 @@ class SettingFragment : Fragment() {
      * onCreateView
      * Inflate view and instantiate listeners
      */
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_setting, container, false)
 
-        view.findViewById<EditText>(R.id.nameedit).setText(User.name)
-        view.findViewById<EditText>(R.id.nameedit).setOnKeyListener{ _: View, _: Int, keyEvent: KeyEvent -> enterName(keyEvent)}
-        view.findViewById<Button>(R.id.button_name).setOnClickListener{saveName()}
+        view.findViewById<EditText>(R.id.nameEdit).setText(User.name)
+        view.findViewById<EditText>(R.id.nameEdit)
+            .setOnKeyListener { _: View, _: Int, keyEvent: KeyEvent -> enterName(keyEvent) }
+        view.findViewById<Button>(R.id.button_name).setOnClickListener { saveName() }
         return view
     }
 
     /**
      * enterName
-     * Listen for Enter Key to go to Savename
+     * Listen for Enter Key to go to saveName
      */
-    private fun enterName(keyEvent: KeyEvent):Boolean{
+    private fun enterName(keyEvent: KeyEvent): Boolean {
         if (keyEvent.keyCode == KeyEvent.KEYCODE_ENTER)
             saveName()
         return true
@@ -45,11 +50,12 @@ class SettingFragment : Fragment() {
      * saveName
      * Save the new name in User
      */
-    private fun saveName(){
-        val newname = requireView().findViewById<EditText>(R.id.nameedit).text.toString()
-        User.saveName(newname)
-        Toast.makeText(requireContext(), getString(R.string.newname) + newname, Toast.LENGTH_LONG).show()
-        requireView().findViewById<EditText>(R.id.nameedit).clearFocus()
+    private fun saveName() {
+        val name = requireView().findViewById<EditText>(R.id.nameEdit).text.toString()
+        User.saveName(name)
+        Toast.makeText(requireContext(), getString(R.string.newname) + name, Toast.LENGTH_LONG)
+            .show()
+        requireView().findViewById<EditText>(R.id.nameEdit).clearFocus()
     }
 
 }

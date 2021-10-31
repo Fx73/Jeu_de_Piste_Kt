@@ -18,26 +18,28 @@ class Stage(
     var elements: List<StageElement> = listOf(),
     var next: MutableList<String> = mutableListOf(),
     var understages: MutableList<Stage> = mutableListOf()
-)
-{
+) {
 
-//region waiters
-    fun evaluateButtonListener(id:String){
-        loadElemsFromWaiters(id)
+    //region waiters
+    fun evaluateButtonListener(id: String) {
+        loadElementsFromWaiters(id)
     }
 
-    fun evaluateEditListener(id:String, response : String ,verif1 : String, verif2 : String){
-        if(response.trim().lowercase(getDefault()) == verif1.lowercase(getDefault()) || (verif2 != "" && response.trim().lowercase(getDefault()) == verif2.lowercase(getDefault())))
-            loadElemsFromWaiters(id)
+    fun evaluateEditListener(id: String, response: String, verifier1: String, verifier2: String) {
+        if (response.trim()
+                .lowercase(getDefault()) == verifier1.lowercase(getDefault()) || (verifier2 != "" && response.trim()
+                .lowercase(getDefault()) == verifier2.lowercase(getDefault()))
+        )
+            loadElementsFromWaiters(id)
 
     }
 
-    fun evaluateQrListener(s : String):Boolean {
-        return loadElemsFromWaiters(s)
+    fun evaluateQrListener(s: String): Boolean {
+        return loadElementsFromWaiters(s)
     }
 
-    private fun loadElemsFromWaiters(id : String):Boolean{
-        val us = understages.find { it.name == id }?:return false
+    private fun loadElementsFromWaiters(id: String): Boolean {
+        val us = understages.find { it.name == id } ?: return false
 
         for (e in us.elements)
             loadElement(e)
@@ -47,14 +49,17 @@ class Stage(
     }
 
 
-
 //endregion
 
-    fun loadElement(e : StageElement) {
-        if(e.condition == "" || GameFragment.scenario.variables.evaluateCondition(e.condition))
+    /**
+     * loadElement
+     * Run the content of a single game element
+     * Eventually, it checks before if there are some conditions and skip it if their is some which are not true
+     */
+    fun loadElement(e: StageElement) {
+        if (e.condition == "" || GameFragment.scenario.variables.evaluateCondition(e.condition))
             e.instantiate(this)
     }
-
 
 
 }

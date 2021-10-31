@@ -1,13 +1,13 @@
 package com.ufx.jeudepistekt
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.ufx.jeudepistekt.jeu.Scenario
 import com.ufx.jeudepistekt.jeu.Stage
@@ -24,24 +24,30 @@ class GameFragment : Fragment() {
 
     /**
      * onCreateView
-     * Instanciate game objects
+     * Instantiate game objects
      * Load the scenario, then the save
      */
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_game, container, false)
 
-        GameFragment.context = requireContext()
+        @Suppress("RemoveRedundantQualifierName")
         GameFragment.layout = view.findViewById(R.id.gamelayout)
-        val storer = Storer(args.argumentTitle,args.argumentCreator,requireContext())
+        GameFragment.context = requireContext()
+
+        val storer = Storer(args.argumentTitle, args.argumentCreator, requireContext())
         scenario = Scenario.buildScenarioFromJson(storer.loadJson("ScenarioFile"))
         scenario.storer = storer
 
-        val save = User.loadScenario(storer.getKey(),requireContext())
-        if(save != null) {
-            for (v in save.second.values)
-                scenario.variables.values[v.key] = v.value
+        val save = User.loadScenario(storer.getKey(), requireContext())
+        if (save != null) {
+            for ((key, value) in save.second.values)
+                scenario.variables.values[key] = value
             scenario.loadStage(save.first)
-        }else{
+        } else {
             scenario.loadStage(scenario.stages[0].name)
         }
         return view
@@ -52,11 +58,11 @@ class GameFragment : Fragment() {
      * Evaluate a Qr code received from Activity
      * Cheats first, the scenario used codes
      */
-    fun evaluateQr(s : String) {
+    fun evaluateQr(s: String) {
         if (cheat(s))
             return
 
-        if(scenario.evaluateQr(s))
+        if (scenario.evaluateQr(s))
             return
 
     }
@@ -66,24 +72,23 @@ class GameFragment : Fragment() {
      * Evaluate a Qr code received from Activity
      * Cheats first, the scenario used codes
      */
-    private fun cheat(s : String): Boolean {
-        if(User.name != getString(R.string.app_author))
+    private fun cheat(s: String): Boolean {
+        if (User.name != getString(R.string.app_author))
             return false
 
-        if(s.startsWith("Force Phase ")){
-            val newstep = s.substring("Force Phase ".length)
-            scenario.loadStage(newstep)
+        if (s.startsWith("Force Phase ")) {
+            scenario.loadStage(s.substring("Force Phase ".length))
             return true
         }
 
-        if(s.startsWith("Force Var ")){
-            val newval = s.split(" ").last()
-            val variable = s.substring("Force Var ".length,s.length - newval.length)
-            scenario.variables.values[variable]=newval.toInt()
+        if (s.startsWith("Force Var ")) {
+            val variable = s.substring("Force Var ".length).trim().split(" ").first()
+            val value = s.split(" ").last()
+            scenario.variables.values[variable] = value.toInt()
             return true
         }
 
-        if(s == "Print Vars"){
+        if (s == "Print Vars") {
             val sb = StringBuilder()
             scenario.variables.values.forEach { (key, value) -> sb.append("$key = $value \n") }
             TXT(sb.toString()).instantiate(Stage("Vars"))
@@ -94,9 +99,13 @@ class GameFragment : Fragment() {
     }
 
 
-    companion object{
-        lateinit var context : Context
+    companion object {
+        lateinit var scenario: Scenario
+
+        @SuppressLint("StaticFieldLeak")
+        lateinit var context: Context
+
+        @SuppressLint("StaticFieldLeak")
         lateinit var layout: LinearLayout
-        lateinit var scenario : Scenario
     }
 }

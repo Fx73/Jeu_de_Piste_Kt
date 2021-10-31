@@ -5,91 +5,94 @@ import android.content.SharedPreferences
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import java.io.*
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.InputStream
 
 
-object User
-{
-    const val KEY_TEAMNAME= "prefUserNameKey"
-    const val KEY_SCELIST= "KeyScenarioList"
-    const val KEY_SCENARIOVARS= "KeyScenarioVars"
-    const val KEY_SCENARIOPHASE= "KeyScenarioStep"
+object User {
+    private const val KEY_USERNAME = "prefUserNameKey"
+    private const val KEY_SCENARIOS = "KeyScenarioList"
+    private const val KEY_SCENARIO_VARS = "KeyScenarioVars"
+    private const val KEY_SCENARIO_PHASE = "KeyScenarioStep"
 
-    var name : String = "Default"
+    var name: String = "Default"
 
-    private lateinit var sharedPref : SharedPreferences
+    private lateinit var sharedPref: SharedPreferences
 
-    private fun getKeyVar(scenariokey: String) = name + scenariokey + KEY_SCENARIOVARS
-    private fun getKeyPhase(scenariokey: String) = name + scenariokey + KEY_SCENARIOPHASE
-
+    private fun getKeyVar(scenarioKey: String) = name + scenarioKey + KEY_SCENARIO_VARS
+    private fun getKeyPhase(scenarioKey: String) = name + scenarioKey + KEY_SCENARIO_PHASE
 
 
-    fun initSharedPref(context: Context){
-        sharedPref = context.getSharedPreferences("JeuDePisteKtPreferenceFileKey",Context.MODE_PRIVATE)
+    fun initSharedPref(context: Context) {
+        sharedPref =
+            context.getSharedPreferences("JeuDePisteKtPreferenceFileKey", Context.MODE_PRIVATE)
     }
 
-    fun saveName(newname : String){
-        name = newname
-        with (sharedPref.edit()) {
-            putString(KEY_TEAMNAME, name)
+    fun saveName(name: String) {
+        this.name = name
+        with(sharedPref.edit()) {
+            putString(KEY_USERNAME, name)
             commit()
         }
     }
 
-    fun loadName(){
-        name = sharedPref.getString(KEY_TEAMNAME, "Default")?:"ERROR"
+    fun loadName() {
+        name = sharedPref.getString(KEY_USERNAME, "Default") ?: "ERROR"
     }
 
 
-    fun saveScenarioList(list :MutableList<Pair<String,String>>){
+    fun saveScenarioList(list: MutableList<Pair<String, String>>) {
         val json: String = Json.encodeToString(list)
 
-        with (sharedPref.edit()) {
-            putString(KEY_SCELIST, json)
+        with(sharedPref.edit()) {
+            putString(KEY_SCENARIOS, json)
             commit()
         }
     }
 
-    fun loadScenarioList(): MutableList<Pair<String,String>> {
-        val json = sharedPref.getString(KEY_SCELIST, "") ?: ""
+    fun loadScenarioList(): MutableList<Pair<String, String>> {
+        val json = sharedPref.getString(KEY_SCENARIOS, "") ?: ""
         if (json == "") return mutableListOf()
         return Json.decodeFromString(json)
     }
 
 
-
-    fun saveScenario(scenariokey: String, phase : String, variables : Variables,context: Context){
-        with (sharedPref.edit()) {
-            putString(getKeyPhase(scenariokey), phase)
+    fun saveScenario(scenarioKey: String, phase: String, variables: Variables, context: Context) {
+        with(sharedPref.edit()) {
+            putString(getKeyPhase(scenarioKey), phase)
             commit()
         }
 
-        val stream = context.openFileOutput(getKeyVar(scenariokey), Context.MODE_PRIVATE)
+        val stream = context.openFileOutput(getKeyVar(scenarioKey), Context.MODE_PRIVATE)
         stream.write(Json.encodeToString(variables).toByteArray())
         stream.flush()
         stream.close()
     }
 
 
-    fun loadScenario(scenariokey: String,context: Context): Pair<String, Variables>? {
-        val step = sharedPref.getString(getKeyPhase(scenariokey),"").orEmpty()
-        val stream : InputStream
-        try{
-            stream = context.openFileInput(getKeyVar(scenariokey))
-        }catch (e : FileNotFoundException){return null}
-        val variables : Variables = Json.decodeFromString(String(stream.readBytes())) as Variables
+    fun loadScenario(scenarioKey: String, context: Context): Pair<String, Variables>? {
+        val step = sharedPref.getString(getKeyPhase(scenarioKey), "").orEmpty()
+        val stream: InputStream
+        try {
+            stream = context.openFileInput(getKeyVar(scenarioKey))
+        } catch (e: FileNotFoundException) {
+            return null
+        }
+        val variables: Variables = Json.decodeFromString(String(stream.readBytes())) as Variables
 
-        return Pair(step,variables)
-}
+        return Pair(step, variables)
+    }
 
-    fun resetScenario(scenariokey: String,context: Context){
-        with (sharedPref.edit()) {
-            remove(getKeyPhase(scenariokey))
+    fun resetScenario(scenarioKey: String) {
+        with(sharedPref.edit()) {
+            remove(getKeyPhase(scenarioKey))
             commit()
         }
-        try{
-            File(getKeyVar(scenariokey)).delete()
-        }catch (e : FileNotFoundException){}
+        try {
+            File(getKeyVar(scenarioKey)).delete()
+        } catch (e: FileNotFoundException) {
+        }
 
     }
 }

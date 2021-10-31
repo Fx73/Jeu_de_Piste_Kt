@@ -8,15 +8,18 @@ import com.ufx.jeudepistekt.jeu.Stage
 
 
 /**
- * TXT: Instanciate a qr code waiter
+ * TXT: Instantiate a qr code waiter
  * @param content : text text
  */
 
 class TXT(content: String) : Element(content) {
 
     override fun instantiate(stage: Stage) {
-        val par = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        par.setMargins(10,10,10,10)
+        val par = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        par.setMargins(10, 10, 10, 10)
 
         val tv = TextView(GameFragment.context)
         tv.textSize = 18f

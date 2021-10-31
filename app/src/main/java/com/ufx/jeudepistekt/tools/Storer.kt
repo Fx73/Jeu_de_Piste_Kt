@@ -11,15 +11,16 @@ import java.io.FileNotFoundException
  * This class handles methods to store and load file or content to the right place
  * Used by Scenario at Game run and Zipper at scenario import
  */
-class Storer(val title: String,val creator: String, val context : Context) {
+class Storer(val title: String, val creator: String, val context: Context) {
     /**
      * The Key is used to link files to a scenario, by renaming at unzip
      * Key is composed with name + creator
      */
-    companion object{
-        fun key(title: String, creator: String) = creator+"_"+title+"_"
+    companion object {
+        fun key(title: String, creator: String): String = creator + "_" + title + "_"
     }
-    fun getKey() = key(title,creator)
+
+    fun getKey(): String = key(title, creator)
 
     /**
      * loadImage
@@ -45,7 +46,6 @@ class Storer(val title: String,val creator: String, val context : Context) {
         val filestream = context.openFileInput(getKey() + name + ".json")
         return filestream.bufferedReader().use { it.readText() }
     }
-
 
 
 }

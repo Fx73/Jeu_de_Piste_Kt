@@ -1,13 +1,13 @@
 package com.ufx.jeudepistekt.jeu
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import com.ufx.jeudepistekt.BuildConfig
-import com.ufx.jeudepistekt.tools.Storer
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
 import com.ufx.jeudepistekt.GameFragment.Companion.context
 import com.ufx.jeudepistekt.GameFragment.Companion.layout
+import com.ufx.jeudepistekt.tools.Storer
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 
 /**
  * Scenario
@@ -20,16 +20,16 @@ import com.ufx.jeudepistekt.GameFragment.Companion.layout
  */
 @Serializable
 class Scenario(
-    var title : String,
-    var creator : String,
-    var description : String,
+    var title: String,
+    var creator: String,
+    var description: String,
     var copyright: String,
-    var version : String = BuildConfig.VERSION_NAME,
-    val variables : Variables = Variables(),
-    val stages : List<Stage> = listOf()
-)
-{
-    @Transient lateinit var storer:Storer
+    var version: String = BuildConfig.VERSION_NAME,
+    val variables: Variables = Variables(),
+    val stages: List<Stage> = listOf()
+) {
+    @Transient
+    lateinit var storer: Storer
 
 
     private var stage = stages[0]
@@ -39,15 +39,13 @@ class Scenario(
      * Instantiate all elements of a stage in the view
      * Save the game state
      */
-    fun loadStage (name:String){
+    fun loadStage(name: String) {
         stage = stages.firstOrNull { it.name == name } ?: stages.first()
-        User.saveScenario(storer.getKey(),stage.name,variables,context)
+        User.saveScenario(storer.getKey(), stage.name, variables, context)
         layout.removeAllViews()
         for (e in stage.elements)
             stage.loadElement(e)
     }
-
-
 
 
     /**
@@ -55,19 +53,18 @@ class Scenario(
      * Called by activity intent Qr. Contain the Qr scanned
      * Check if usable inside Stage, if not, try to use it to change stage
      */
-    fun evaluateQr(s : String):Boolean{
-        if(stage.evaluateQrListener(s))
+    fun evaluateQr(s: String): Boolean {
+        if (stage.evaluateQrListener(s))
             return true
 
-        for (w in stage.next){
-            if(w == s){
+        for (w in stage.next) {
+            if (w == s) {
                 loadStage(s)
                 return true
             }
         }
         return false
     }
-
 
 
     companion object {

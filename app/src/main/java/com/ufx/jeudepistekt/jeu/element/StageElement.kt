@@ -10,38 +10,37 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 open class StageElement(
-    var type : TYPE,
-    var content : String,
+    var type: TYPE,
+    var content: String,
     private var additional: Array<String> = arrayOf()
-){
-    var condition : String = ""
+) {
+    var condition: String = ""
 
-    open fun instantiate(stage: Stage){
-        println("Instantiating a " + type.name + " with content  '" + content + "' and " + additional.size + " additionals")
+    open fun instantiate(stage: Stage) {
+        println("Instantiating a " + type.name + " with content  '" + content + "' and " + additional.size + " additional")
         factory(type).instantiate(stage)
     }
 
-    private fun factory (type: TYPE):Element{
-            return when (type){
-                TYPE.IMG -> IMG(content)
-                TYPE.TXT -> TXT(content)
-                TYPE.QRC -> QRC(content)
-                TYPE.VAR -> VAR(content)
-                TYPE.BTN -> BTN(content,additional)
-                TYPE.EDT -> EDT(content,additional)
-                TYPE.ETP -> ETP(content)
-                TYPE.LCK -> LCK(content)
-                TYPE.UCK -> UCK(content)
-                TYPE.TST -> TST(content)
-            }
+    private fun factory(type: TYPE): Element {
+        return when (type) {
+            TYPE.IMG -> IMG(content)
+            TYPE.TXT -> TXT(content)
+            TYPE.QRC -> QRC(content)
+            TYPE.VAR -> VAR(content)
+            TYPE.BTN -> BTN(content, additional)
+            TYPE.EDT -> EDT(content, additional)
+            TYPE.ETP -> ETP(content)
+            TYPE.LCK -> LCK(content)
+            TYPE.UCK -> UCK(content)
+            TYPE.TST -> TST(content)
         }
-
-
-
-companion object{
-    enum class TYPE {
-        IMG, TXT, QRC, VAR , BTN, EDT, ETP, LCK, UCK, TST
     }
-}
+
+
+    companion object {
+        enum class TYPE {
+            IMG, TXT, QRC, VAR, BTN, EDT, ETP, LCK, UCK, TST
+        }
+    }
 
 }

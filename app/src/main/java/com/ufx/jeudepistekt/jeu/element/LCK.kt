@@ -3,7 +3,7 @@ package com.ufx.jeudepistekt.jeu.element
 import com.ufx.jeudepistekt.jeu.Stage
 
 /**
- * LCK: Instanciate a lock
+ * LCK: Instantiate a lock
  * content : lock id
  */
 class LCK(content: String) : Element(content) {

@@ -1,16 +1,23 @@
 package com.ufx.jeudepistekt.jeu
 
 import com.ufx.jeudepistekt.jeu.element.*
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
 
 class ScenarioTest {
-    val scenario = Scenario("Kalte", "fx", "Yo ceci est un scenario test", "", stages = listOf(Stage("0", elements = listOf(TXT("Hello?").reverseFactory(), IMG("world.png").reverseFactory()))))
+    val scenario: Scenario = Scenario(
+        "Testing Scenario",
+        "fx",
+        "This is a test scenario",
+        "",
+        stages = listOf(
+            Stage(
+                "0",
+                elements = listOf(TXT("Hello?").reverseFactory(), IMG("world.png").reverseFactory())
+            )
+        )
+    )
 
 
-
-
-    fun complexScenario() : Scenario{
+    fun complexScenario(): Scenario {
         val e0 = Stage(
             name = "e0",
             elements = listOf(
@@ -26,13 +33,14 @@ class ScenarioTest {
                 TXT("This is the test 1 of BTN").reverseFactory(),
                 BTN("BTN ?", arrayOf("u0")).reverseFactory()
             ),
-            next = mutableListOf("e2","e0"),
+            next = mutableListOf("e2", "e0"),
             understages = mutableListOf(
                 Stage(
                     name = "u0",
-                elements = listOf(
-                    TXT("Test is ok").reverseFactory()
-                ))
+                    elements = listOf(
+                        TXT("Test is ok").reverseFactory()
+                    )
+                )
             )
         )
 
@@ -40,9 +48,9 @@ class ScenarioTest {
             name = "e2",
             elements = listOf(
                 TXT("This is the test 2 of EDT").reverseFactory(),
-                EDT("Write answer", arrayOf("u0","response","answer")).reverseFactory()
+                EDT("Write answer", arrayOf("u0", "response", "answer")).reverseFactory()
             ),
-            next = mutableListOf("e3","e1"),
+            next = mutableListOf("e3", "e1"),
             understages = mutableListOf(
                 Stage(
                     name = "u0",
@@ -59,26 +67,26 @@ class ScenarioTest {
                 TXT("This is the test 3 of ETP part 1").reverseFactory(),
                 ETP("e4").reverseFactory()
             ),
-            next = mutableListOf("e4","e3")
+            next = mutableListOf("e4", "e3")
         )
 
         val e4 = Stage(
             name = "e4",
             elements = listOf(
                 TXT("This is the test 4 of ETP part 2 and TST").reverseFactory(),
-                TST ("Test ok, should have jumped the 3").reverseFactory()
+                TST("Test ok, should have jumped the 3").reverseFactory()
             ),
-            next = mutableListOf("e5","e3")
+            next = mutableListOf("e5", "e3")
         )
 
         val e5 = Stage(
             name = "e5",
             elements = listOf(
                 TXT("This is the test 5 of VAR and lock").reverseFactory(),
-                LCK ("e6").reverseFactory() ,
-                BTN ("unlock",additional= arrayOf("u0")).reverseFactory()
+                LCK("e6").reverseFactory(),
+                BTN("unlock", additional = arrayOf("u0")).reverseFactory()
             ),
-            next = mutableListOf("e6","e4"),
+            next = mutableListOf("e6", "e4"),
             understages = mutableListOf(
                 Stage(
                     name = "u0",
@@ -95,9 +103,9 @@ class ScenarioTest {
             name = "e6",
             elements = listOf(
                 TXT("This is the test 6 of QRC").reverseFactory(),
-                QRC ("QRC").reverseFactory()
+                QRC("QRC").reverseFactory()
             ),
-            next = mutableListOf("e100","e5"),
+            next = mutableListOf("e100", "e5"),
             understages = mutableListOf(
                 Stage(
                     name = "QRC",
@@ -114,6 +122,12 @@ class ScenarioTest {
                 TXT("End of tests").reverseFactory(),
             )
         )
-        return Scenario("Complex Scenario Test", "unitest","this is a test scenario","no",stages = listOf(e0,e1,e2,e3,e4,e5,e6,e100))
+        return Scenario(
+            "Complex Scenario Test",
+            "unitest",
+            "this is a test scenario",
+            "no",
+            stages = listOf(e0, e1, e2, e3, e4, e5, e6, e100)
+        )
     }
 }

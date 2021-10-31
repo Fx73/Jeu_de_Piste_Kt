@@ -21,8 +21,8 @@ import com.ufx.jeudepistekt.jeu.User
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var navController: NavController
-    lateinit var fragmentManager: FragmentManager
+    private lateinit var navController: NavController
+    private lateinit var fragmentManager: FragmentManager
 
     /**
      * On Create / OnStart :
@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         User.loadName()
 
     }
+
     override fun onStart() {
         super.onStart()
         navController = findNavController(this, R.id.fragment_container_view)
@@ -59,21 +60,29 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
+
     /**
      * onOptionsItemSelected
      * Navigate to the right page as menu item is selected
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_home -> { navController.navigate(R.id.lobbyFragment); true}
-            R.id.action_code -> {manualQrCode(); true}
-            R.id.action_settings -> { navController.navigate(R.id.settingFragment); true }
+            R.id.action_home -> {
+                navController.navigate(R.id.lobbyFragment); true
+            }
+            R.id.action_code -> {
+                manualQrCode(); true
+            }
+            R.id.action_settings -> {
+                navController.navigate(R.id.settingFragment); true
+            }
             R.id.action_about -> {
-                if(fragmentManager.fragments.first() is GameFragment)
+                if (fragmentManager.fragments.first() is GameFragment)
                     navController.navigate(R.id.infoFragment)
                 else
                     navController.navigate(R.id.aboutFragment)
-                true }
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -83,10 +92,9 @@ class MainActivity : AppCompatActivity() {
 //region Qr Scanner
     /**
      * scanQr
-     * Lauch the intent of the Qr scanner
+     * Launch the intent of the Qr scanner
      */
-    private fun scanQr()
-    {
+    private fun scanQr() {
         val integrator = IntentIntegrator(this)
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
         integrator.setPrompt("Scan")
@@ -101,38 +109,46 @@ class MainActivity : AppCompatActivity() {
      * object registered to get the qrScanner activity result
      * Pass the result to evaluateQr
      */
-    private val qrScanner = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        val result = IntentIntegrator.parseActivityResult(it.resultCode, it.data)
-        if (result.contents == null) {
-            Log.e("Scan*******", "Cancelled scan")
-        } else {
-            Log.e("Scan", "Scanned")
-            evaluateQr(result.contents)
+    private val qrScanner =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            val result = IntentIntegrator.parseActivityResult(it.resultCode, it.data)
+            if (result.contents == null) {
+                Log.e("Scan*******", "Cancelled scan")
+            } else {
+                Log.e("Scan", "Scanned")
+                evaluateQr(result.contents)
+            }
         }
-    }
 
     /**
      * evaluateQr
      * Send result to Game if in Game
      */
-    fun evaluateQr(s : String) {
-        if(fragmentManager.fragments.first() is GameFragment)
+    fun evaluateQr(s: String) {
+        if (fragmentManager.fragments.first() is GameFragment)
             (fragmentManager.fragments.first() as GameFragment).evaluateQr(s)
         else
-            Toast.makeText(this, getString(R.string.qr_unknown) + " : " + s, Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.qr_unknown) + " : " + s, Toast.LENGTH_LONG)
+                .show()
     }
 
     /**
      * manualQrCode
-     * Shows and editText wich will be evaluated as a Qr input
+     * Shows and editText which will be evaluated as a Qr input
      */
-    private fun manualQrCode(){
-        object : Dialog(this){
+    private fun manualQrCode() {
+        object : Dialog(this) {
             override fun onCreate(savedInstanceState: Bundle?) {
                 super.onCreate(savedInstanceState)
                 requestWindowFeature(Window.FEATURE_NO_TITLE)
                 setContentView(R.layout.dialog_code)
-                findViewById<Button>(R.id.code_button).setOnClickListener { evaluateQr(findViewById<EditText>(R.id.code_edit).text.toString());dismiss()}
+                findViewById<Button>(R.id.code_button).setOnClickListener {
+                    evaluateQr(
+                        findViewById<EditText>(
+                            R.id.code_edit
+                        ).text.toString()
+                    );dismiss()
+                }
             }
         }.show()
     }
@@ -143,7 +159,7 @@ class MainActivity : AppCompatActivity() {
      * Go back to Lobby if back key is pressed
      */
     override fun onBackPressed() {
-        if(fragmentManager.fragments.first() !is LobbyFragment)
+        if (fragmentManager.fragments.first() !is LobbyFragment)
             navController.navigate(R.id.lobbyFragment)
         else
             super.onBackPressed()

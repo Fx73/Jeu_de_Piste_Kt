@@ -6,7 +6,7 @@ import com.ufx.jeudepistekt.GameFragment
 import com.ufx.jeudepistekt.jeu.Stage
 
 /**
- * TST: Instanciate a toast
+ * TST: Instantiate a toast
  * content : toast text
  *
  */
@@ -16,7 +16,8 @@ class TST(content: String) : Element(content) {
         showToast(GameFragment.context)
     }
 
-    private fun showToast(context : Context) = Toast.makeText(context,content, Toast.LENGTH_LONG ).show()
+    private fun showToast(context: Context) =
+        Toast.makeText(context, content, Toast.LENGTH_LONG).show()
 
 
 }

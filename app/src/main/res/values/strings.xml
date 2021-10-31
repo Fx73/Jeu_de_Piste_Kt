@@ -6,11 +6,12 @@
     <string name="settings">Paramètres</string>
     <string name="about">A propos</string>
 
-    <!-- Main -->
+    <!-- Lobby -->
     <string name="capture">Capture</string>
     <string name="qr_unknown">Qr inconnu</string>
     <string name="addscenario">Ajouter un scenario</string>
     <string name="delete">Delete</string>
+    <string name="reset">Reset</string>
 
     <!-- Settings -->
     <string name="name">Nom de joueur</string>
@@ -27,9 +28,6 @@
     <string name="app_author">Ufx</string>
     <string name="app_mail">fx73000@yahoo.fr</string>
     <string name="valid">Valider</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="reset">Reset</string>
 
 
 </resources>

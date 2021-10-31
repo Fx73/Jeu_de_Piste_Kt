@@ -1,15 +1,12 @@
 package com.ufx.jeudepistekt
 
-import com.ufx.jeudepistekt.jeu.Stage
-import com.ufx.jeudepistekt.jeu.Scenario
-import com.ufx.jeudepistekt.jeu.element.StageElement
 import org.junit.jupiter.api.Test
 
 class ScenarioKalteTest {
-/*
-    //Conditions au pifs : a reverifier
+
     @Test
     fun ScenarioKalte(){
+        /*
         val e0 = Stage(0,listOf(
             StageElement(StageElement.Companion.TYPE.TXT,"Bienvenue a vous, voyageurs. Vous êtes les derniers apprentis de l'ordre des moines-guerriers Kai. Un terrible sorcier du nom de Vonotar s'est installé dans les terres reculées de Kalte, et vous seuls pouvez l'arrêter. \n Dans cette épreuve, l'art du Kai pourra vous être utile, et votre maitre peut vous enseigner une technique avant de partir. Choisissez bien, et mettez vous en route. Une grande aventure vous attends !"),
             StageElement(StageElement.Companion.TYPE.IMG,"e0i0"),
@@ -360,6 +357,7 @@ class ScenarioKalteTest {
         s.variables["renfort"] = 0
         s.variables["cochon"] = 0
         s.variables["vieux"] = 0
+        */
     }
-*/
+
 }

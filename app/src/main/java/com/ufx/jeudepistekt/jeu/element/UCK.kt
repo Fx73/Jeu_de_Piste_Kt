@@ -3,7 +3,7 @@ package com.ufx.jeudepistekt.jeu.element
 import com.ufx.jeudepistekt.jeu.Stage
 
 /**
- * UCK: Instanciate an unlock
+ * UCK: Instantiate an unlock
  * content : lock name
  *
  */

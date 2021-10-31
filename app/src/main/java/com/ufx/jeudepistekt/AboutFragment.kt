@@ -6,11 +6,11 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
 import java.util.*
@@ -22,21 +22,27 @@ import java.util.*
 class AboutFragment : Fragment() {
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_about, container, false)
 
-        val appinfo: ApplicationInfo = requireActivity().packageManager.getApplicationInfo(BuildConfig.APPLICATION_ID,
+        val info: ApplicationInfo = requireActivity().packageManager.getApplicationInfo(
+            BuildConfig.APPLICATION_ID,
             PackageManager.GET_META_DATA
         )
 
         val aboutPage: View = AboutPage(requireContext())
 
             .isRTL(false)
-            .setDescription(getString(R.string.aide))
+            .setDescription(getString(R.string.app_description))
             .setImage(R.drawable.ic_banner)
+            .addItem(Element().setValue(getString(R.string.aide)))
             .addGroup(getString(R.string.about))
-            .addItem(Element().setTitle("Version "+BuildConfig.VERSION_NAME))
-            .addItem(Element().setTitle("Android SDK "+ Build.VERSION.SDK_INT + " / " + appinfo.targetSdkVersion))
+            .addItem(Element().setTitle("Version " + BuildConfig.VERSION_NAME))
+            .addItem(Element().setTitle("Android SDK " + Build.VERSION.SDK_INT + " / " + info.targetSdkVersion))
             .addGroup(getString(R.string.contacts))
             .addItem(Element().setTitle("Application par : " + getString(R.string.app_author)))
             .addEmail(getString(R.string.app_mail))
@@ -60,7 +66,13 @@ class AboutFragment : Fragment() {
         copyRightsElement.iconTint = mehdi.sakout.aboutpage.R.color.about_item_icon_color
         copyRightsElement.iconNightTint = R.color.white
         copyRightsElement.gravity = Gravity.CENTER
-        copyRightsElement.setOnClickListener { Toast.makeText(requireContext(), copyrights, Toast.LENGTH_SHORT).show() }
+        copyRightsElement.setOnClickListener {
+            Toast.makeText(
+                requireContext(),
+                copyrights,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
         return copyRightsElement
     }
