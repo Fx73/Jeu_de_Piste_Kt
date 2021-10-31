@@ -1,29 +1,30 @@
-<h1>Jeu de Piste</h1>
+<h1>Treasure Hunt / Jeu de Piste</h1>
 
 
-<h2>Présentation</h2>
+<h2>Presentation</h2>
 
-Cette application Android est un jeu de piste interactif.
+This android application is an interactive treasure hunt ('Jeu de piste' in french)
 
-L'objectif est de completer toute l'histoire, en résolvant des puzzles, enigmes, etc., certaines grace à l'application seules, certaines via des recherches/interractions réelles.
+The objective is to resolve a story, with puzzle, mini games and other stuffs, with a maximum real life/application interactions
 
-<h2>Déroulement</h2>
+<h2>How it works</h2>
 
-La principale partie est l'avancement du jeu, qui se fait en scannant un QR code. Une carte indique ou se situe le code.
+The main part is the game progression, which is basically made by scanning Qr Code
 
-Une fois le code scanné, l'histoire avance, avec la plupart du temps un mini-jeu à résoudre. Les mini-jeux sont pensés pour une équipe de quelques personnes.
-
-Une fois le mini-jeu résolu, la carte se met à jour, et les joueurs peuvent avancer.
+Once Qr is scanned, the story will go on, with sometimes mini-games to solve. Depending the mini game, they may be created for a team play.
 
 
-<h2>Projet</h2>
+<h2>Project Structure</h2>
 
-Le programme construit un scenario à partir d'un fichier JSON.
-On peut zipper ce fichier avec les images pour le faire lire.
+This is the main program : 
+ - Made with Android studio, integrating Gradle
+ - Using AndroidX API, made for 28
+ - Kotlin Language
+ - Scenario are transferred in zip packages, containing images and a single JSON
 
-Editeur à venir
+Another program to come, a scenario editor
 
 <br>
 
-Il est disponnible sur le Play Store ici:
+Available on play store:
 https://play.google.com/store/apps/details?id=com.ufix.jeudepistekt&hl=fr
