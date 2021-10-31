@@ -26,8 +26,7 @@ class Scenario(
     private var stage = stages[0]
 
     fun loadStage (name:String){
-        stage = stages.first { it.name == name }
-        println("LOADING STAGE : ${stage.name}")
+        stage = stages.firstOrNull { it.name == name } ?: stages.first()
         User.saveScenario(storer.getKey(),stage.name,variables,context)
         layout.removeAllViews()
         for (e in stage.elements)

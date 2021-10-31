@@ -11,7 +11,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentContainerView
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import com.google.zxing.integration.android.IntentIntegrator
@@ -22,18 +22,22 @@ import com.ufx.jeudepistekt.jeu.User
 class MainActivity : AppCompatActivity() {
 
     lateinit var navController: NavController
+    lateinit var fragmentManager: FragmentManager
 
+    /**
+     * On Create / OnStart :
+     * Initialize vars and inflate views depending on lifecycle
+     * Load Username
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         User.initSharedPref(this)
-        println("Activity creation")
-        val binding = ActivityMainBinding.inflate(layoutInflater)
 
+        val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
         binding.fab.setOnClickListener { scanQr() }
-
 
         User.loadName()
 
@@ -41,24 +45,31 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         navController = findNavController(this, R.id.fragment_container_view)
+        fragmentManager = supportFragmentManager.fragments.first().childFragmentManager
     }
 
 
     //region Menu
-
+    /**
+     * onCreateOptionsMenu :
+     * Inflate the menu
+     */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
-
+    /**
+     * onOptionsItemSelected
+     * Navigate to the right page as menu item is selected
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_home -> { navController.navigate(R.id.lobbyFragment); true}
-            R.id.action_code -> {codeEdit(); true}
+            R.id.action_code -> {manualQrCode(); true}
             R.id.action_settings -> { navController.navigate(R.id.settingFragment); true }
             R.id.action_about -> {
-                if(supportFragmentManager.fragments.first().childFragmentManager.fragments.first() is GameFragment)
+                if(fragmentManager.fragments.first() is GameFragment)
                     navController.navigate(R.id.infoFragment)
                 else
                     navController.navigate(R.id.aboutFragment)
@@ -68,19 +79,12 @@ class MainActivity : AppCompatActivity() {
     }
 //endregion
 
-    private fun codeEdit(){
-        object : Dialog(this){
-            override fun onCreate(savedInstanceState: Bundle?) {
-                super.onCreate(savedInstanceState)
-                requestWindowFeature(Window.FEATURE_NO_TITLE)
-                setContentView(R.layout.dialog_code)
-                findViewById<Button>(R.id.code_button).setOnClickListener { evaluateQr(findViewById<EditText>(R.id.code_edit).text.toString());dismiss()}
-            }
-        }.show()
-    }
 
-
-    //region Utils
+//region Qr Scanner
+    /**
+     * scanQr
+     * Lauch the intent of the Qr scanner
+     */
     private fun scanQr()
     {
         val integrator = IntentIntegrator(this)
@@ -92,6 +96,11 @@ class MainActivity : AppCompatActivity() {
         qrScanner.launch(integrator.createScanIntent())
     }
 
+    /**
+     * qrScanner
+     * object registered to get the qrScanner activity result
+     * Pass the result to evaluateQr
+     */
     private val qrScanner = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         val result = IntentIntegrator.parseActivityResult(it.resultCode, it.data)
         if (result.contents == null) {
@@ -102,13 +111,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
     fun evaluateQr(s : String) {
-        Toast.makeText(this, getString(R.string.qr_unknown), Toast.LENGTH_LONG).show()
+        if(fragmentManager.fragments.first() is GameFragment)
+            (fragmentManager.fragments.first() as GameFragment).evaluateQr(s)
+        else
+            Toast.makeText(this, getString(R.string.qr_unknown) + " : " + s, Toast.LENGTH_LONG).show()
     }
 
+    private fun manualQrCode(){
+        object : Dialog(this){
+            override fun onCreate(savedInstanceState: Bundle?) {
+                super.onCreate(savedInstanceState)
+                requestWindowFeature(Window.FEATURE_NO_TITLE)
+                setContentView(R.layout.dialog_code)
+                findViewById<Button>(R.id.code_button).setOnClickListener { evaluateQr(findViewById<EditText>(R.id.code_edit).text.toString());dismiss()}
+            }
+        }.show()
+    }
 //endregion
 
     override fun onBackPressed() {
-        if(supportFragmentManager.fragments.first().childFragmentManager.fragments.first() !is LobbyFragment)
+        if(fragmentManager.fragments.first() !is LobbyFragment)
             navController.navigate(R.id.lobbyFragment)
         else
             super.onBackPressed()

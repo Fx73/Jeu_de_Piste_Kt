@@ -82,4 +82,14 @@ object User
         return Pair(step,variables)
 }
 
+    fun resetScenario(scenariokey: String,context: Context){
+        with (sharedPref.edit()) {
+            remove(getKeyPhase(scenariokey))
+            commit()
+        }
+        try{
+            File(getKeyVar(scenariokey)).delete()
+        }catch (e : FileNotFoundException){}
+
+    }
 }

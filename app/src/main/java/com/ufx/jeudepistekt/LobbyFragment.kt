@@ -201,19 +201,20 @@ class LobbyFragment : Fragment() {
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.scenario_delete -> {
-                for (scenario in scenariolist){
-                    if (Storer.key(scenario.first,scenario.second) == selectedview.tag.toString()){
-                        Zipper(requireContext(),scenario.first,scenario.second).deleteScenarioFiles()
-                        scenariolist.remove(scenario)
-                        User.saveScenarioList(scenariolist)
-                        findNavController(requireActivity(), R.id.fragment_container_view).navigate(R.id.lobbyFragment)
-                        return true
-                    }
-                }
+        val scenarioSelected = scenariolist.first { Storer.key(it.first,it.second) == selectedview.tag.toString() }
 
-                false
+        return when (item.itemId) {
+            R.id.scenario_reset -> {
+                User.resetScenario(Storer.key(scenarioSelected.first,scenarioSelected.second),requireContext())
+                Toast.makeText(requireContext(), "Scenario ${scenarioSelected.first} successful reset", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.scenario_delete -> {
+                Zipper(requireContext(),scenarioSelected.first,scenarioSelected.second).deleteScenarioFiles()
+                scenariolist.remove(scenarioSelected)
+                User.saveScenarioList(scenariolist)
+                findNavController(requireActivity(), R.id.fragment_container_view).navigate(R.id.lobbyFragment)
+                true
             }
             else -> super.onContextItemSelected(item)
         }
