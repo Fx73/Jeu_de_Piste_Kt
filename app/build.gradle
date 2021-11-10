@@ -15,7 +15,8 @@ android {
         minSdkVersion 27
         targetSdkVersion 31
         versionCode 1
-        versionName "0.9"
+        versionName "1"
+        archivesBaseName = "$applicationId-v$versionCode($versionName)"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
