@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.ufx.jeudepistekt.jeu.Scenario
 import com.ufx.jeudepistekt.jeu.Stage
 import com.ufx.jeudepistekt.jeu.User
+import com.ufx.jeudepistekt.jeu.User.resetScenario
 import com.ufx.jeudepistekt.jeu.element.TXT
 import com.ufx.jeudepistekt.tools.Storer
 
@@ -73,6 +74,9 @@ class GameFragment : Fragment() {
      * Cheats first, the scenario used codes
      */
     private fun cheat(s: String): Boolean {
+        if (s.startsWith("Reset All")) {
+            resetScenario(scenario.storer.getKey())
+        }
 
         if (s.startsWith("Force Phase ")) {
             scenario.loadStage(s.substring("Force Phase ".length))

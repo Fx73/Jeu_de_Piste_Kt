@@ -32,13 +32,14 @@ open class StageElement(
             TYPE.LCK -> LCK(content)
             TYPE.UCK -> UCK(content)
             TYPE.TST -> TST(content)
+            TYPE.MAP -> MAP(content, additional)
         }
     }
 
 
     companion object {
         enum class TYPE {
-            IMG, TXT, QRC, VAR, BTN, EDT, ETP, LCK, UCK, TST
+            IMG, TXT, QRC, VAR, BTN, EDT, ETP, LCK, UCK, TST, MAP
         }
     }
 
