@@ -11,9 +11,6 @@
         android:label="fragment_lobby"
         tools:layout="@layout/fragment_lobby" >
         <action
-            android:id="@+id/action_lobbyF_to_gameF"
-            app:destination="@id/gameFragment" />
-        <action
             android:id="@+id/action_lobbyF_to_aboutF"
             app:destination="@id/aboutFragment" />
         <action
@@ -22,6 +19,9 @@
         <action
             android:id="@+id/action_lobbyF_self"
             app:destination="@id/lobbyFragment" />
+        <action
+            android:id="@+id/action_lobbyF_to_gameF"
+            app:destination="@id/gameFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"

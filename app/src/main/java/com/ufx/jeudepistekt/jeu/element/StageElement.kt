@@ -25,7 +25,7 @@ open class StageElement(
             TYPE.IMG -> IMG(content)
             TYPE.TXT -> TXT(content)
             TYPE.QRC -> QRC(content)
-            TYPE.VAR -> VAR(content)
+            TYPE.VAR -> VAR(content, additional)
             TYPE.BTN -> BTN(content, additional)
             TYPE.EDT -> EDT(content, additional)
             TYPE.ETP -> ETP(content)

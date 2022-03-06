@@ -5,29 +5,26 @@ import com.ufx.jeudepistekt.jeu.Stage
 
 /**
  * VAR: Instantiate a variables
- * content : variables content : "var=value"
+ * content : variable name
+ * additional 1 : operator
+ * additional 2 : value
  */
 
-class VAR(content: String) : Element(content) {
+class VAR(content: String, additional: Array<String>) : Element(content, additional) {
 
     override fun instantiate(stage: Stage) {
-        val split = content.split("=")
-        var v = GameFragment.scenario.variables.values[split[0]] ?: return
+        var v = GameFragment.scenario.variables.values[content] ?: return
 
-        if (split.size == 2) {
-            v = split[1].toInt()
+        when (additional[0]) {
+            "=" -> v = additional[1].toInt()
+            "+=" -> v += additional[1].toInt()
+            "-=" -> v -= additional[1].toInt()
+            "*=" -> v *= additional[1].toInt()
+            "/=" -> v /= additional[1].toInt()
         }
 
-        if (split.size == 3) {
-            when (split[1]) {
-                "+" -> v += split[2].toInt()
-                "-" -> v -= split[2].toInt()
-                "*" -> v *= split[2].toInt()
-                "/" -> v /= split[2].toInt()
-            }
-        }
 
-        GameFragment.scenario.variables.values[split[0]] = v
+        GameFragment.scenario.variables.values[content] = v
 
     }
 
