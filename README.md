@@ -2,6 +2,11 @@
 
 ![icon](./app/src/main/res/drawable/ic_banner.png?raw=true)
 
+![IM2AG](https://img.shields.io/badge/IM2AG-Seal%20of%20Quality-blue)
+[![Google status](https://vsrm.dev.azure.com/CochonCorp/_apis/public/Release/badge/b930aa48-ed83-4d14-bd11-8f96b8b7230e/1/9)](https://vsrm.dev.azure.com/CochonCorp/_apis/public/Release/badge/b930aa48-ed83-4d14-bd11-8f96b8b7230e/1/9)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/fx73/Jeu_de_Piste_Kt) 
+![GitHub last commit](https://img.shields.io/github/last-commit/fx73/Jeu_de_Piste_Kt)
+
 <h2>Presentation</h2>
 
 This android application is an interactive treasure hunt ('Jeu de piste' in french)
