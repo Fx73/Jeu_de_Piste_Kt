@@ -122,11 +122,17 @@ class ScenarioTest {
                 TXT("End of tests").reverseFactory(),
             )
         )
+
+        val variables = Variables()
+        variables.values["var1"] = 1
+        variables.values["var2"] = 2
+
         return Scenario(
             "Complex Scenario Test",
             "unitest",
             "this is a test scenario",
             "no",
+            variables = variables,
             stages = listOf(e0, e1, e2, e3, e4, e5, e6, e100)
         )
     }

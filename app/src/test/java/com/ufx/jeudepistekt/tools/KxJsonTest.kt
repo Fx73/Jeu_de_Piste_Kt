@@ -24,14 +24,13 @@ class KxJsonTest {
         val jsonPretty = Json { prettyPrint = true }
 
         File("src/main/assets/ScenarioTest.json").writeText(jsonPretty.encodeToString(ScenarioTest().complexScenario()))
-        File("src/main/assets/ScenarioFile.json").writeText(jsonPretty.encodeToString(ScenarioTest().complexScenario()))
 
     }
 
     @Test
     @Order(2)
     fun readJsonFile() {
-        val jsonFileString = File("src/main/assets/ScenarioTest.json").readText()
+        val jsonFileString = File("src/main/assets/ScenarioFile.json").readText()
 
 
         val scenario = Json.decodeFromString<Scenario>(jsonFileString)
