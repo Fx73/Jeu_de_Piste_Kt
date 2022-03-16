@@ -8,8 +8,8 @@ internal class VariablesTest {
     @Test
     fun evaluateConditionTest() {
         val variables = Variables()
-        variables.values["var1"] = 1
-        variables.values["var2"] = 3
+        variables.variablesvalues["var1"] = 1
+        variables.variablesvalues["var2"] = 3
         var a = variables.evaluateCondition("1 == 2")
         assertEquals(false, a)
 

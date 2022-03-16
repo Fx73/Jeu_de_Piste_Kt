@@ -45,8 +45,8 @@ class GameFragment : Fragment() {
 
         val save = User.loadScenario(storer.getKey(), requireContext())
         if (save != null) {
-            for ((key, value) in save.second.values)
-                scenario.variables.values[key] = value
+            for ((key, value) in save.second.variablesvalues)
+                scenario.variables.variablesvalues[key] = value
             scenario.loadStage(save.first)
         } else {
             scenario.loadStage(scenario.stages[0].name)
@@ -86,13 +86,13 @@ class GameFragment : Fragment() {
         if (s.startsWith("Force Var ")) {
             val variable = s.substring("Force Var ".length).trim().split(" ").first()
             val value = s.split(" ").last()
-            scenario.variables.values[variable] = value.toInt()
+            scenario.variables.variablesvalues[variable] = value.toInt()
             return true
         }
 
         if (s == "Print Vars") {
             val sb = StringBuilder()
-            scenario.variables.values.forEach { (key, value) -> sb.append("$key = $value \n") }
+            scenario.variables.variablesvalues.forEach { (key, value) -> sb.append("$key = $value \n") }
             TXT(sb.toString()).instantiate(Stage("Vars"))
             return true
         }

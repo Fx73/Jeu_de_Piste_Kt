@@ -1,0 +1,27 @@
+{
+  "title": "A",
+  "creator": "B",
+  "description": "",
+  "copyright": "",
+  "version": "2.1",
+  "variables": {
+    "variablesvalues": {
+      "A": 0,
+      "B": 0
+    }
+  },
+  "stages": [
+    {
+      "name": "",
+      "elements": [
+        {
+          "type": "TXT",
+          "content": "test",
+          "additional": []
+        }
+      ],
+      "next": [],
+      "understages": []
+    }
+  ]
+}

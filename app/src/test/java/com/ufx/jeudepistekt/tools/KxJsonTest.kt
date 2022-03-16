@@ -30,7 +30,7 @@ class KxJsonTest {
     @Test
     @Order(2)
     fun readJsonFile() {
-        val jsonFileString = File("src/main/assets/ScenarioFile.json").readText()
+        val jsonFileString = File("src/main/assets/ScenarioTest.json").readText()
 
 
         val scenario = Json.decodeFromString<Scenario>(jsonFileString)

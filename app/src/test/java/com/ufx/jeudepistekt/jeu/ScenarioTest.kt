@@ -124,8 +124,8 @@ class ScenarioTest {
         )
 
         val variables = Variables()
-        variables.values["var1"] = 1
-        variables.values["var2"] = 2
+        variables.variablesvalues["var1"] = 1
+        variables.variablesvalues["var2"] = 2
 
         return Scenario(
             "Complex Scenario Test",
