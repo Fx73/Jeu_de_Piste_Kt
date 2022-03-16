@@ -7,6 +7,8 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/fx73/Jeu_de_Piste_Kt) 
 ![GitHub last commit](https://img.shields.io/github/last-commit/fx73/Jeu_de_Piste_Kt)
 
+<a href='https://play.google.com/store/apps/details?id=com.ufx.jeudepistekt&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="220"/></a>
+
 <h2>Presentation</h2>
 
 This android application is an interactive treasure hunt ('Jeu de piste' in french)
@@ -32,5 +34,3 @@ Another program to come, a scenario editor
 
 <br>
 
-Available on play store:
-https://play.google.com/store/apps/details?id=com.ufix.jeudepistekt&hl=fr
